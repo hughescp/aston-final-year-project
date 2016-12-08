@@ -36,13 +36,10 @@
         </style>
     </head>
     <body>
-        @if (empty($people))
-            There are no people.
-        @else
-            Here are a list of people:
-        @endif
-        @foreach ($people as $person)
-            <li>{{$person}}</li>
-        @endforeach
+        <div class="container">
+            <div class="content">
+                <div class="title">About page here</div>
+            </div>
+        </div>
     </body>
 </html>
