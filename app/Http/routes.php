@@ -2,6 +2,6 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('/about', function(){
-    return view('pages.about');   //means look in resources/views/about.blade.php
-});
+Route::get('/about', 'PagesController@about');
+
+Route::get('/areas', 'AreasController@index');
