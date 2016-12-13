@@ -15,12 +15,12 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->real('greenspace');
-            $table->real('housing affordability ratio');
-            $table->real('superfast_broadband');
-            $table->real('crime');
-            $table->real('five_good_gcses');
-            $table->real('restaraunts');
+            $table->float('greenspace');
+            $table->float('housing affordability ratio');
+            $table->float('superfast_broadband');
+            $table->float('crime');
+            $table->float('five_good_gcses');
+            $table->float('restaraunts');
             $table->timestamps();
         });
     }

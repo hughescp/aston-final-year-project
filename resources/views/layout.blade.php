@@ -5,7 +5,9 @@
     <title>Document</title>
 </head>
 <body>
-
+<div id='header'>
+    <h1>Comparea</h1>
+</div>
     @yield('content')
 
 </body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,6 +11,8 @@ class AreasController extends Controller
 {
     public function index()
     {
-     return view('areas.index');
+    $areas = \DB::table('areas')->get();
+
+    return view('areas.index', compact('areas'));
     }
 }
