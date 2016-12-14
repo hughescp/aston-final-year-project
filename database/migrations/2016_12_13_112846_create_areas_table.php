@@ -16,11 +16,11 @@ class CreateAreasTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('greenspace');
-            $table->float('housing affordability ratio');
+            $table->float('housing_affordability_ratio');
             $table->float('superfast_broadband');
             $table->float('crime');
             $table->float('five_good_gcses');
-            $table->float('restaraunts');
+            $table->float('restaurants');
             $table->timestamps();
         });
     }

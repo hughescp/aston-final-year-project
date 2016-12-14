@@ -5,7 +5,13 @@
 
     @foreach ($areas as $area)
         <div>
-            {{$area->name}}
+            <h2>{{$area->name}}</h2>
+            <h3>Greenspace: {{$area->greenspace*100}}%</h3>
+            <h3>Housing Affordability Ratio: {{$area->housing_affordability_ratio}}</h3>
+            <h3>Superfast Broadband: {{$area->superfast_broadband*100}}%</h3>
+            <h3>Crime (crimes per 1000 of the population): {{$area->crime}}</h3>
+            <h3>Children with 5 A*-C GCSEs {{$area->five_good_gcses*100}}%</h3>
+            <h3>Pubs & Restaurants (per km^2): {{$area->restaurants}}</h3>
         </div>
     @endforeach
 <div id ='title'>
