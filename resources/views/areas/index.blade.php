@@ -22,7 +22,7 @@
         <tr>
             <td>
             <h3>Area Name</h3>
-            <h4>Overall Score:</h4>
+            <h4>Overall Score:{{AreasController::calculateOverallScore($area); }}</h4>
             <p>7.8</p>
             <table>
                 <tr>
