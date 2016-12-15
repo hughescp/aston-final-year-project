@@ -4,53 +4,45 @@
 <div id ='title'>
     <h1>Areas</h1>
 </div>
+
+<div class="container">
+    <canvas width="200" height="200" id="graph"></canvas>
+</div>
+
+<script src="/js/main.js"></script>
+
 <div id = 'area grid'>
-    <table>
+    <table class = 'table-bordered'>
         <tr>
             @foreach ($areas as $area)
             <td class = 'areaSummary'>
                 <h2>{{$area->name}}</h2>
                 <h3>Overall Score:</h3>
                 <h3>7.1</h3>
-                <canvas id="lineChart" height="400" width="400"></canvas>
+<!--
+                <canvas id="lineChart" height="300" width="300"></canvas>
                 <script type="text/javascript">
-                    document.getElementById("lineChart);
-                    const CHART = document.getElementById("lineChart);
-                    let lineChart = new Chart(CHART, {
-                        type: 'line',
-                        data: {
-                            labels: ["January", "February", "March", "April", "May", "June", "July"],
-                            datasets: [
-                                {
-                                    label: "My First dataset",
-                                    fill: false,
-                                    lineTension: 0.1,
-                                    backgroundColor: "rgba(75,192,192,0.4)",
-                                    borderColor: "rgba(75,192,192,1)",
-                                    borderCapStyle: 'butt',
-                                    borderDash: [],
-                                    borderDashOffset: 0.0,
-                                    borderJoinStyle: 'miter',
-                                    pointBorderColor: "rgba(75,192,192,1)",
-                                    pointBackgroundColor: "#fff",
-                                    pointBorderWidth: 1,
-                                    pointHoverRadius: 5,
-                                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                                    pointHoverBorderWidth: 2,
-                                    pointRadius: 1,
-                                    pointHitRadius: 10,
-                                    data: [65, 59, 80, 81, 56, 55, 40],
-                                    spanGaps: false,
-                                }
-                            ]
-                        }
-                    });
 
+                    function(){
+                        var ctx = document.getElementById(lineChart).getContext('2d');
+                        var chart = {
+                            labels: ['January', 'February', 'March'],
+                            datasets:[{
+                                data: [100, 423, 719]
+                            }]
+                        };
+
+                        new Chart(ctx).Line(chart);
+                    };
                 </script>
+-->
             </td>
             @endforeach
         </tr>
     </table>
 </div>
+@stop
+
+@section('footer')
+    <script src="/public/js/Chart.min.js"></script>
 @stop
