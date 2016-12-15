@@ -1,60 +1,55 @@
 @extends('layout')
 
 @section('content')
-    <h1>All Areas</h1>
-
-    @foreach ($areas as $area)
-        <div>
-            <h2>{{$area->name}}</h2>
-            <h3>Greenspace: {{$area->greenspace*100}}%</h3>
-            <h3>Housing Affordability Ratio: {{$area->housing_affordability_ratio}}</h3>
-            <h3>Superfast Broadband: {{$area->superfast_broadband*100}}%</h3>
-            <h3>Crime (crimes per 1000 of the population): {{$area->crime}}</h3>
-            <h3>Children with 5 A*-C GCSEs {{$area->five_good_gcses*100}}%</h3>
-            <h3>Pubs & Restaurants (per km^2): {{$area->restaurants}}</h3>
-        </div>
-    @endforeach
 <div id ='title'>
     <h1>Areas</h1>
 </div>
 <div id = 'area grid'>
     <table>
         <tr>
-            <td>
-            <h3>Area Name</h3>
-            <h4>Overall Score:{{AreasController::calculateOverallScore($area); }}</h4>
-            <p>7.8</p>
-            <table>
-                <tr>
-                    <td><h5>Housing Affodability Ratio:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h5>Crime Level:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h5>Green Space:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h5>% 5 A*-C GCSEs:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h5>Number of Pubs &amp; Restaraunts:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h5>Transport Links:</h5></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+            @foreach ($areas as $area)
+            <td class = 'areaSummary'>
+                <h2>{{$area->name}}</h2>
+                <h3>Overall Score:{{AreasController::calculateOverallScore($area)}}</h3>
+                <h3>7.1</h3>
+                <canvas id="lineChart" height="400" width="400"></canvas>
+                <script type="text/javascript">
+                    document.getElementById("lineChart);
+                    const CHART = document.getElementById("lineChart);
+                    let lineChart = new Chart(CHART, {
+                        type: 'line',
+                        data: {
+                            labels: ["January", "February", "March", "April", "May", "June", "July"],
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+                                    fill: false,
+                                    lineTension: 0.1,
+                                    backgroundColor: "rgba(75,192,192,0.4)",
+                                    borderColor: "rgba(75,192,192,1)",
+                                    borderCapStyle: 'butt',
+                                    borderDash: [],
+                                    borderDashOffset: 0.0,
+                                    borderJoinStyle: 'miter',
+                                    pointBorderColor: "rgba(75,192,192,1)",
+                                    pointBackgroundColor: "#fff",
+                                    pointBorderWidth: 1,
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                                    pointHoverBorderWidth: 2,
+                                    pointRadius: 1,
+                                    pointHitRadius: 10,
+                                    data: [65, 59, 80, 81, 56, 55, 40],
+                                    spanGaps: false,
+                                }
+                            ]
+                        }
+                    });
+
+                </script>
             </td>
+            @endforeach
         </tr>
     </table>
 </div>
