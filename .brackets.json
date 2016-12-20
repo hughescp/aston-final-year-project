@@ -1,5 +1,6 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/wamp64/www/aston-final-year-project/gulpfile.js"
+        "C:/wamp64/www/aston-final-year-project/public/js/main.js",
+        "C:/wamp64/www/aston-final-year-project/public/js/Chart.min.js"
     ]
 }

@@ -6,7 +6,7 @@
 </div>
 
 <div class="container">
-    <canvas width="200" height="200" id="graph"></canvas>
+    <graph></graph>
 </div>
 
 <script src="/js/main.js"></script>

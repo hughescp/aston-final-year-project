@@ -1,25 +1,10 @@
-import Chart from 'chart.js';
-import Vue from 'vue';
+import Vue from 'C:/wamp64/www/aston-final-year-project/bower_components/vue/dist/vue.js';
+import Graph from './components/Graph';
 
-var data = {
-    labels: ['January', 'February', 'March'],
 
-    datasets: [
-        {
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,0.2)",
-            pointColor: "rgba(220,220,220,0.2)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [30, 122, 90]
-        }
-    ]
-};
 
-var context = document.querySelector('#graph').getContext('2d');
+new Vue({
+    el: 'body',
 
-new Chart(context,{
-        type: "line",
-        data: data,
+    components: { Graph }
 });
