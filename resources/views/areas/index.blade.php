@@ -6,11 +6,10 @@
 </div>
 
 <div class="container">
-    <graph :labels="['January', 'February', 'March']" :values="[10, 42, 4]"></graph>
+    <graph :labels="['January', 'February', 'March']"
+           :values="[10, 42, 4]">
+    </graph>
 </div>
-
-<script src="/js/main.js"></script>
-
 <div id = 'area grid'>
     <table class = 'table-bordered'>
         <tr>
@@ -69,6 +68,23 @@
                     </td>
                 </tr>
             </table>
+                <div class="container">
+                    <graph :labels="[
+                            'Housing Affordability Ratio',
+                            'Crime Level',
+                            'Green Space',
+                            '5 Good GCSEs',
+                            'N. of Restaurants',
+                            'Superfast Broadband'
+                            ]"
+                           :values="[
+                            {{$area->housing_affordability_ratio}}, {{$area->crime}},
+                            {{$area->greenspace*100}}%,
+                            {{$area->five_good_gcses*100}}%,
+                            {{$area->restaurants}},
+                            {{$area->superfast_broadband*100}}%]">
+                    </graph>
+                </div>
             </td>
             @endforeach
         </tr>
@@ -78,4 +94,5 @@
 
 @section('footer')
     <script src="/js/Chart.min.js"></script>
+    <script src="/js/main.js"></script>
 @stop

@@ -25747,7 +25747,7 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    template: '<canvas width="200" height="200" id="graph"></canvas>',
+    template: '<canvas width="200" height="200"></canvas>',
 
     props: ['labels', 'values'],
 
@@ -25757,7 +25757,7 @@ exports.default = {
             labels: this.labels,
 
             datasets: [{
-                fillColor: "rgba(220,220,220,0.2)",
+                fillColor: "rgba(10,70,220, 0.5)",
                 strokeColor: "rgba(220,220,220,0.2)",
                 pointColor: "rgba(220,220,220,0.2)",
                 pointStrokeColor: "#fff",
@@ -25767,10 +25767,8 @@ exports.default = {
             }]
         };
 
-        var context = document.querySelector('#graph').getContext('2d');
-
-        new _chart2.default(context, {
-            type: "line",
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "bar",
             data: data
         });
     }

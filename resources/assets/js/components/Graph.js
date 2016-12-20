@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 
 export default {
-    template: '<canvas width="200" height="200" id="graph"></canvas>',
+    template: '<canvas width="200" height="200"></canvas>',
 
     props: ['labels', 'values'],
 
@@ -12,7 +12,7 @@ export default {
 
             datasets: [
                 {
-                    fillColor: "rgba(220,220,220,0.2)",
+                    fillColor: "rgba(10,70,220, 0.5)",
                     strokeColor: "rgba(220,220,220,0.2)",
                     pointColor: "rgba(220,220,220,0.2)",
                     pointStrokeColor: "#fff",
@@ -23,10 +23,9 @@ export default {
             ]
         };
 
-        var context = document.querySelector('#graph').getContext('2d');
-
-        new Chart(context,{
-                type: "line",
+        new Chart(
+            this.$el.getContext('2d'),{
+                type: "bar",
                 data: data,
         })
     }
