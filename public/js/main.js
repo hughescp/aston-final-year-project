@@ -16034,7 +16034,6 @@ process.umask = function() { return 0; };
  * (c) 2014-2016 Evan You
  * Released under the MIT License.
  */
-<<<<<<< HEAD
 'use strict';
 
 /*  */
@@ -22039,11 +22038,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _chart = require('chart.js');
-=======
 'use strict';
 
 /*  */
->>>>>>> origin/master
 
 /**
  * Convert a value to a string that is actually rendered.
@@ -22609,7 +22606,6 @@ Dep.prototype.depend = function depend () {
   }
 };
 
-<<<<<<< HEAD
 exports.default = {
     template: '<canvas width="200" height="200" id="graph"></canvas>',
 
@@ -22637,7 +22633,6 @@ exports.default = {
     }
 };
 
-=======
 Dep.prototype.notify = function notify () {
   // stablize the subscriber list first
   var subs = this.subs.slice();

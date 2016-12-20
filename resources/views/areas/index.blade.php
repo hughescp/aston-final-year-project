@@ -94,5 +94,5 @@
 @stop
 
 @section('footer')
-    <script src="/public/js/Chart.min.js"></script>
+    <script src="js/Chart.min.js"></script>
 @stop
