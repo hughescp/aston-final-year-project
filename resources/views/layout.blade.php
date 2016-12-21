@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-<div id='header'>
-    <h1>Comparea</h1>
-</div>
+<header>
+    <img src="img/comparea_logo[white].png" id="logo">
+</header>
     @yield('content')
 
     @yield('footer')

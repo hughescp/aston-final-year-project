@@ -25758,11 +25758,11 @@ exports.default = {
 
             datasets: [{
                 fillColor: "rgba(10,70,220, 0.5)",
-                strokeColor: "rgba(220,220,220,0.2)",
-                pointColor: "rgba(220,220,220,0.2)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#dae",
+                pointHighlightFill: "#dae",
+                pointHighlightStroke: "rgba(70,10,220,1)",
                 data: this.values
             }]
         };

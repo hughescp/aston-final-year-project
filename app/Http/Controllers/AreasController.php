@@ -44,6 +44,28 @@ class AreasController extends Controller
 //        var float overallScore = (areaHARCPr*HARWeighting)+(areaCrimeLevelCPr*crimeWeighting)+(areaBroadbandCPr*broadbandWeighting)+(areaGreenSpaceCPr*greenspaceWeighting)+(areaGoodGCSEsCPr*GCSEWeighting)+(areaRestaurantsCPr*restaurantsWeighting);
 //
 //        return $overallScore;
+//        -------------------------------------------
+//        define("HARWeighting", 0.252809);
+//        define("crimeWeighting", 0.191011);
+//        define("broadbandWeighting", 0.185393);
+//        define("greenspaceWeighting", 0.162921);
+//        define("GCSEWeighting", 0.134831);
+//        define("restaurantsWeighting", 0.073034);
+
+//        $HARScore = $HARweighting*(1-(area.HAR/MAX(areas.HAR)))
+//
+//        $CrimeScore = $Crimeweighting*(1-(area.Crime/MAX(areas.crime)))
+//
+//        $BroadbandScore = $Broadbandweighting*(area.broadband/MAX(areas.crime))
+//
+//        $GreenSpaceScore = $GreenSpaceweighting*(area.greenSpace/MAX(areas.greenSpace))
+//
+//        $GoodGCSEsScore = $GoodGCSEsweighting*(area.goodGCSEs/MAX(areas.goodGCSEs))
+//
+//        $RestaurantsScore = $Restaurantweighting*(area.restaurant/MAX(areas.restaurant))
+
+//
+//        $overallScore = (HousingAffordabilityRatioScore + CrimeLevelScore + HighSpeedBroadbandScore + GreenSpaceScore + GoodGCSEsScore + RestaurantsScore)*10
 
     }
 }

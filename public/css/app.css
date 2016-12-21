@@ -5730,4 +5730,11 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+#logo {
+  width: 346px;
+  height: auto; }
+
+header {
+  background-color: cornflowerblue; }
+
 /*# sourceMappingURL=app.css.map */
