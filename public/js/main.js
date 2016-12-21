@@ -25747,7 +25747,7 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    template: '<canvas width="200" height="200"></canvas>',
+    template: '<canvas width="200px" height="200px"></canvas>',
 
     props: ['labels', 'values'],
 
@@ -25768,7 +25768,7 @@ exports.default = {
         };
 
         new _chart2.default(this.$el.getContext('2d'), {
-            type: "bar",
+            type: "horizontalBar",
             data: data
         });
     }

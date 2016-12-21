@@ -5,11 +5,13 @@
     <h1>Areas</h1>
 </div>
 
+<!--
 <div class="container">
     <graph :labels="['January', 'February', 'March']"
            :values="[10, 42, 4]">
     </graph>
 </div>
+-->
 <div id = 'area grid'>
     <table class = 'table-bordered'>
         <tr>
@@ -68,7 +70,7 @@
                     </td>
                 </tr>
             </table>
-                <div class="container">
+                <div class="container-fluid">
                     <graph :labels="[
                             'Housing Affordability Ratio',
                             'Crime Level',
@@ -79,10 +81,10 @@
                             ]"
                            :values="[
                             {{$area->housing_affordability_ratio}}, {{$area->crime}},
-                            {{$area->greenspace*100}}%,
-                            {{$area->five_good_gcses*100}}%,
+                            {{$area->greenspace*100}},
+                            {{$area->five_good_gcses*100}},
                             {{$area->restaurants}},
-                            {{$area->superfast_broadband*100}}%]">
+                            {{$area->superfast_broadband*100}}]">
                     </graph>
                 </div>
             </td>

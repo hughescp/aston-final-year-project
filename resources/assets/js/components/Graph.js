@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 
 export default {
-    template: '<canvas width="200" height="200"></canvas>',
+    template: '<canvas width="200px" height="200px"></canvas>',
 
     props: ['labels', 'values'],
 
@@ -25,7 +25,7 @@ export default {
 
         new Chart(
             this.$el.getContext('2d'),{
-                type: "bar",
+                type: "horizontalBar",
                 data: data,
         })
     }
