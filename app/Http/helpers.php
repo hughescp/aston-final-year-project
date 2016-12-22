@@ -1,48 +1,71 @@
 <?php
+use App\Area;
+
 class Helpers{
-    public static function calculateOverallScore()
+
+//    define("HAR_WEIGHTING", 0.252809);
+//    define("CRIME_WEIGHTING", 0.191011);
+//    define("BROADBAND_WEIGHTING", 0.185393);
+//    define("GREENSPACE_WEIGHTING", 0.162921);
+//    define("GCSE_WEIGHTING", 0.134831);
+//    define("RESTAURANTS_WEIGHTING", 0.073034);
+
+
+    public static function randomNumber()
     {
 
         return mt_rand(1,10);
-//        $areas = Area::all();
+
+    }
+
+
+    public static function getMaxValue($column_name){
+        $max_value = DB::select('SELECT MAX(:column_name) FROM areas', ['column_name' => $column_name]);
+
+        return $max_value;
+    }
+
+
+    public static function calculateOverallScore($area){
+
+        $har_weightings = 0.252809;
+        $crime_weighting = 0.191011;
+        $broadband_weighting = 0.185393;
+        $greenspace_weighting = 0.162921;
+        $gcse_weighting = 0.134831;
+        $restaurants_weighting = 0.073034;
+
+        $areas = Area::all();
+
+        $harScore = $har_weightings*10;
+
+        $crimeScore = $crime_weighting*10;
+
+        $broadbandScore = $broadband_weighting*10;
+
+        $greenSpaceScore = $greenspace_weighting*10;
+
+        $goodGCSEsScore = $gcse_weighting*10;
+
+        $restaurantsScore = $restaurants_weighting*10;
+
 //
-//        define("HAR_WEIGHTING", 0.252809);
-//        define("CRIME_WEIGHTING", 0.191011);
-//        define("BROADBAND_WEIGHTING", 0.185393);
-//        define("GREENSPACE_WEIGHTING", 0.162921);
-//        define("GCSE_WEIGHTING", 0.134831);
-//        define("RESTAURANTS_WEIGHTING", 0.073034);
+//        $harScore = HAR_WEIGHTING*(self::getMaxValue('housing_affordability_ratio'));
 //
-//        /* PSEUDOCODE TO FIND MAX VALUE
-//        function find_max_value($column_name){
-//            var $max_value = 0;
-//            foreach $areas as $area
-//                if ($area->$column name > $max_value){
-//                    $max_value = $area->column_name;
-//                };
-//            end foreach
-//            return $max_value;
-//        }
-//        */
-//        var $harScore = HAR_WEIGHTING*(1-($area->housing_affordability_ratio/MAX(areas.HAR)));
+//        $crimeScore = CRIME_WEIGHTING*(self::getMaxValue('crime'));
 //
-//        var $crimeScore = CRIME_WEIGHTING*(1-($area->crime/MAX(areas.crime)));
+//        $broadbandScore = BROADBAND_WEIGHTING*(self::getMaxValue('superfast_broadband'));
 //
-//        var $broadbandScore = BROADBAND_WEIGHTING*($area->superfast_broadband/MAX(areas.crime));
+//        $greenSpaceScore = GREENSPACE_WEIGHTING*(self::getMaxValue('greenspace'));
 //
-//        var $greenSpaceScore = GREENSPACE_WEIGHTING*($area->greenSpace/MAX(areas.greenSpace));
+//        $goodGCSEsScore = GCSE_WEIGHTING*(self::getMaxValue('five_good_gcses'));
 //
-//        var $goodGCSEsScore = GCSE_WEIGHTING*($area->five_good_gcses/MAX(areas.goodGCSEs));
-//
-//        var $restaurantsScore = RESTAURANTS_WEIGHTING*($area->restaurants/MAX(areas.restaurant));
-//
-//        /*
-//        SQL statement to get max value from a column in table.
-//        SELECT MAX(`insert column name here`) FROM `areas`;
-//        */
-//
-//        var $overallScore = ($harScore + $crimeScore + $broadbandScore + $greenSpaceScore + $goodGCSEsScore + $restaurantsScore)*10;
-//
-//        return $overallScore;
+//        $restaurantsScore = RESTAURANTS_WEIGHTING*(self::getMaxValue('restaurants'));
+
+
+        $overallScore = ($harScore + $crimeScore + $broadbandScore + $greenSpaceScore + $goodGCSEsScore + $restaurantsScore)*10;
+
+        return $overallScore;
     }
 }
+

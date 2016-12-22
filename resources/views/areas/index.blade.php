@@ -20,7 +20,7 @@
                 <h2>{{$area->name}}</h2>
                 <h3>Overall Score:</h3>
                 <h3 id="overall_score">
-                    {{Helpers::calculateOverallScore()}}
+                    {{Helpers::calculateOverallScore($area)}}
                 </h3>
                 <table>
                 <tr>
