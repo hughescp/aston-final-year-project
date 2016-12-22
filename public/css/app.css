@@ -5734,7 +5734,10 @@ button.close {
   width: 346px;
   height: auto; }
 
+#overall_score {
+  text-align: center; }
+
 header {
-  background-color: cornflowerblue; }
+  background-color: #278b49; }
 
 /*# sourceMappingURL=app.css.map */

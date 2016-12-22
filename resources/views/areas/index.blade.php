@@ -19,7 +19,9 @@
             <td class = 'areaSummary'>
                 <h2>{{$area->name}}</h2>
                 <h3>Overall Score:</h3>
-                <h3>7.1</h3>
+                <h3 id="overall_score">
+                    {{Helpers::calculateOverallScore()}}
+                </h3>
                 <table>
                 <tr>
                     <td>
