@@ -12,7 +12,9 @@ export default {
 
             datasets: [
                 {
-                    fillColor: "rgba(10,70,220, 0.5)",
+                    backgroundColor: "rgba(10,70,220, 0.5)",
+                    label: "Lable",
+                    borderSkipped: "top",
                     strokeColor: "rgba(220,70, 10,0.5)",
                     pointColor: "rgba(70,220,10,0.5)",
                     pointStrokeColor: "#fff",
@@ -22,11 +24,26 @@ export default {
                 }
             ]
         };
+        var ctx = this.$el.getContext('2d');
 
         new Chart(
             this.$el.getContext('2d'),{
                 type: "horizontalBar",
                 data: data,
+//                onAnimationComplete: function () {
+//
+//                    ctx.font = this.scale.font;
+//                    ctx.fillStyle = this.scale.textColor
+//                    ctx.textAlign = "center";
+//                    ctx.textBaseline = "bottom";
+//
+//                    this.data.datasets.forEach(function (dataset) {
+//                        for (var i = 0; i < dataset.data.length; i++) {
+//                            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
+//                            ctx.fillText(dataset.data[i], model.x, model.y - 5);
+//                        }
+//                    })
+//                }
         })
     }
 }

@@ -3,14 +3,6 @@ use App\Area;
 
 class Helpers{
 
-    public static function randomNumber()
-    {
-
-        return mt_rand(1,10);
-
-    }
-
-
 //    public static function getMaxValue($column_name){
 //        print_r("#starting getMaxValue() function<br />");
 //
@@ -119,7 +111,7 @@ class Helpers{
 
         $restaurants_normalised = $area->restaurants/$restaurants_max_value;
 
-
+        /*Calculate Score for each variable by multiplying the normalised score against the weighting */
         $harScore = $har_normalised*$har_weighting;
 
         $crimeScore = $crime_normalised*$crime_weighting;

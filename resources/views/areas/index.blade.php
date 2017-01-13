@@ -5,13 +5,6 @@
     <h1>Areas</h1>
 </div>
 
-<!--
-<div class="container">
-    <graph :labels="['January', 'February', 'March']"
-           :values="[10, 42, 4]">
-    </graph>
-</div>
--->
 <div id = 'area grid'>
     <table class = 'table-bordered'>
         <tr>
@@ -82,7 +75,8 @@
                             'Superfast Broadband'
                             ]"
                            :values="[
-                            {{$area->housing_affordability_ratio}}, {{$area->crime}},
+                            {{$area->housing_affordability_ratio}},
+                            {{$area->crime}},
                             {{$area->greenspace*100}},
                             {{$area->five_good_gcses*100}},
                             {{$area->restaurants}},

@@ -25757,7 +25757,9 @@ exports.default = {
             labels: this.labels,
 
             datasets: [{
-                fillColor: "rgba(10,70,220, 0.5)",
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                label: "Lable",
+                borderSkipped: "top",
                 strokeColor: "rgba(220,70, 10,0.5)",
                 pointColor: "rgba(70,220,10,0.5)",
                 pointStrokeColor: "#fff",
@@ -25766,6 +25768,7 @@ exports.default = {
                 data: this.values
             }]
         };
+        var ctx = this.$el.getContext('2d');
 
         new _chart2.default(this.$el.getContext('2d'), {
             type: "horizontalBar",
