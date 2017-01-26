@@ -6,65 +6,66 @@
 </div>
 
 <div id = 'area grid'>
-    <table class = 'table-bordered'>
-        <tr>
+    <div id = "container">
+        <div class = "row">
             @foreach ($areas as $area)
-            <td class = 'areaSummary'>
+            <div class = "col-md-2 col-md-offset-1 col-sm-4">
+            <div class = 'areaSummary'>
                 <h2>{{$area->name}}</h2>
                 <h3>Overall Score:</h3>
                 <h3 id="overall_score">
                     {{Helpers::calculateOverallScore($area)}}
                 </h3>
                 <table>
-                <tr>
-                    <td>
-                        <h4>Housing Affodability Ratio:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->housing_affordability_ratio}}</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Crime Level:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->crime}}</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Green Space:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->greenspace*100}}%</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>5 Good GCSEs:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->five_good_gcses*100}}%</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Number of Pubs &amp; Restaraunts:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->restaurants}}</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>Superfast Broadband:</h4>
-                    </td>
-                    <td>
-                        <h4>{{$area->superfast_broadband*100}}%</h4>
-                    </td>
-                </tr>
-            </table>
+                    <tr>
+                        <td>
+                            <h4>Housing Affodability Ratio:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->housing_affordability_ratio}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Crime Level:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->crime}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Green Space:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->greenspace*100}}%</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>5 Good GCSEs:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->five_good_gcses*100}}%</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Number of Pubs &amp; Restaraunts:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->restaurants}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Superfast Broadband:</h4>
+                        </td>
+                        <td>
+                            <h4>{{$area->superfast_broadband*100}}%</h4>
+                        </td>
+                    </tr>
+                </table>
                 <div class="container-fluid">
                     <graph :labels="[
                             'Housing Affordability Ratio',
@@ -83,10 +84,11 @@
                             {{$area->superfast_broadband*100}}]">
                     </graph>
                 </div>
-            </td>
+            </div>
+            </div>
             @endforeach
-        </tr>
-    </table>
+        </div>
+    </div>
 </div>
 @stop
 
