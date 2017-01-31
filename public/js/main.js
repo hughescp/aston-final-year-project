@@ -11323,11 +11323,11 @@ for (var func in conversions) {
   // export rgb2hsl and ["rgb"]["hsl"]
   convert[from] = convert[from] || {};
 
-  convert[from][to] = convert[func] = (function(func) {
+  convert[from][to] = convert[func] = (function(func) { 
     return function(arg) {
       if (typeof arg == "number")
         arg = Array.prototype.slice.call(arguments);
-
+      
       var val = conversions[func](arg);
       if (typeof val == "string" || val === undefined)
         return val; // keyword
@@ -11355,12 +11355,12 @@ Converter.prototype.routeSpace = function(space, args) {
    }
    // color.rgb(10, 10, 10)
    if (typeof values == "number") {
-      values = Array.prototype.slice.call(args);
+      values = Array.prototype.slice.call(args);        
    }
 
    return this.setValues(space, values);
 };
-
+  
 /* Set the values for a space, invalidating cache */
 Converter.prototype.setValues = function(space, values) {
    this.space = space;
@@ -26329,6 +26329,13 @@ new _vue2.default({
     el: 'body',
 
     components: { Graph: _Graph2.default }
+});
+
+$(function () {
+    $("#sortable").sortable({
+        placeholder: "ui-state-highlight"
+    });
+    $("#sortable").disableSelection();
 });
 
 },{"./components/Graph":49,"vue":48}]},{},[50]);

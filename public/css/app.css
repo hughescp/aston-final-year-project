@@ -5734,10 +5734,33 @@ button.close {
   width: 346px;
   height: auto; }
 
+#preferencesInput {
+  background-color: cornsilk; }
+
 #overall_score {
   text-align: center; }
 
 header {
   background-color: #278b49; }
+
+#sortable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 60%; }
+
+#sortable li {
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 1.2em;
+  height: 1.5em; }
+
+html > body #sortable li {
+  height: 1.5em;
+  line-height: 1.2em; }
+
+.ui-state-highlight {
+  height: 1.5em;
+  line-height: 1.2em; }
 
 /*# sourceMappingURL=app.css.map */

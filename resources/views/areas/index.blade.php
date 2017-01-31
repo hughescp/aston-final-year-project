@@ -4,9 +4,21 @@
 <div id ='title'>
     <h1>Areas</h1>
 </div>
-
+<div id = "preferencesInput" class = "container">
+    <p>Please enter your upper and lower price limits.</p>
+    <label>Lower Limit:</label><span> £</span><input type = "number" name="lowerlimit" min="1" max="999999999999" value = "140000">
+    <label>Upper Limit:</label><span> £</span><input type = "number" name="upperlimit" min="1" max="999999999999" value = "180000">
+    <p>Rank the factors below according to their importance to you, the highest being the most important:</p>
+    <ul id="sortable">
+      <li class="ui-state-default">Crime Level</li>
+      <li class="ui-state-default">Green Space</li>
+      <li class="ui-state-default">5 Good GCSEs</li>
+      <li class="ui-state-default">Number of Pubs &amp Restaurants</li>
+      <li class="ui-state-default">Superfast Broadband</li>
+    </ul>
+</div>
 <div id = 'area grid'>
-    <div id = "container">
+    <div class = "container">
         <div class = "row">
             @foreach ($areas as $area)
             <div class = "col-md-2 col-md-offset-1 col-sm-4">
@@ -23,6 +35,14 @@
                         </td>
                         <td>
                             <h4>{{$area->housing_affordability_ratio}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Mean House Price:</h4>
+                        </td>
+                        <td>
+                            <h4>£{{$area->avg_house_price}}</h4>
                         </td>
                     </tr>
                     <tr>

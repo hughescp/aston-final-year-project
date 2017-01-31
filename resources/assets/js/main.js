@@ -7,3 +7,10 @@ new Vue({
 
     components: {Graph}
 });
+
+$( function() {
+    $( "#sortable" ).sortable({
+      placeholder: "ui-state-highlight"
+    });
+    $( "#sortable" ).disableSelection();
+} );
