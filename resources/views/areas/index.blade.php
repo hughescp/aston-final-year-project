@@ -1,21 +1,43 @@
 @extends('layout')
 
 @section('content')
-<div id ='title'>
+<div id ='title' class="container">
     <h1>Areas</h1>
 </div>
 <div id = "preferencesInput" class = "container">
-    <p>Please enter your upper and lower price limits.</p>
-    <label>Lower Limit:</label><span> £</span><input type = "number" name="lowerlimit" min="1" max="999999999999" value = "140000">
-    <label>Upper Limit:</label><span> £</span><input type = "number" name="upperlimit" min="1" max="999999999999" value = "180000">
-    <p>Rank the factors below according to their importance to you, the highest being the most important:</p>
-    <ul id="sortable">
-      <li class="ui-state-default">Crime Level</li>
-      <li class="ui-state-default">Green Space</li>
-      <li class="ui-state-default">5 Good GCSEs</li>
-      <li class="ui-state-default">Number of Pubs &amp Restaurants</li>
-      <li class="ui-state-default">Superfast Broadband</li>
-    </ul>
+    
+    <form method = "POST" action="/areas" id="preferencesForm" class="form-group">
+        
+    {{csrf_field()}}
+        
+        <p>Please enter your price range:</p>
+        
+        <label>Lower Limit:</label>
+        <div class="input-group">
+            <span class="input-group-addon"> £</span>
+            <input type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = "140000">
+        </div>
+        
+        <label>Upper Limit:</label>
+        <div class="input-group">
+            <span class="input-group-addon"> £</span>
+            <input type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = "180000">
+        </div>
+        
+        <p>Rank the factors below according to their importance to you, the highest being the most important:</p>
+        
+        <p>Then distribute points to the factors to indicate how important they are to you. You have  20 points in total. You can distribute them in anyway that you would like:</p>
+        
+        <ul id="sortable">
+          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = "5">Crime Level</li>
+          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = "5">Green Space</li>
+          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = "5">5 Good GCSEs</li>
+          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "5">Number of Pubs &amp Restaurants</li>
+          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "5">Superfast Broadband</li>
+        </ul>
+        <!--For the form input I could just measure the value rather that the order in which the variables are sorted. I assume that boxes sorted higher will have a higher value. The sorting is more to helpe the user think through the process. The numbers should descend in the same order that they were sorted.-->
+        <input type="submit" class="btn btn-primary" value="Search"/>
+    </form>
 </div>
 <div id = 'area grid'>
     <div class = "container">
@@ -113,6 +135,12 @@
 @stop
 
 @section('footer')
+<header>
+<div class="container">
+    <h5>&copyComparea Developed by Chris Hughes for Aston University. All rights reserved.</h5>
+</div>
+</header>
+
     <script src="/js/Chart.min.js"></script>
     <script src="/js/main.js"></script>
 @stop
