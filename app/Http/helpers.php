@@ -104,7 +104,6 @@ class Helpers{
             $broadband_weighting = ($_POST["broadband"]/20);     
         };
 
-        bottom:
         /*Functions to fetch the maximum instance of each variable*/
         #Housing Affordability Ratio
         $maxDB_HAR_values = DB::select('SELECT MAX(housing_affordability_ratio) AS max_value FROM areas');
