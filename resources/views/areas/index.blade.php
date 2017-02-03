@@ -39,6 +39,7 @@
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
 </div>
+<!--
 <div id = 'area grid'>
     <div class = "container">
         <div class = "row">
@@ -130,6 +131,41 @@
             </div>
             @endforeach
         </div>
+    </div>
+</div>
+-->
+<div id = 'area grid'>
+    <div class = "container">
+<!--        <div class = "row">-->
+            <table class="table table-striped">
+                <thead class="thead-default">
+                    <tr>
+                        <th>Area</th>
+                        <th>Overall Score</th>
+                        <th>Housing Affordability Ratio</th>
+                        <th>Mean House Price</th>
+                        <th>Crime Level</th>
+                        <th>Green Space</th>
+                        <th>Good GCSE's</th>
+                        <th>Number of Pubs &amp; Restaraunts:</th>
+                        <th>Superfast Broadband</th>
+                    </tr>
+                </thead>
+            @foreach ($areas as $area)
+                <tr>
+                    <th scrope="row">{{$area->name}}</th>
+                    <td>{{Helpers::calculateOverallScore($area)}}</td>
+                    <td>{{$area->housing_affordability_ratio}}</td>
+                    <td>£{{$area->avg_house_price}}</td>
+                    <td>{{$area->crime}}</td>
+                    <td>{{$area->greenspace*100}}%</td>
+                    <td>{{$area->five_good_gcses*100}}%</td>
+                    <td>{{$area->restaurants}}</td>
+                    <td>{{$area->superfast_broadband*100}}%</td>
+                </tr>
+            @endforeach
+            </table>
+<!--        </div>-->
     </div>
 </div>
 @stop

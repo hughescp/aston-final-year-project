@@ -69,6 +69,14 @@ class Helpers{
 
     public static function calculateOverallScore($area){
         /*Weightings*/
+        
+        $har_user_weighting;
+        $crime_user_weighting;
+        $broadband_user_weighting;
+        $greenspace_user_weighting;
+        $gcse_user_weighting;
+        $restaurants_user_weighting;
+        
         $har_weighting = 0.252809;
         $crime_weighting = 0.191011;
         $broadband_weighting = 0.185393;
@@ -76,6 +84,27 @@ class Helpers{
         $gcse_weighting = 0.134831;
         $restaurants_weighting = 0.073034;
 
+        if(isset($_POST["crimeLevel"])){
+            $crime_user_weighting = ($_POST["crimeLevel"]/20);    
+        };
+        
+        if(isset($_POST["greenSpace"])){
+            $greenspace_user_weighting = ($_POST["greenSpace"]/20);    
+        };
+        
+        if(isset($_POST["goodGCSEs"])){
+            $gcse_user_weighting = ($_POST["goodGCSEs"]/20);
+        };
+        
+        if(isset($_POST["pubsandRestaurants"])){
+            $restaurants_weighting = ($_POST["pubsandRestaurants"]/20);
+        };
+                                            
+        if(isset($_POST["broadband"])){
+            $broadband_weighting = ($_POST["broadband"]/20);     
+        };
+
+        bottom:
         /*Functions to fetch the maximum instance of each variable*/
         #Housing Affordability Ratio
         $maxDB_HAR_values = DB::select('SELECT MAX(housing_affordability_ratio) AS max_value FROM areas');
@@ -131,4 +160,3 @@ class Helpers{
         return $overallScore;
     }
 }
-

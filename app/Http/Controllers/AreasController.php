@@ -44,16 +44,16 @@ class AreasController extends Controller
         //The above code won't work because I am not trying to create a new Area object and add it to the table. This current code will result in an area saying that the variable names are unknown columns, which is because they do not exist in the MySQL database.
         
         //Create a session to store the preferences data.
-        session_start();
-        $_SESSION ["lowerlimit"] = request('lowerlimit');
-        $_SESSION ["upperlimit"] = request('upperlimit');
-        $_SESSION ["crimeLevel"] = request('crimeLevel');
-        $_SESSION ["greenSpace"] = request('greenSpace');
-        $_SESSION ["goodGCSEs"] = request('goodGCSEs');
-        $_SESSION ["pubsandRestaurants"] = request('pubsandRestaurants');
-        $_SESSION ["broadband"] = request('broadband');
-        
-        print_r($_SESSION);
+//        session_start();
+//        $_SESSION ["lowerlimit"] = request('lowerlimit');
+//        $_SESSION ["upperlimit"] = request('upperlimit');
+//        $_SESSION ["crimeLevel"] = request('crimeLevel');
+//        $_SESSION ["greenSpace"] = request('greenSpace');
+//        $_SESSION ["goodGCSEs"] = request('goodGCSEs');
+//        $_SESSION ["pubsandRestaurants"] = request('pubsandRestaurants');
+//        $_SESSION ["broadband"] = request('broadband');
+//        
+//        print_r($_SESSION);
     }
 
 }
