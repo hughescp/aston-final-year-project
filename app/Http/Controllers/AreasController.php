@@ -16,8 +16,9 @@ class AreasController extends Controller
         return view('areas.index', compact('areas'));
     }
 
-    public function show($area)
+    public function show(Area $area)
     {
+        return view('areas.show', compact('area'));
         return $area;
     }
     

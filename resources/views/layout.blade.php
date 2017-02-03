@@ -24,5 +24,14 @@
     @yield('content')
 
     @yield('footer')
+<header>
+<div class="container">
+    <h5>&copyComparea Developed by Chris Hughes for Aston University. All rights reserved.</h5>
+</div>
+</header>
+
+    <script src="/js/Chart.min.js"></script>
+    <script src="/js/main.js"></script>
+
 </body>
 </html>

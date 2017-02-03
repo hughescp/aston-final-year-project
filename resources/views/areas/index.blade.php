@@ -35,7 +35,7 @@
           <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "5">Number of Pubs &amp Restaurants</li>
           <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "5">Superfast Broadband</li>
         </ul>
-        <!--For the form input I could just measure the value rather that the order in which the variables are sorted. I assume that boxes sorted higher will have a higher value. The sorting is more to helpe the user think through the process. The numbers should descend in the same order that they were sorted.-->
+        <!--For the form input I could just measure the value rather that the order in which the variables are sorted. I assume that boxes sorted higher will have a higher value. The sorting is more to help the user think through the process. The numbers should descend in the same order that they were sorted.-->
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
 </div>
@@ -58,7 +58,7 @@
                 </thead>
             @foreach ($areas as $area)
                 <tr>
-                    <th scrope="row">{{$area->name}}</th>
+                    <th scrope="row"><a href="/areas/{{$area->id}}">{{$area->name}}</a></th>
                     <td>{{Helpers::calculateOverallScore($area)}}</td>
                     <td>{{$area->housing_affordability_ratio}}</td>
                     <td>£{{$area->avg_house_price}}</td>
@@ -76,12 +76,4 @@
 @stop
 
 @section('footer')
-<header>
-<div class="container">
-    <h5>&copyComparea Developed by Chris Hughes for Aston University. All rights reserved.</h5>
-</div>
-</header>
-
-    <script src="/js/Chart.min.js"></script>
-    <script src="/js/main.js"></script>
 @stop
