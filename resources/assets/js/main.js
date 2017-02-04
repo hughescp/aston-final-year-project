@@ -8,9 +8,24 @@ new Vue({
     components: {Graph}
 });
 
-$( function() {
-    $( "#sortable" ).sortable({
-      placeholder: "ui-state-highlight"
+$(document).ready( function () {
+    $('#areas_table').DataTable({
+        aaSorting: [[1, 'desc']]
     });
-    $( "#sortable" ).disableSelection();
 } );
+
+function validateForm(){
+    var errorText = "";
+    var form = document.getElementById("preferencesForm");
+
+    var crimeLevel = form.crimeLevel;
+    var greenSpace = form.greenSpace;
+    var goodGCSEs = form.goodGCSEs;
+    var pubsandRestaurants = form.pubsandRestaurants;
+    var broadband = form.broadband;
+
+    if((crimeLevel + greenSpace + goodGCSEs + pubsandRestaurants + broadband)!=20){
+        errorText += "<br/>Please assign 20 points across the variables to indicated how important they are to you.";
+        alert(errorText);
+    }
+}

@@ -42,7 +42,7 @@
 <div id = 'area grid'>
     <div class = "container">
 <!--        <div class = "row">-->
-            <table class="table table-striped">
+            <table id='areas_table' class="table table-striped">
                 <thead class="thead-default">
                     <tr>
                         <th>Area</th>
@@ -56,6 +56,7 @@
                         <th>Superfast Broadband</th>
                     </tr>
                 </thead>
+                <tbody>
             @foreach ($areas as $area)
                 <tr>
                     <th scrope="row"><a href="/areas/{{$area->id}}">{{$area->name}}</a></th>
@@ -69,6 +70,7 @@
                     <td>{{$area->superfast_broadband*100}}%</td>
                 </tr>
             @endforeach
+                </tbody>
             </table>
 <!--        </div>-->
     </div>
