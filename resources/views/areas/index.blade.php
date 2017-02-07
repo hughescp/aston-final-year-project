@@ -6,7 +6,7 @@
 </div>
 <div id = "preferencesInput" class = "container">
     
-    <form method = "POST" action="/areas" id="preferencesForm" class="form-group">
+    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="validateForm()">
         
     {{csrf_field()}}
         
@@ -29,16 +29,18 @@
         <p>Then distribute points to the factors to indicate how important they are to you. You have  20 points in total. You can distribute them in anyway that you would like:</p>
         
         <ul id="sortable">
-          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = "5">Crime Level</li>
-          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = "5">Green Space</li>
-          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = "5">5 Good GCSEs</li>
-          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "5">Number of Pubs &amp Restaurants</li>
-          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "5">Superfast Broadband</li>
+          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = "4">Crime Level</li>
+          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = "4">Green Space</li>
+          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = "4">5 Good GCSEs</li>
+          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
+          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
         </ul>
         <!--For the form input I could just measure the value rather that the order in which the variables are sorted. I assume that boxes sorted higher will have a higher value. The sorting is more to help the user think through the process. The numbers should descend in the same order that they were sorted.-->
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
+    <div id="prefFormError"></div>
 </div>
+
 <div id = 'area grid'>
     <div class = "container">
 <!--        <div class = "row">-->

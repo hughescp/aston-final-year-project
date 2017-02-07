@@ -70,30 +70,22 @@ class Helpers{
     public static function calculateOverallScore($area){
         /*Weightings*/
         
-        $har_user_weighting;
-        $crime_user_weighting;
-        $broadband_user_weighting;
-        $greenspace_user_weighting;
-        $gcse_user_weighting;
-        $restaurants_user_weighting;
-        
-        $har_weighting = 0.252809;
-        $crime_weighting = 0.191011;
-        $broadband_weighting = 0.185393;
-        $greenspace_weighting = 0.162921;
-        $gcse_weighting = 0.134831;
-        $restaurants_weighting = 0.073034;
+        $crime_weighting = 0.255639;
+        $broadband_weighting = 0.24812;
+        $greenspace_weighting = 0.218045;
+        $gcse_weighting = 0.180451;
+        $restaurants_weighting = 0.097744;
 
         if(isset($_POST["crimeLevel"])){
-            $crime_user_weighting = ($_POST["crimeLevel"]/20);    
+            $crime_weighting = ($_POST["crimeLevel"]/20);
         };
         
         if(isset($_POST["greenSpace"])){
-            $greenspace_user_weighting = ($_POST["greenSpace"]/20);    
+            $greenspace_weighting = ($_POST["greenSpace"]/20);
         };
         
         if(isset($_POST["goodGCSEs"])){
-            $gcse_user_weighting = ($_POST["goodGCSEs"]/20);
+            $gcse_weighting = ($_POST["goodGCSEs"]/20);
         };
         
         if(isset($_POST["pubsandRestaurants"])){
@@ -105,9 +97,6 @@ class Helpers{
         };
 
         /*Functions to fetch the maximum instance of each variable*/
-        #Housing Affordability Ratio
-        $maxDB_HAR_values = DB::select('SELECT MAX(housing_affordability_ratio) AS max_value FROM areas');
-        $har_max_value = $maxDB_HAR_values[0]->max_value;
         #Crime
         $maxDB_crime_values = DB::select('SELECT MAX(crime) AS max_value FROM areas');
         $crime_max_value = $maxDB_crime_values[0]->max_value;
@@ -127,8 +116,6 @@ class Helpers{
         $areas = Area::all();
 
         /*Normalise the values:*/
-        $har_normalised = 1-($area->housing_affordability_ratio/$har_max_value);
-
         $crime_normalised = 1-($area->crime/$crime_max_value);
 
         $broadband_normalised = $area->superfast_broadband/$broadband_max_value;
@@ -140,8 +127,6 @@ class Helpers{
         $restaurants_normalised = $area->restaurants/$restaurants_max_value;
 
         /*Calculate Score for each variable by multiplying the normalised score against the weighting */
-        $harScore = $har_normalised*$har_weighting;
-
         $crimeScore = $crime_normalised*$crime_weighting;
 
         $broadbandScore = $broadband_normalised*$broadband_weighting;
@@ -153,7 +138,7 @@ class Helpers{
         $restaurantsScore = $restaurants_normalised*$restaurants_weighting;
 
 
-        $overallScore = ($harScore + $crimeScore + $broadbandScore + $greenSpaceScore + $goodGCSEsScore + $restaurantsScore)*10;
+        $overallScore = ($crimeScore + $broadbandScore + $greenSpaceScore + $goodGCSEsScore + $restaurantsScore)*10;
         $overallScore = number_format((float)$overallScore, 1, '.', ''); //this function rounds the number to 1 decimal place.
 
         return $overallScore;
