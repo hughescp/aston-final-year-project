@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/css/app.css">
     <!-- Links for JQuery UI components -->
     <link rel="stylesheet" href="jquery-ui.min.css">
-    <script src="external/jquery/jquery.js"></script>
-    <script src="jquery-ui.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/jquery-ui/jquery-ui.js"></script>
     <!-- code copied for draggable -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">

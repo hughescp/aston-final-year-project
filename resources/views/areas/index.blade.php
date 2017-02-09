@@ -6,7 +6,7 @@
 </div>
 <div id = "preferencesInput" class = "container">
     
-    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="validateForm()">
+    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateForm()">
         
     {{csrf_field()}}
         
@@ -35,12 +35,40 @@
           <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
           <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
         </ul>
-        <!--For the form input I could just measure the value rather that the order in which the variables are sorted. I assume that boxes sorted higher will have a higher value. The sorting is more to help the user think through the process. The numbers should descend in the same order that they were sorted.-->
+        <br/>
         <input type="submit" class="btn btn-primary" value="Search"/>
+        <div id="prefFormError"></div>
     </form>
-    <div id="prefFormError"></div>
-</div>
+    <script type="text/javascript">
+        function validateForm(){
+            //Set the error message.
+            var errorText = '<br/><div id="prefFormError" class="alert alert-danger" role="alert"><strong>Please assign 20 points across the variables to indicated how important they are to you.</strong></div>';
 
+            //Get the form and fetch the values inputted, converting thmem to numbers
+            var form = document.getElementById("preferencesForm");
+
+            var crimeLevel = Number(form.crimeLevel.value);
+            var greenSpace = Number(form.greenSpace.value);
+            var goodGCSEs = Number(form.goodGCSEs.value);
+            var pubsandRestaurants = Number(form.pubsandRestaurants.value);
+            var broadband = Number(form.broadband.value);
+
+            //Calculate the sum of the input
+            var inputSum = crimeLevel + greenSpace + goodGCSEs + pubsandRestaurants + broadband;
+
+            //Check if the sum is equal to 20 or not.
+            if(inputSum == 20){
+//                alert("true, value = " + inputSum);
+                return true;
+            }else{
+                var area = document.getElementById("prefFormError");
+                area.innerHTML = errorText;
+//                alert("false, value = " + inputSum);
+                return false;
+            }
+        }
+    </script>
+</div>
 <div id = 'area grid'>
     <div class = "container">
 <!--        <div class = "row">-->
