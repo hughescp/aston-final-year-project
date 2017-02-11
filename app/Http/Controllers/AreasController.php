@@ -22,6 +22,48 @@ class AreasController extends Controller
         return $area;
     }
     
+    public function show_asking_prices(Area $area)
+    {
+        return view('areas.show_asking_prices', compact('area'));
+        return $area;
+    }
+
+    public function show_crime(Area $area)
+    {
+        return view('areas.show_crime', compact('area'));
+        return $area;
+    }
+
+    public function show_neighbourhood(Area $area)
+    {
+        return view('areas.show_neighbourhood', compact('area'));
+        return $area;
+    }
+
+    public function show_people(Area $area)
+    {
+        return view('areas.show_people', compact('area'));
+        return $area;
+    }
+
+    public function show_pubtransport(Area $area)
+    {
+        return view('areas.show_transport', compact('area'));
+        return $area;
+    }
+
+    public function show_schools(Area $area)
+    {
+        return view('areas.show_schools', compact('area'));
+        return $area;
+    }
+
+    public function show_sol(Area $area)
+    {
+        return view('areas.show_sol', compact('area'));
+        return $area;
+    }
+
     public function store()
     {
 //        dd(request()->all());

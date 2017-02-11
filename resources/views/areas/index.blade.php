@@ -87,6 +87,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                <!--Here insert a row with the national average-->
+                <tr>
+                    <th scope="row">National Average</th>
+                    <td>N/A</td>
+                    <td>7.9</td>
+                    <td>£202067.1</td>
+                    <td>8.2</td>
+                    <td>46%</td>
+                    <td>54.3%</td>
+                    <td>3.4</td>
+                    <td>76%</td>
+                </tr>
             @foreach ($areas as $area)
                 <tr>
                     <th scrope="row"><a href="/areas/{{$area->id}}">{{$area->name}}</a></th>

@@ -17,12 +17,14 @@
     <!--Code for DataTable-->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+    <!--Boostrap v4 style sheet.-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
 </head>
 <body>
 <header>
     <div class="container">
-      <img src="img/comparea_logo[white].png" id="logo">
+        <a href="/areas"><img src="img/comparea_logo[white].png" id="logo"></a>
     </div>
 </header>
     @yield('content')
