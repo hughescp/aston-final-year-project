@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('content')
-    <a href="/areas" class="btn btn-primary">Back</a>
+ <div class="container">
+   <a href="/areas" class="btn btn-primary">Back</a>
     <h1>{{ $area->name }}</h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -43,4 +44,5 @@
         </div>
       </div>
     </div>
+</div>
 @stop

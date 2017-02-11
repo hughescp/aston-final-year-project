@@ -6,12 +6,18 @@ use App\Area;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use JavaScript;
 
 class AreasController extends Controller
 {
     public function index()
     {
         $areas = Area::all();
+
+        JavaScript::put([
+            'name' => 'Chris',
+            'age' => 24
+        ]);
 
         return view('areas.index', compact('areas'));
     }

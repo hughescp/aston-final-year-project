@@ -5743,6 +5743,10 @@ button.close {
 header {
   background-color: #278b49; }
 
+footer {
+  background-color: #278b49;
+  color: white; }
+
 #overview_cards {
   padding: 10px; }
 

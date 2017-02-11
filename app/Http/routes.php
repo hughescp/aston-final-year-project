@@ -14,4 +14,6 @@ Route::get('/areas/{area}/pubtransport', 'AreasController@show_people');
 Route::get('/areas/{area}/schools', 'AreasController@show_schools');
 Route::get('/areas/{area}/sol', 'AreasController@show_sol');
 
+Route::get('/test', 'PagesController@test');
+
 Route::post('/areas', 'AreasController@index');

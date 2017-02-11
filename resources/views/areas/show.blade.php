@@ -46,7 +46,7 @@
         <div class="card text-center">
           <div class="card-block">
             <h4 class="card-title">Mean House Price</h4>
-            <h3>£{{ $area->avg_house_price }}</h3>
+            <h3>£{{ $area->mean_house_price_2015 }}</h3>
             <strong>Above/Below National Average</strong>
             <p class="card-text">The average asking price for a property in this area.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>

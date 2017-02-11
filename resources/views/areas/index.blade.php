@@ -42,8 +42,6 @@
     <script type="text/javascript">
         function validateForm(){
             //Set the error message.
-            var errorText = '<br/><div id="prefFormError" class="alert alert-danger" role="alert"><strong>Please assign 20 points across the variables to indicated how important they are to you.</strong></div>';
-
             //Get the form and fetch the values inputted, converting thmem to numbers
             var form = document.getElementById("preferencesForm");
 
@@ -58,12 +56,12 @@
 
             //Check if the sum is equal to 20 or not.
             if(inputSum == 20){
-//                alert("true, value = " + inputSum);
                 return true;
             }else{
+                var errorText = '<br/><div id="prefFormError" class="alert alert-danger" role="alert"><strong>Please assign 20 points across the variables to indicated how important they are to you. (You have assigned '.concat(inputSum).concat(' points.)</strong></div>');
+
                 var area = document.getElementById("prefFormError");
                 area.innerHTML = errorText;
-//                alert("false, value = " + inputSum);
                 return false;
             }
         }
@@ -104,7 +102,7 @@
                     <th scrope="row"><a href="/areas/{{$area->id}}">{{$area->name}}</a></th>
                     <td>{{Helpers::calculateOverallScore($area)}}</td>
                     <td>{{$area->housing_affordability_ratio}}</td>
-                    <td>£{{$area->avg_house_price}}</td>
+                    <td>£{{$area->mean_house_price_2015}}</td>
                     <td>{{$area->crime}}</td>
                     <td>{{$area->greenspace*100}}%</td>
                     <td>{{$area->five_good_gcses*100}}%</td>
@@ -117,7 +115,4 @@
 <!--        </div>-->
     </div>
 </div>
-@stop
-
-@section('footer')
 @stop
