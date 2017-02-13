@@ -13,7 +13,7 @@ return [
     | Example: 'footer' or ['footer', 'bottom']
     |
     */
-    'bind_js_vars_to_this_view' => 'includes/footer',
+    'bind_js_vars_to_this_view' => 'footer',
 
     /*
     |--------------------------------------------------------------------------
@@ -25,6 +25,6 @@ return [
     | That way, you can access vars, like "SomeNamespace.someVariable."
     |
     */
-    'js_namespace' => 'js_variables'
+    'js_namespace' => 'jsVars'
 
 ];

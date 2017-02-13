@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Area;
+
 use App\Http\Requests;
 
 use JavaScript;
@@ -24,10 +26,13 @@ class PagesController extends Controller
         return view('pages/about');
     }
 
-    public function test(){
+    public function test()
+    {
+        $areas = Area::all();
+
         JavaScript::put([
             'people' => ['Taylor', 'Matt', 'Jeffrey'],
-            'name' => 'Chris',
+            'areas' => $area->name,
             'age' => 24
         ]);
 

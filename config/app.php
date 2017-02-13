@@ -147,7 +147,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider,
+        Laracasts\Utilities\UtilitiesServiceProvider,
 
         /*
          * Application Service Providers...
