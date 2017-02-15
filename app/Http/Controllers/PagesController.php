@@ -32,7 +32,7 @@ class PagesController extends Controller
 
         JavaScript::put([
             'people' => ['Taylor', 'Matt', 'Jeffrey'],
-            'areas' => $area->name,
+            'areas' => $areas,
             'age' => 24
         ]);
 

@@ -99,15 +99,15 @@
                 </tr>
             @foreach ($areas as $area)
                 <tr>
-                    <th scrope="row"><a href="/areas/{{$area->id}}">{{$area->name}}</a></th>
-                    <td>{{Helpers::calculateOverallScore($area)}}</td>
-                    <td>{{$area->housing_affordability_ratio}}</td>
-                    <td>£{{$area->mean_house_price_2015}}</td>
-                    <td>{{$area->crime}}</td>
-                    <td>{{$area->greenspace*100}}%</td>
-                    <td>{{$area->five_good_gcses*100}}%</td>
-                    <td>{{$area->restaurants}}</td>
-                    <td>{{$area->superfast_broadband*100}}%</td>
+                    <th scrope="row"><a href="/areas/{{$area->id}}">!{$area->name}!</a></th>
+                    <td>!{Helpers::calculateOverallScore($area)}!</td>
+                    <td>!{$area->housing_affordability_ratio}!</td>
+                    <td>£!{$area->mean_house_price_2015}!</td>
+                    <td>!{$area->crime}!</td>
+                    <td>!{$area->greenspace*100}!%</td>
+                    <td>!{$area->five_good_gcses*100}!%</td>
+                    <td>!{$area->restaurants}!</td>
+                    <td>!{$area->superfast_broadband*100}!%</td>
                 </tr>
             @endforeach
                 </tbody>

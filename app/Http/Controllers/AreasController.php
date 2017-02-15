@@ -15,9 +15,7 @@ class AreasController extends Controller
         $areas = Area::all();
 
         JavaScript::put([
-            'people' => ['Taylor', 'Matt', 'Jeffrey'],
-            'name' => 'Sam',
-            'age' => 24
+            'areas' => $areas,
         ]);
 
         return view('areas.index', compact('areas'));

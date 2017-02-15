@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <a href="/areas" class="btn btn-primary">Back</a>
-    <h1>{{ $area->name }}</h1>
+    <h1>!{ $area->name }!</h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" href="/areas/{{$area->id}}">Overview</a>
@@ -32,7 +32,7 @@
     </ul>
         <h2>Asking Prices</h2>
         <h3 class="card-title">Mean House Price 2015</h3>
-        <h4>£{{ $area->mean_house_price_2015 }}</h4>
+        <h4>£!{ $area->mean_house_price_2015 }!</h4>
         <strong>Above/Below National Average</strong>
         <p class="card-text">The average asking price for a property in this area.</p>
         <strong>Mean House Price Over Time:</strong>

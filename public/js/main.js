@@ -26339,6 +26339,10 @@ var _Graph2 = _interopRequireDefault(_Graph);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//require('angular');
+//import angluar from 'angular';
+
+
 new _vue2.default({
     el: 'body',
 
@@ -26351,33 +26355,15 @@ $(document).ready(function () {
     });
 });
 
-//function validateForm(){
-//    //Set the error message.
-//    var errorText = "<h5>Please assign 20 points across the variables to indicated how important they are to you.</h5>";
+////Code for AngularJS
+//var app = angular.module('app', ['ngMaterial']);
 //
-//    //Get the form and fetch the values inputted, converting thmem to numbers
-//    var form = document.getElementById("preferencesForm");
+////These lines change the render tags of angular because by default Laravel and Angular both use {{dirivative here}}
+//app.config(function ($interpolateProvider) {
 //
-//    var crimeLevel = Number(form.crimeLevel.value);
-//    var greenSpace = Number(form.greenSpace.value);
-//    var goodGCSEs = Number(form.goodGCSEs.value);
-//    var pubsandRestaurants = Number(form.pubsandRestaurants.value);
-//    var broadband = Number(form.broadband.value);
-//
-//    //Calculate the sum of the input
-//    var inputSum = crimeLevel + greenSpace + goodGCSEs + pubsandRestaurants + broadband;
-//
-//    //Check if the sum is equal to 20 or not.
-//    if(inputSum == 20){
-////                alert("true, value = " + inputSum);
-//        return true;
-//    }else{
-//        var area = document.getElementById("prefFormError");
-//        area.innerHTML = errorText;
-////                alert("false, value = " + inputSum);
-//        return false;
-//    }
-//}
+//    $interpolateProvider.startSymbol('!{');
+//    $interpolateProvider.endSymbol('}!');
+//});
 
 },{"./components/Graph":49,"vue":48}]},{},[50]);
 
