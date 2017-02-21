@@ -67,7 +67,7 @@
         }
     </script>
 </div>
-<div id = 'area grid'>
+<div id = 'area_grid'>
     <div class = "container">
 <!--        <div class = "row">-->
             <table id='areas_table' class="table table-striped">
@@ -97,9 +97,10 @@
                     <td>3.4</td>
                     <td>76%</td>
                 </tr>
+
             @foreach ($areas as $area)
                 <tr>
-                    <th scrope="row"><a href="/areas/{{$area->id}}">!{$area->name}!</a></th>
+                    <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
                     <td>!{Helpers::calculateOverallScore($area)}!</td>
                     <td>!{$area->housing_affordability_ratio}!</td>
                     <td>£!{$area->mean_house_price_2015}!</td>

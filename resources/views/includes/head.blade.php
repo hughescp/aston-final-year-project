@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <title>Comparea</title>
-<link rel="shortcut icon" href="img/comparea_shortcut_logo.png" type="image/png">
+<link rel="shortcut icon" href="/img/comparea_shortcut_logo.png" type="image/png">
 <link rel="stylesheet" href="/css/app.css">
 <!-- Links for JQuery UI components -->
 <link rel="stylesheet" href="jquery-ui.min.css">

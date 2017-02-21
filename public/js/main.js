@@ -26294,6 +26294,64 @@ exports.default = {
             datasets: [{
                 backgroundColor: "rgba(10,70,220, 0.5)",
                 fill: false,
+                label: "Offences per 1000",
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values
+            }, {
+                backgroundColor: "rgba(120,20,210, 0.5)",
+                fill: false,
+                label: "National Average",
+                borderColor: "rgba(240,0,0, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [8.41, 1.66, 25.9]
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "bar",
+            data: data
+        });
+    }
+};
+
+},{"chart.js":1}],50:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    template: '<canvas width="200px" height="200px"></canvas>',
+
+    props: ['labels', 'values'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                fill: false,
                 label: "Mean House Price",
                 borderColor: "rgba(10,70,220, 0.5)",
                 borderSkipped: "top",
@@ -26326,16 +26384,20 @@ exports.default = {
     }
 };
 
-},{"chart.js":1}],50:[function(require,module,exports){
+},{"chart.js":1}],51:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _Graph = require('./components/Graph');
+var _linegraph = require('./components/linegraph.js');
 
-var _Graph2 = _interopRequireDefault(_Graph);
+var _linegraph2 = _interopRequireDefault(_linegraph);
+
+var _barchart = require('./components/barchart.js');
+
+var _barchart2 = _interopRequireDefault(_barchart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26346,7 +26408,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 new _vue2.default({
     el: 'body',
 
-    components: { Graph: _Graph2.default }
+    components: { linegraph: _linegraph2.default, barchart: _barchart2.default }
 });
 
 $(document).ready(function () {
@@ -26354,6 +26416,26 @@ $(document).ready(function () {
         aaSorting: [[1, 'desc']]
     });
 });
+
+//(function(angular) {
+//  'use strict';
+//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
+//    $scope.areas = jsVars.areas;
+//    $scope.testPhrase = 'Successfully fetched data from $scope';
+//  }]);
+//})(window.angular);
+
+var app = angular.module('myapp', []);
+
+app.controller('MainCtrl', ['$scope', '$window', function ($scope, $jsVars) {
+    $scope.areas = $jsVars.areas;
+    $scope.testPhrase = 'Successfully fetched data from $scope';
+}]);
+
+//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
+//    $scope.areas = jsVars.areas;
+//    $scope.testPhrase = 'Successfully fetched data from $scope';
+//}]);
 
 ////Code for AngularJS
 //var app = angular.module('app', ['ngMaterial']);
@@ -26365,6 +26447,6 @@ $(document).ready(function () {
 //    $interpolateProvider.endSymbol('}!');
 //});
 
-},{"./components/Graph":49,"vue":48}]},{},[50]);
+},{"./components/barchart.js":49,"./components/linegraph.js":50,"vue":48}]},{},[51]);
 
 //# sourceMappingURL=main.js.map

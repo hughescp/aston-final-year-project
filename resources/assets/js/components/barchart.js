@@ -14,7 +14,7 @@ export default {
                 {
                     backgroundColor: "rgba(10,70,220, 0.5)",
                     fill: false,
-                    label: "Mean House Price",
+                    label: "Offences per 1000",
                     borderColor: "rgba(10,70,220, 0.5)",
                     borderSkipped: "top",
                     strokeColor: "rgba(220,70, 10,0.5)",
@@ -27,7 +27,7 @@ export default {
                 {
                     backgroundColor: "rgba(120,20,210, 0.5)",
                     fill: false,
-                    label: "National Average",
+                    label: "National Average (Offences per 1000)",
                     borderColor: "rgba(240,0,0, 0.5)",
                     borderSkipped: "top",
                     strokeColor: "rgba(220,70, 10,0.5)",
@@ -35,7 +35,7 @@ export default {
                     pointStrokeColor: "#fff",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [176858.9064, 181119.9949, 194051.5197, 202067.052]
+                    data: [8.41, 1.66, 25.9]
                 }
             ]
         };
@@ -43,22 +43,8 @@ export default {
 
         new Chart(
             this.$el.getContext('2d'),{
-                type: "line",
+                type: "bar",
                 data: data,
-//                onAnimationComplete: function () {
-//
-//                    ctx.font = this.scale.font;
-//                    ctx.fillStyle = this.scale.textColor
-//                    ctx.textAlign = "center";
-//                    ctx.textBaseline = "bottom";
-//
-//                    this.data.datasets.forEach(function (dataset) {
-//                        for (var i = 0; i < dataset.data.length; i++) {
-//                            var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
-//                            ctx.fillText(dataset.data[i], model.x, model.y - 5);
-//                        }
-//                    })
-//                }
         })
     }
 }

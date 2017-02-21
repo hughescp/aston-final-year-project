@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import Graph from './components/Graph';
+import linegraph from './components/linegraph.js';
+import barchart from './components/barchart.js';
 //require('angular');
 //import angluar from 'angular';
 
@@ -7,7 +8,7 @@ import Graph from './components/Graph';
 new Vue({
     el: 'body',
 
-    components: {Graph}
+    components: {linegraph,barchart}
 });
 
 $(document).ready( function () {
@@ -15,6 +16,26 @@ $(document).ready( function () {
         aaSorting: [[1, 'desc']]
     });
 } );
+
+//(function(angular) {
+//  'use strict';
+//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
+//    $scope.areas = jsVars.areas;
+//    $scope.testPhrase = 'Successfully fetched data from $scope';
+//  }]);
+//})(window.angular);
+
+var app = angular.module('myapp', []);
+
+app.controller('MainCtrl', ['$scope', '$window', function($scope, $jsVars) {
+    $scope.areas = $jsVars.areas;
+    $scope.testPhrase = 'Successfully fetched data from $scope';
+}]);
+
+//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
+//    $scope.areas = jsVars.areas;
+//    $scope.testPhrase = 'Successfully fetched data from $scope';
+//}]);
 
 ////Code for AngularJS
 //var app = angular.module('app', ['ngMaterial']);

@@ -5773,4 +5773,11 @@ html > body #sortable li {
   height: 1.5em;
   line-height: 1.2em; }
 
+#price_over_time {
+  height: 0.5em;
+  width: auto; }
+
+.btn-primary {
+  margin: 10px; }
+
 /*# sourceMappingURL=app.css.map */
