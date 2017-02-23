@@ -26292,9 +26292,9 @@ exports.default = {
             labels: this.labels,
 
             datasets: [{
-                backgroundColor: "rgba(10,70,220, 0.5)",
+                backgroundColor: ['rgba(5, 99, 132, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)'],
                 fill: false,
-                label: "Offences per 1000",
+                label: "Mean House Price",
                 borderColor: "rgba(10,70,220, 0.5)",
                 borderSkipped: "top",
                 strokeColor: "rgba(220,70, 10,0.5)",
@@ -26303,24 +26303,12 @@ exports.default = {
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
                 data: this.values
-            }, {
-                backgroundColor: "rgba(120,20,210, 0.5)",
-                fill: false,
-                label: "National Average",
-                borderColor: "rgba(240,0,0, 0.5)",
-                borderSkipped: "top",
-                strokeColor: "rgba(220,70, 10,0.5)",
-                pointColor: "rgba(70,220,10,0.5)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [8.41, 1.66, 25.9]
             }]
         };
         var ctx = this.$el.getContext('2d');
 
         new _chart2.default(this.$el.getContext('2d'), {
-            type: "bar",
+            type: "doughnut",
             data: data
         });
     }
@@ -26352,7 +26340,7 @@ exports.default = {
             datasets: [{
                 backgroundColor: "rgba(10,70,220, 0.5)",
                 fill: false,
-                label: "Mean House Price",
+                label: "Offences per 1000",
                 borderColor: "rgba(10,70,220, 0.5)",
                 borderSkipped: "top",
                 strokeColor: "rgba(220,70, 10,0.5)",
@@ -26363,6 +26351,64 @@ exports.default = {
                 data: this.values
             }, {
                 backgroundColor: "rgba(120,20,210, 0.5)",
+                fill: false,
+                label: "National Average (Offences per 1000)",
+                borderColor: "rgba(240,0,0, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [8.41, 1.66, 25.9]
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "bar",
+            data: data
+        });
+    }
+};
+
+},{"chart.js":1}],51:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    template: '<canvas width="500px" height="500px"></canvas>',
+
+    props: ['labels', 'values'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                fill: false,
+                label: "Mean House Price",
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values
+            }, {
+                backgroundColor: "rgba(240,0,0, 0.5)",
                 fill: false,
                 label: "National Average",
                 borderColor: "rgba(240,0,0, 0.5)",
@@ -26379,12 +26425,110 @@ exports.default = {
 
         new _chart2.default(this.$el.getContext('2d'), {
             type: "line",
+            data: data,
+            options: {
+                //                    responsive:false
+            }
+        });
+    }
+};
+
+},{"chart.js":1}],52:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    template: '<canvas width="200px" height="200px"></canvas>',
+
+    props: ['labels', 'values'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                fill: false,
+                label: "Population",
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "line",
             data: data
         });
     }
 };
 
-},{"chart.js":1}],51:[function(require,module,exports){
+},{"chart.js":1}],53:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    template: '<canvas width="200px" height="200px"></canvas>',
+
+    props: ['labels', 'values'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: ['rgba(5, 99, 132, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)'],
+                fill: false,
+                label: "Standard of Living Index rank",
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "horizontalBar",
+            data: data,
+            options: {
+                barThickness: 10
+            }
+        });
+    }
+};
+
+},{"chart.js":1}],54:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -26395,9 +26539,21 @@ var _linegraph = require('./components/linegraph.js');
 
 var _linegraph2 = _interopRequireDefault(_linegraph);
 
-var _barchart = require('./components/barchart.js');
+var _crimebarchart = require('./components/crimebarchart.js');
 
-var _barchart2 = _interopRequireDefault(_barchart);
+var _crimebarchart2 = _interopRequireDefault(_crimebarchart);
+
+var _solbarchart = require('./components/solbarchart.js');
+
+var _solbarchart2 = _interopRequireDefault(_solbarchart);
+
+var _poplinegraph = require('./components/poplinegraph.js');
+
+var _poplinegraph2 = _interopRequireDefault(_poplinegraph);
+
+var _agepiechart = require('./components/agepiechart.js');
+
+var _agepiechart2 = _interopRequireDefault(_agepiechart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26408,7 +26564,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 new _vue2.default({
     el: 'body',
 
-    components: { linegraph: _linegraph2.default, barchart: _barchart2.default }
+    components: {
+        linegraph: _linegraph2.default,
+        crimebarchart: _crimebarchart2.default,
+        solbarchart: _solbarchart2.default,
+        poplinegraph: _poplinegraph2.default,
+        agepiechart: _agepiechart2.default
+    }
 });
 
 $(document).ready(function () {
@@ -26447,6 +26609,6 @@ app.controller('MainCtrl', ['$scope', '$window', function ($scope, $jsVars) {
 //    $interpolateProvider.endSymbol('}!');
 //});
 
-},{"./components/barchart.js":49,"./components/linegraph.js":50,"vue":48}]},{},[51]);
+},{"./components/agepiechart.js":49,"./components/crimebarchart.js":50,"./components/linegraph.js":51,"./components/poplinegraph.js":52,"./components/solbarchart.js":53,"vue":48}]},{},[54]);
 
 //# sourceMappingURL=main.js.map

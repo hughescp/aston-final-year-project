@@ -20,9 +20,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/neighbourhood">Neighbourhood</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/people">People</a>
-        </li>
         <li class="nav-item active">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>

@@ -94,7 +94,7 @@
                     <td>8.2</td>
                     <td>46%</td>
                     <td>54.3%</td>
-                    <td>3.4</td>
+                    <td>3.4/km<sup>2</sup></td>
                     <td>76%</td>
                 </tr>
 
@@ -107,7 +107,7 @@
                     <td>!{$area->crime}!</td>
                     <td>!{$area->greenspace*100}!%</td>
                     <td>!{$area->five_good_gcses*100}!%</td>
-                    <td>!{$area->restaurants}!</td>
+                    <td>!{$area->restaurants}!/km<sup>2</sup></td>
                     <td>!{$area->superfast_broadband*100}!%</td>
                 </tr>
             @endforeach

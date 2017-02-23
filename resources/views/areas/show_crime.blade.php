@@ -21,9 +21,6 @@
             <a class="nav-link" href="/areas/!{$area->id}!/neighbourhood">Neighbourhood</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/people">People</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
         <li class="nav-item">
@@ -31,13 +28,12 @@
         </li>
     </ul>
     <h2>Crime</h2>
-    <h2>Crime</h2>
-    <h3 class="card-title">Mean House Price 2015</h3>
+    <h3 class="card-title">2015 Crime rates</h3>
     <h4>!{ $area->crime }! crimes per 100,000 of the population</h4>
     <strong>Above/Below National Average</strong>
     <p class="card-text">The number of crimes committed in this area relative to population.</p>
     <strong>Mean House Price Over Time:</strong>
-    <barchart :labels="[
+    <crimebarchart :labels="[
         'Robbery',
         'Burglary',
         'Violent & Sexual Offences'
@@ -46,6 +42,6 @@
         !{$area->robbery}!,
         !{$area->burglary}!,
         !{$area->vsoffences}!]">
-    </barchart>
+    </crimebarchart>
 </div>
 @stop

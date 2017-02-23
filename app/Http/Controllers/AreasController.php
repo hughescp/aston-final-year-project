@@ -53,7 +53,7 @@ class AreasController extends Controller
 
     public function show_pubtransport(Area $area)
     {
-        return view('areas.show_transport', compact('area'));
+        return view('areas.show_pubtransport', compact('area'));
         return $area;
     }
 

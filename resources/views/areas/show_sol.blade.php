@@ -21,9 +21,6 @@
             <a class="nav-link" href="/areas/!{$area->id}!/neighbourhood">Neighbourhood</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/people">People</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
         <li class="nav-item">
@@ -31,18 +28,28 @@
         </li>
     </ul>
     <h2>Standard of Living</h2>
-    <div id="overview_cards"class="row">
-     <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="card text-center">
-          <div class="card-block">
-            <h3 class="card-title">Mean House Price</h3>
-            <h4>£{{ $area->avg_house_price }}</h4>
-            <strong>Above/Below National Average</strong>
-            <p class="card-text">The average asking price for a property in this area.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    </div>
+        <h3 class="card-title">Overall Score</h3>
+        <h4>Insert rank here</h4>
+        <strong>Above/Below National Average</strong>
+        <p class="card-text">The average asking price for a property in this area.</p>
+        <strong>Mean House Price Over Time:</strong>
+        <solbarchart id="price_over_time" :labels="[
+            'Income',
+            'Employment',
+            'Health',
+            'Education',
+            'Housing and services',
+            'Low Crime',
+            'Living environment'
+            ]"
+           :values="[
+                !{Helpers::calculateIncomeRank($area)}!,
+                !{Helpers::calculateEmploymentRank($area)}!,
+                !{Helpers::calculateHealthRank($area)}!,
+                !{Helpers::calculateEducationRank($area)}!,
+                !{Helpers::calculateHousingServicesRank($area)}!,
+                !{Helpers::calculateCrimeRank($area)}!,
+                !{Helpers::calculateLivingEnvironmentRank($area)}!]">
+        </solbarchart>
 </div>
 @stop

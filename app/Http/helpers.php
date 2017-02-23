@@ -143,4 +143,161 @@ class Helpers{
 
         return $overallScore;
     }
+
+    public static function calculateIncomeRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( income, (
+            SELECT GROUP_CONCAT( income
+            ORDER BY income DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+    }
+
+    public static function calculateEmploymentRank($area){
+     /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( employment, (
+            SELECT GROUP_CONCAT( employment
+            ORDER BY employment DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+   }
+
+    public static function calculateHealthRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( health, (
+            SELECT GROUP_CONCAT( health
+            ORDER BY health DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+    }
+
+    public static function calculateEducationRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( five_good_gcses, (
+            SELECT GROUP_CONCAT( five_good_gcses
+            ORDER BY five_good_gcses DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+    }
+
+    public static function calculateHousingServicesRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( housing_and_services, (
+            SELECT GROUP_CONCAT( housing_and_services
+            ORDER BY housing_and_services DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+    }
+
+    public static function calculateCrimeRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( crime, (
+            SELECT GROUP_CONCAT( crime
+            ORDER BY crime DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+        //rank doesn't need to be inversed like in the others because here a lower rank is better.
+
+        return $rank;
+    }
+
+    public static function calculateLivingEnvironmentRank($area){
+        /*Functions to fetch the maximum instance of each variable*/
+        $rank_value = DB::select("
+            SELECT FIND_IN_SET( living_environment, (
+            SELECT GROUP_CONCAT( living_environment
+            ORDER BY living_environment DESC )
+            FROM areas )
+            ) AS rank
+            FROM areas
+            WHERE name =  '$area->name'
+        ");
+
+        $rank = $rank_value[0]->rank;
+
+        $rows_count = DB::select("SELECT COUNT(*) AS rows FROM areas;");
+
+        $num_of_rows = $rows_count[0]->rows;
+
+        $inversed_rank = $num_of_rows - $rank;
+
+        return $inversed_rank;
+    }
+
 }

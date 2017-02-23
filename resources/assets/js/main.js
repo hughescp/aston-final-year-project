@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import linegraph from './components/linegraph.js';
-import barchart from './components/barchart.js';
+import crimebarchart from './components/crimebarchart.js';
+import solbarchart from './components/solbarchart.js';
+import poplinegraph from './components/poplinegraph.js';
+import agepiechart from './components/agepiechart.js';
 //require('angular');
 //import angluar from 'angular';
 
@@ -8,7 +11,13 @@ import barchart from './components/barchart.js';
 new Vue({
     el: 'body',
 
-    components: {linegraph,barchart}
+    components: {
+        linegraph,
+        crimebarchart,
+        solbarchart,
+        poplinegraph,
+        agepiechart
+    }
 });
 
 $(document).ready( function () {

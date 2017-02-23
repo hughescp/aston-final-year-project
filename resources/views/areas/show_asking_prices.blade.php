@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <a href="/areas" class="btn btn-primary">Back</a>
-    <a href="/areas" class="btn btn-primary">Back</a>
     <h1>!{ $area->name }!</h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -20,9 +19,6 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/neighbourhood">Neighbourhood</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/people">People</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
