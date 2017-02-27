@@ -11,7 +11,6 @@
     {{csrf_field()}}
         
         <p>Please enter your price range:</p>
-        
         <label>Lower Limit:</label>
         <div class="input-group">
             <span class="input-group-addon"> £</span>
@@ -35,6 +34,15 @@
           <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
           <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
         </ul>
+<!--
+        <ul id="sortable">
+          <li class="ui-state-default"><input ng-model="crime" type="number" name = "crimeLevel" min = "0" max = "20" value = "4">Crime Level</li>
+          <li class="ui-state-default"><input  ng-model="greenspace" type="number" name = "greenSpace" min = "0" max = "20" value = "4">Green Space</li>
+          <li class="ui-state-default"><input ng-model="gcses" type="number" name = "goodGCSEs" min = "0" max = "20" value = "4">5 Good GCSEs</li>
+          <li class="ui-state-default"><input ng-model="restaurants" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
+          <li class="ui-state-default"><input ng-model="broadband" type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
+        </ul>
+-->
         <br/>
         <input type="submit" class="btn btn-primary" value="Search"/>
         <div id="prefFormError"></div>
@@ -82,6 +90,17 @@
                         <th>Good GCSE's</th>
                         <th>Number of Pubs &amp; Restaraunts:</th>
                         <th>Superfast Broadband</th>
+<!--
+                        <th class="tooltip">Area<span class="tooltiptext">Name of the Area</span></th>
+                        <th class="tooltip">Overall Score<span class="tooltiptext">Score based on default or user preferences</span></th>
+                        <th class="tooltip">Housing Affordability Ratio<span class="tooltiptext">Ratio of avg house price to income</span></th>
+                        <th class="tooltip">Mean House Price<span class="tooltiptext">Average house price in the area</span></th>
+                        <th class="tooltip">Crime Level<span class="tooltiptext"># of crime's committed per 1,000 people</span></th>
+                        <th class="tooltip">Green Space<span class="tooltiptext">% of area covered in greenspace</span></th>
+                        <th class="tooltip">Good GCSE's<span class="tooltiptext">% of children achieving 5 A*-C GCSEs</span></th>
+                        <th class="tooltip">Number of Pubs &amp; Restaraunts<span class="tooltiptext"># of eateries per km squared</span></th>
+                        <th class="tooltip">Superfast Broadband<span class="tooltiptext">% of households with more than 24Mbps download speed</span></th>
+-->
                     </tr>
                 </thead>
                 <tbody>
@@ -97,20 +116,37 @@
                     <td>3.4/km<sup>2</sup></td>
                     <td>76%</td>
                 </tr>
-
-            @foreach ($areas as $area)
-                <tr>
-                    <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
-                    <td>!{Helpers::calculateOverallScore($area)}!</td>
-                    <td>!{$area->housing_affordability_ratio}!</td>
-                    <td>£!{$area->mean_house_price_2015}!</td>
-                    <td>!{$area->crime}!</td>
-                    <td>!{$area->greenspace*100}!%</td>
-                    <td>!{$area->five_good_gcses*100}!%</td>
-                    <td>!{$area->restaurants}!/km<sup>2</sup></td>
-                    <td>!{$area->superfast_broadband*100}!%</td>
-                </tr>
-            @endforeach
+            @if (isset($_POST["lowerlimit"]) && isset($_POST["upperlimit"]))
+                @foreach ($areas as $area)
+                    @if ($area->mean_house_price_2015 >= $_POST["lowerlimit"] && $_POST["upperlimit"] >= $area->mean_house_price_2015)
+                       <tr>
+                            <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
+                            <td>!{Helpers::calculateOverallScore($area)}!</td>
+                            <td>!{$area->housing_affordability_ratio}!</td>
+                            <td>£!{$area->mean_house_price_2015}!</td>
+                            <td>!{$area->crime}!</td>
+                            <td>!{$area->greenspace*100}!%</td>
+                            <td>!{$area->five_good_gcses*100}!%</td>
+                            <td>!{$area->restaurants}!/km<sup>2</sup></td>
+                            <td>!{$area->superfast_broadband*100}!%</td>
+                        </tr>
+                    @endif
+                @endforeach
+            @else
+                @foreach ($areas as $area)
+                    <tr>
+                        <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
+                        <td>!{Helpers::calculateOverallScore($area)}!</td>
+                        <td>!{$area->housing_affordability_ratio}!</td>
+                        <td>£!{$area->mean_house_price_2015}!</td>
+                        <td>!{$area->crime}!</td>
+                        <td>!{$area->greenspace*100}!%</td>
+                        <td>!{$area->five_good_gcses*100}!%</td>
+                        <td>!{$area->restaurants}!/km<sup>2</sup></td>
+                        <td>!{$area->superfast_broadband*100}!%</td>
+                    </tr>
+                @endforeach
+            @endif
                 </tbody>
             </table>
 <!--        </div>-->

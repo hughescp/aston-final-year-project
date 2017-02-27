@@ -79,7 +79,11 @@ class Helpers{
         if(isset($_POST["crimeLevel"])){
             $crime_weighting = ($_POST["crimeLevel"]/20);
         };
-        
+
+        if(isset($_POST["broadband"])){
+            $broadband_weighting = ($_POST["broadband"]/20);
+        };
+
         if(isset($_POST["greenSpace"])){
             $greenspace_weighting = ($_POST["greenSpace"]/20);
         };
@@ -90,10 +94,6 @@ class Helpers{
         
         if(isset($_POST["pubsandRestaurants"])){
             $restaurants_weighting = ($_POST["pubsandRestaurants"]/20);
-        };
-                                            
-        if(isset($_POST["broadband"])){
-            $broadband_weighting = ($_POST["broadband"]/20);     
         };
 
         /*Functions to fetch the maximum instance of each variable*/

@@ -4,7 +4,7 @@
 <div class="container">
     <a href="/areas" class="btn btn-primary">Back</a>
     <h1>!{ $area->name }!</h1>
-    <ul class="nav nav-tabs">
+    <ul id = "navbar" class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="/areas/!{$area->id}!">Overview</a>
         </li>

@@ -5761,6 +5761,9 @@ canvas {
   margin: 10px;
   width: 100%; }
 
+#navbar {
+  border-color: darkgrey; }
+
 .overviewcard .card {
   margin: 10px;
   width: 100%;
@@ -5779,6 +5782,21 @@ canvas {
   padding: 5px;
   font-size: 1.2em;
   height: 1.5em; }
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1; }
+
+.tooltip:hover .tooltiptext {
+  visibility: visible; }
 
 html > body #sortable li {
   height: 1.5em;
