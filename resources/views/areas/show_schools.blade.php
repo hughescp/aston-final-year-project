@@ -32,8 +32,8 @@
      <div class="col-sm-12 col-md-6 col-lg-3">
         <div class="card text-center">
           <div class="card-block">
-            <h3 class="card-title">Pupils Achieving 5A*-C GCSEs inc. Maths & Eng</h3>
-            <h4>{{ $area->five_good_gcses*100}}%</h4>
+            <h4 class="card-title">Pupils Achieving 5A*-C GCSEs inc. Maths & Eng</h4>
+            <h3>!{ $area->five_good_gcses*100}!%</h3>
             <strong>Above/Below National Average</strong>
             <p class="card-text">The average asking price for a property in this area.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>

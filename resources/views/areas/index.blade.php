@@ -8,31 +8,31 @@
     
     <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateForm()">
         
-    {{csrf_field()}}
+    !{csrf_field()}!
         
-        <p>Please enter your price range:</p>
+        <p>Please enter the upper and lower limits that you would like the average house price of the area to be in:</p>
         <label>Lower Limit:</label>
         <div class="input-group">
             <span class="input-group-addon"> £</span>
-            <input type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = "140000">
+            <input type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  140000}!>
         </div>
         
         <label>Upper Limit:</label>
         <div class="input-group">
             <span class="input-group-addon"> £</span>
-            <input type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = "180000">
+            <input type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  180000}!>
         </div>
+        <br/>
+        <p>Rank the factors below according to their importance to you, the highest being the most important.</p>
         
-        <p>Rank the factors below according to their importance to you, the highest being the most important:</p>
-        
-        <p>Then distribute points to the factors to indicate how important they are to you. You have  20 points in total. You can distribute them in anyway that you would like:</p>
+        <p>Distribute points to indicate how important they are to you; you have 20 points in total:</p>
         
         <ul id="sortable">
-          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = "4">Crime Level</li>
-          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = "4">Green Space</li>
-          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = "4">5 Good GCSEs</li>
-          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
-          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
+          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>Crime Level</li>
+          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or 4}!>Green Space</li>
+          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or 4}!>5 Good GCSEs</li>
+          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or 4}!>Number of Pubs &amp Restaurants</li>
+          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or 4}!>Superfast Broadband</li>
         </ul>
 <!--
         <ul id="sortable">
@@ -78,9 +78,13 @@
 <div id = 'area_grid'>
     <div class = "container">
 <!--        <div class = "row">-->
+        <a href="/areas"><button class="btn btn-primary">Reset values</button></a>
+        <form method = "POST" action="/areas/comparison" id="preferencesForm" class="form-group">
+        !{csrf_field()}!
             <table id='areas_table' class="table table-striped">
                 <thead class="thead-default">
                     <tr>
+                        <th>Select</th>
                         <th>Area</th>
                         <th>Overall Score</th>
                         <th>Housing Affordability Ratio</th>
@@ -106,7 +110,8 @@
                 <tbody>
                 <!--Here insert a row with the national average-->
                 <tr>
-                    <th scope="row">National Average</th>
+                    <td scope="row"></td>
+                    <th>National Average</th>
                     <td>N/A</td>
                     <td>7.9</td>
                     <td>£202067.1</td>
@@ -120,7 +125,8 @@
                 @foreach ($areas as $area)
                     @if ($area->mean_house_price_2015 >= $_POST["lowerlimit"] && $_POST["upperlimit"] >= $area->mean_house_price_2015)
                        <tr>
-                            <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
+                            <td scrope="row"><input type="checkbox" name="area[]" value='!{$area->id}!'></td>
+                            <th><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
                             <td>!{Helpers::calculateOverallScore($area)}!</td>
                             <td>!{$area->housing_affordability_ratio}!</td>
                             <td>£!{$area->mean_house_price_2015}!</td>
@@ -135,7 +141,8 @@
             @else
                 @foreach ($areas as $area)
                     <tr>
-                        <th scrope="row"><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
+                        <td scrope="row"><input type="checkbox" name="area[]" value="!{$area->id}!"></td>
+                        <th><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
                         <td>!{Helpers::calculateOverallScore($area)}!</td>
                         <td>!{$area->housing_affordability_ratio}!</td>
                         <td>£!{$area->mean_house_price_2015}!</td>
@@ -149,6 +156,9 @@
             @endif
                 </tbody>
             </table>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="submit" id="compare_button" class="btn btn-primary" value="Compare"/>
+        </form>
 <!--        </div>-->
     </div>
 </div>

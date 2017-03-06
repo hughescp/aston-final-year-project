@@ -5731,7 +5731,7 @@ button.close {
     display: none !important; } }
 
 #logo {
-  width: 346px;
+  width: auto;
   height: auto; }
 
 #preferencesInput {
@@ -5782,6 +5782,11 @@ canvas {
   padding: 5px;
   font-size: 1.2em;
   height: 1.5em; }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; }
 
 .tooltip .tooltiptext {
   visibility: hidden;

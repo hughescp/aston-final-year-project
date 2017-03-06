@@ -43,7 +43,7 @@ export default {
 
         new Chart(
             this.$el.getContext('2d'),{
-                type: "bar",
+                type: "horizontalBar",
                 data: data,
         })
     }

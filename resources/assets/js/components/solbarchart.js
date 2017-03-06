@@ -12,15 +12,24 @@ export default {
 
             datasets: [
                 {
-                    backgroundColor: [
-                        'rgba(5, 99, 132, 0.5)',
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255, 159, 64, 0.5)'
-                    ],
+                    backgroundColor: "rgba(10,70,220, 0.5)",
+//                    [
+//                        'rgba(5, 255, 0, 0.5)',
+//                        'rgba(255, 99, 132, 0.5)',
+//                        'rgba(54, 162, 235, 0.5)',
+//                        'rgba(255, 206, 86, 0.5)',
+//                        'rgba(75, 192, 192, 0.5)',
+//                        'rgba(153, 102, 255, 0.5)',
+//                        'rgba(255, 159, 64, 0.5)'
+////                                                'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)',
+////                        'rgba(39, 139, 73, 0.5)'
+//
+//                    ],
                     fill: false,
                     label: "Standard of Living Index rank",
                     borderColor: "rgba(10,70,220, 0.5)",
@@ -42,6 +51,13 @@ export default {
                 data: data,
                 options:{
                     barThickness: 10,
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
         })
     }

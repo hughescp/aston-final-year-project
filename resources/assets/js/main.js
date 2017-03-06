@@ -22,7 +22,7 @@ new Vue({
 
 $(document).ready( function () {
     $('#areas_table').DataTable({
-        aaSorting: [[1, 'desc']]
+        aaSorting: [[2, 'desc']]
     });
 } );
 

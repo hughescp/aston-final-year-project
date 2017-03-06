@@ -28,11 +28,7 @@
         </li>
     </ul>
     <h2>Standard of Living</h2>
-        <h3 class="card-title">Overall Score</h3>
-        <h4>Insert rank here</h4>
-        <strong>Above/Below National Average</strong>
-        <p class="card-text">The average asking price for a property in this area.</p>
-        <strong>Mean House Price Over Time:</strong>
+        <p>The areas in the system are ranked based on their score, with 0 being the lowest rank, higher numbers equaling a higher rank.</p>
         <solbarchart id="price_over_time" :labels="[
             'Income',
             'Employment',
@@ -51,5 +47,6 @@
                 !{Helpers::calculateCrimeRank($area)}!,
                 !{Helpers::calculateLivingEnvironmentRank($area)}!]">
         </solbarchart>
+    <strong>Higher values are better.</strong>
 </div>
 @stop

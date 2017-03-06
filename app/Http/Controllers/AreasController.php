@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use Illuminate\Http\Request;
+//Changed to line below as was getting an error message for Request:all() saying the method should not be called statically. Apparently this way the call was not going through the Request facade.
+//use Request;
 
 use App\Http\Requests;
 use JavaScript;
@@ -23,7 +25,9 @@ class AreasController extends Controller
 
     public function show(Area $area)
     {
-        return view('areas.show', compact('area'));
+        $areas = Area::all();
+
+        return view('areas.show', compact('area','areas'));
         return $area;
     }
     
@@ -62,6 +66,15 @@ class AreasController extends Controller
         return view('areas.show_schools', compact('area'));
         return $area;
     }
+
+    public function show_comparison(Request $request)
+    {
+        $areas= Area::whereIn('id',$request->area)->get();
+
+        return view('areas.show_comparison', compact('areas'));
+    }
+
+    // Will return data in the form of area=1&area=2
 
     public function show_sol(Area $area)
     {
