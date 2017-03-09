@@ -26328,6 +26328,140 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+    template: '<canvas width="500px" height="500px"></canvas>',
+
+    props: ['labels', 'area1', 'area2', 'values1', 'values2'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                fill: false,
+                label: this.area1,
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values1
+            }, {
+                backgroundColor: "rgba(210,70,220, 0.5)",
+                fill: false,
+                label: this.area2,
+                borderColor: "rgba(210,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values2
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "line",
+            data: data,
+            options: {
+                //                    responsive:false
+            }
+        });
+    }
+};
+
+},{"chart.js":1}],51:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    template: '<canvas width="500px" height="500px"></canvas>',
+
+    props: ['labels', 'area1', 'area2', 'values1', 'values2'],
+
+    ready: function ready() {
+
+        var data = {
+            labels: this.labels,
+
+            datasets: [{
+                backgroundColor: "rgba(10,70,220, 0.5)",
+                fill: false,
+                label: this.area1,
+                borderColor: "rgba(10,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values1
+            }, {
+                backgroundColor: "rgba(210,70,220, 0.5)",
+                fill: false,
+                label: this.area2,
+                borderColor: "rgba(210,70,220, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: this.values2
+            }, {
+                backgroundColor: "rgba(240,0,0, 0.5)",
+                fill: false,
+                label: "National Average",
+                borderColor: "rgba(240,0,0, 0.5)",
+                borderSkipped: "top",
+                strokeColor: "rgba(220,70, 10,0.5)",
+                pointColor: "rgba(70,220,10,0.5)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [176858.9064, 181119.9949, 194051.5197, 202067.052]
+            }]
+        };
+        var ctx = this.$el.getContext('2d');
+
+        new _chart2.default(this.$el.getContext('2d'), {
+            type: "line",
+            data: data,
+            options: {
+                //                    responsive:false
+            }
+        });
+    }
+};
+
+},{"chart.js":1}],52:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chart = require('chart.js');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
     template: '<canvas width="200px" height="200px"></canvas>',
 
     props: ['labels', 'values'],
@@ -26372,7 +26506,7 @@ exports.default = {
     }
 };
 
-},{"chart.js":1}],51:[function(require,module,exports){
+},{"chart.js":1}],53:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26433,7 +26567,7 @@ exports.default = {
     }
 };
 
-},{"chart.js":1}],52:[function(require,module,exports){
+},{"chart.js":1}],54:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26479,7 +26613,7 @@ exports.default = {
     }
 };
 
-},{"chart.js":1}],53:[function(require,module,exports){
+},{"chart.js":1}],55:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26552,7 +26686,7 @@ exports.default = {
     }
 };
 
-},{"chart.js":1}],54:[function(require,module,exports){
+},{"chart.js":1}],56:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -26579,9 +26713,17 @@ var _agepiechart = require('./components/agepiechart.js');
 
 var _agepiechart2 = _interopRequireDefault(_agepiechart);
 
+var _comparepricelinegraph = require('./components/comparepricelinegraph.js');
+
+var _comparepricelinegraph2 = _interopRequireDefault(_comparepricelinegraph);
+
+var _comparepoplinegraph = require('./components/comparepoplinegraph.js');
+
+var _comparepoplinegraph2 = _interopRequireDefault(_comparepoplinegraph);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//require('angular');
+//require('angular');s
 //import angluar from 'angular';
 
 
@@ -26593,7 +26735,9 @@ new _vue2.default({
         crimebarchart: _crimebarchart2.default,
         solbarchart: _solbarchart2.default,
         poplinegraph: _poplinegraph2.default,
-        agepiechart: _agepiechart2.default
+        agepiechart: _agepiechart2.default,
+        comparepricelinegraph: _comparepricelinegraph2.default,
+        comparepoplinegraph: _comparepoplinegraph2.default
     }
 });
 
@@ -26633,6 +26777,6 @@ app.controller('MainCtrl', ['$scope', '$window', function ($scope, $jsVars) {
 //    $interpolateProvider.endSymbol('}!');
 //});
 
-},{"./components/agepiechart.js":49,"./components/crimebarchart.js":50,"./components/linegraph.js":51,"./components/poplinegraph.js":52,"./components/solbarchart.js":53,"vue":48}]},{},[54]);
+},{"./components/agepiechart.js":49,"./components/comparepoplinegraph.js":50,"./components/comparepricelinegraph.js":51,"./components/crimebarchart.js":52,"./components/linegraph.js":53,"./components/poplinegraph.js":54,"./components/solbarchart.js":55,"vue":48}]},{},[56]);
 
 //# sourceMappingURL=main.js.map

@@ -150,7 +150,7 @@ return [
 
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider,
         Laracasts\Utilities\UtilitiesServiceProvider,
-        Cornford\Googlmapper\MapperServiceProvider,
+        Cornford\Googlmapper\MapperServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -206,7 +206,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helpers' => 'App\Http\helpers.php',
-        'Mapper' => 'Cornford\Googlmapper\Facades\MapperFacade',
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class
 
     ],
 

@@ -6,7 +6,7 @@
 </div>
 <div id = "preferencesInput" class = "container">
     
-    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateForm()">
+    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
         
     !{csrf_field()}!
         
@@ -48,7 +48,7 @@
         <div id="prefFormError"></div>
     </form>
     <script type="text/javascript">
-        function validateForm(){
+        function validateInputForm(){
             //Set the error message.
             //Get the form and fetch the values inputted, converting thmem to numbers
             var form = document.getElementById("preferencesForm");
@@ -77,9 +77,8 @@
 </div>
 <div id = 'area_grid'>
     <div class = "container">
-<!--        <div class = "row">-->
         <a href="/areas"><button class="btn btn-primary">Reset values</button></a>
-        <form method = "POST" action="/areas/comparison" id="preferencesForm" class="form-group">
+        <form method = "POST" action="/areas/comparison" id="compForm" class="form-group" onsubmit="return validateCompForm()">
         !{csrf_field()}!
             <table id='areas_table' class="table table-striped">
                 <thead class="thead-default">
@@ -141,7 +140,7 @@
             @else
                 @foreach ($areas as $area)
                     <tr>
-                        <td scrope="row"><input type="checkbox" name="area[]" value="!{$area->id}!"></td>
+                        <td scrope="row"><input type="checkbox" name="area[]" class="checkbox" value="!{$area->id}!"></td>
                         <th><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
                         <td>!{Helpers::calculateOverallScore($area)}!</td>
                         <td>!{$area->housing_affordability_ratio}!</td>
@@ -158,8 +157,34 @@
             </table>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="submit" id="compare_button" class="btn btn-primary" value="Compare"/>
-        </form>
-<!--        </div>-->
+            <div id="compFormError"></div>
+            <p>To compare two areas' details side by side, select the areas and click 'Compare'</p>
+            </form>
+
+            <script type="text/javascript">
+            function validateCompForm(){
+                var numberOfSelected = document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+                if (numberOfSelected === 2)
+                {
+                    return true;
+                }
+                else
+                {
+                var errorText2 = '<br/><div id="prefFormError" class="alert alert-danger" role="alert"><strong>Please enter 2 areas to compare</strong></div>';
+
+                var area2 = document.getElementById("compFormError");
+                area2.innerHTML = errorText2;
+//                    $( "#dialog" ).dialog();
+
+                    // cancel submit
+                    return false;
+                }
+            }
+        </script>
+        <div id="dialog" title="Comparea">
+            <p>Please select two areas to compare</p>
+        </div>
     </div>
 </div>
 @stop

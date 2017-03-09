@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use JavaScript;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class AreasController extends Controller
 {

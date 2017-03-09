@@ -5761,6 +5761,23 @@ canvas {
   margin: 10px;
   width: 100%; }
 
+.comp_column {
+  width: 30%;
+  text-align: center;
+  font-size: 24pt; }
+
+.comp_row {
+  height: 2.5em; }
+
+.compagecharts {
+  width: 50% !important; }
+
+td .comp_row {
+  font-size: 24pt; }
+
+#comparison_table {
+  width: 100%; }
+
 #navbar {
   border-color: darkgrey; }
 

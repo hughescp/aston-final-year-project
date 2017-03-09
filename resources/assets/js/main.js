@@ -4,7 +4,9 @@ import crimebarchart from './components/crimebarchart.js';
 import solbarchart from './components/solbarchart.js';
 import poplinegraph from './components/poplinegraph.js';
 import agepiechart from './components/agepiechart.js';
-//require('angular');
+import comparepricelinegraph from './components/comparepricelinegraph.js';
+import comparepoplinegraph from './components/comparepoplinegraph.js';
+//require('angular');s
 //import angluar from 'angular';
 
 
@@ -16,7 +18,9 @@ new Vue({
         crimebarchart,
         solbarchart,
         poplinegraph,
-        agepiechart
+        agepiechart,
+        comparepricelinegraph,
+        comparepoplinegraph
     }
 });
 
