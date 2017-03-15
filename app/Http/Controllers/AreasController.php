@@ -24,6 +24,12 @@ class AreasController extends Controller
         return view('areas.index', compact('areas'));
     }
 
+    public function fetch()
+    {
+        $areas = Area::all();
+        return $areas;
+    }
+
     public function show(Area $area)
     {
         $areas = Area::all();

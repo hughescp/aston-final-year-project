@@ -9,6 +9,7 @@ Route::group(['middlewear' => ['web']],function(){
     Route::get('/about', 'PagesController@about');
 
     Route::get('/areas', 'AreasController@index');
+    Route::post('/fetchAreas', 'AreasController@fetch');
     Route::get('/areas/{area}', 'AreasController@show');
     Route::get('/areas/{area}/asking_prices', 'AreasController@show_asking_prices');
     Route::get('/areas/{area}/crime', 'AreasController@show_crime');

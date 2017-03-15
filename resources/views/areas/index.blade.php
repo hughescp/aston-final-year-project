@@ -1,6 +1,9 @@
 @extends('layout')
 
 @section('content')
+<div id='map'>
+
+</div>
 <div id ='title' class="container">
     <h1>Areas</h1>
 </div>
@@ -28,11 +31,11 @@
         <p>Distribute points to indicate how important they are to you; you have 20 points in total:</p>
         
         <ul id="sortable">
-          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>Crime Level</li>
-          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or 4}!>Green Space</li>
-          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or 4}!>5 Good GCSEs</li>
-          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or 4}!>Number of Pubs &amp Restaurants</li>
-          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or 4}!>Superfast Broadband</li>
+          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = !{$POST['crimeLevel'] or  4}!>Crime Level</li>
+          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = !{$POST['greenSpace'] or 4}!>Green Space</li>
+          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$POST['goodGCSEs'] or 4}!>5 Good GCSEs</li>
+          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$POST['pubsandRestaurants'] or 4}!>Number of Pubs &amp Restaurants</li>
+          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = !{$POST['broadband'] or 4}!>Superfast Broadband</li>
         </ul>
 <!--
         <ul id="sortable">
@@ -47,7 +50,15 @@
         <input type="submit" class="btn btn-primary" value="Search"/>
         <div id="prefFormError"></div>
     </form>
+
     <script type="text/javascript">
+
+        var crimeLevel;
+        var greenSpace;
+        var goodGCSEs;
+        var pubsandRestaurants;
+        var broadband;
+
         function validateInputForm(){
             //Set the error message.
             //Get the form and fetch the values inputted, converting thmem to numbers
@@ -155,7 +166,7 @@
             @endif
                 </tbody>
             </table>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+<!--            <input type="hidden" name="_token" value="{{ csrf_token() }}">-->
             <input type="submit" id="compare_button" class="btn btn-primary" value="Compare"/>
             <div id="compFormError"></div>
             <p>To compare two areas' details side by side, select the areas and click 'Compare'</p>

@@ -5778,6 +5778,11 @@ td .comp_row {
 #comparison_table {
   width: 100%; }
 
+#map {
+  height: 500px;
+  width: 100%;
+  margin: 0 auto; }
+
 #navbar {
   border-color: darkgrey; }
 
