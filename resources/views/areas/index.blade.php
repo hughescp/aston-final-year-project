@@ -1,8 +1,30 @@
 @extends('layout')
 
 @section('content')
+<!--
+<div id="controls" class="nicebox">
+  <div>
+  <select id="census-variable">
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE">Percent of population over 25 that completed high
+    school</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E">Median age</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Total population</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E">Average family size</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Per-capita income</option>
+  </select>
+  </div>
+  <div id="legend">
+    <div id="census-min">min</div>
+    <div class="color-key"><span id="data-caret">◆</span></div>
+    <div id="census-max">max</div>
+  </div>
+</div>
+<div id="data-box" class="nicebox">
+  <label id="data-label" for="data-value"></label>
+  <span id="data-value"></span>
+</div>
+-->
 <div id='map'>
-
 </div>
 <div id ='title' class="container">
     <h1>Areas</h1>
@@ -14,22 +36,58 @@
     !{csrf_field()}!
         
         <p>Please enter the upper and lower limits that you would like the average house price of the area to be in:</p>
-        <label>Lower Limit:</label>
-        <div class="input-group">
+        <div class="form-group row">
+        <label class="col-md-3 col-form-label">Lower Limit:</label>
+        <div class="col-md-3 input-group">
             <span class="input-group-addon"> £</span>
             <input type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  140000}!>
         </div>
-        
-        <label>Upper Limit:</label>
-        <div class="input-group">
+        </div>
+        <div class="form-group row">
+        <label class="col-md-3 col-form-label">Upper Limit:</label>
+        <div class="col-md-3 input-group">
             <span class="input-group-addon"> £</span>
             <input type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  180000}!>
+        </div>
         </div>
         <br/>
         <p>Rank the factors below according to their importance to you, the highest being the most important.</p>
         
         <p>Distribute points to indicate how important they are to you; you have 20 points in total:</p>
         
+        <div class="container">
+        <div class="form-group row">
+            <div class ="col-sm-2">
+                <input class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
+            </div>
+            <label class="col-sm-10 col-form-label">Low Crime Level</label>
+        </div>
+        <div class="form-group row">
+            <div class ="col-sm-2">
+                <input class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
+            </div>
+            <label class="col-sm-10 col-form-label">Green Space</label>
+        </div>
+        <div class="form-group row">
+            <div class ="col-sm-2">
+                <input class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
+            </div>
+            <label class="col-sm-10 col-form-label">Good schools</label>
+        </div>
+        <div class="form-group row">
+            <div class ="col-sm-2">
+                <input class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
+            </div>
+            <label class="col-sm-10 col-form-label">Number of Pubs &amp Restaurants</label>
+        </div>
+        <div class="form-group row">
+            <div class ="col-sm-2">
+                <input class="form-control" type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
+            </div>
+            <label class="col-sm-10 col-form-label">Superfast Broadband</label>
+        </div>
+        </div>
+<!--
         <ul id="sortable">
           <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = !{$POST['crimeLevel'] or  4}!>Crime Level</li>
           <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = !{$POST['greenSpace'] or 4}!>Green Space</li>
@@ -37,6 +95,7 @@
           <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$POST['pubsandRestaurants'] or 4}!>Number of Pubs &amp Restaurants</li>
           <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = !{$POST['broadband'] or 4}!>Superfast Broadband</li>
         </ul>
+-->
 <!--
         <ul id="sortable">
           <li class="ui-state-default"><input ng-model="crime" type="number" name = "crimeLevel" min = "0" max = "20" value = "4">Crime Level</li>
@@ -46,7 +105,6 @@
           <li class="ui-state-default"><input ng-model="broadband" type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
         </ul>
 -->
-        <br/>
         <input type="submit" class="btn btn-primary" value="Search"/>
         <div id="prefFormError"></div>
     </form>
