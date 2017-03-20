@@ -1,16 +1,16 @@
 @extends('layout')
 
 @section('content')
-<!--
 <div id="controls" class="nicebox">
   <div>
   <select id="census-variable">
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE">Percent of population over 25 that completed high
-    school</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E">Median age</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Total population</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E">Average family size</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Per-capita income</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE">Overall Score</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E">Mean House Price</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Crime Level</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E">Green Space</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Good Schools</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">N. of pubs & retaurants</option>
+    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Superfast Broadband</option>
   </select>
   </div>
   <div id="legend">
@@ -23,7 +23,6 @@
   <label id="data-label" for="data-value"></label>
   <span id="data-value"></span>
 </div>
--->
 <div id='map'>
 </div>
 <div id ='title' class="container">

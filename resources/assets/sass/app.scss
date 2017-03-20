@@ -19,7 +19,7 @@
 //}
 
 // Styling from Google Maps guide for Map Control
-html, body, #map { height: 100%; margin: 0; padding: 0; }
+//html, body, #map { height: 100%; margin: 0; padding: 0; }
 .nicebox {
   position: absolute;
   text-align: center;
@@ -34,9 +34,9 @@ html, body, #map { height: 100%; margin: 0; padding: 0; }
 }
 #controls {
   top: 10px;
-  left: 110px;
-  width: 360px;
-  height: 45px;
+  right: 10px;
+  width: auto;
+  height: auto;
 }
 #data-box {
   top: 10px;
