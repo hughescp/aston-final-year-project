@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myapp" lang="en">
 <head>
     @include('includes.head')
 </head>
-<body ng-app="myapp" ng-controller="MainCtrl" >
+<body ng-controller="MainCtrl" >
     <header>
         @include('includes.header')
     </header>

@@ -26744,15 +26744,42 @@ new _vue2.default({
 var map;
 var myLatlng;
 $(document).ready(function () {
-    $('#areas_table').DataTable({
-        aaSorting: [[2, 'desc']]
-    });
+    var table = $('#areas_table').DataTable({
+        aaSorting: [[2, 'desc']],
+        orderCellsTop: true });
 
     mapInit();
+
+    // Get the index of matching row.  Assumes only one match
+    var indexes = table.rows().eq(1).filter(function (rowIdx) {
+        //check column 0 of each row for tradeMsg.message.coin
+        return table.cell(rowIdx, 1).data() === 'National Average' ? true : false;
+    });
+
+    // grab the data from the row
+    var data = table.row(indexes).data();
+
+    // populate the .second header with the data
+    for (var i = 1; i < data.length; i++) {
+        $('.second').find('th').eq(i).html(data[i]);
+    }
+
+    // remove the row from the table
+    table.row(indexes).remove().draw(false);
 }); //End of document.ready function
 
+(function (angular) {
+    'use strict';
+
+    angular.module('myapp', []).controller('MainCtrl', ['$scope', function ($scope) {
+        $scope.data = {
+            singleSelect: null,
+            option1: 'option-1'
+        };
+    }]);
+})(window.angular);
+
 //Code for GoogleMap API
-//    geoLocationInit();
 
 function mapInit() {
     myLatlng = new google.maps.LatLng(52.6280446, -1.7221074);
@@ -26760,20 +26787,12 @@ function mapInit() {
     createMap(myLatlng);
     //Get the areas from the database
     fetchAreas();
-    // set up the style rules and events for google.maps.Data
-    map.data.setStyle(styleFeature);
-    map.data.addListener('mouseover', mouseInToRegion);
-    map.data.addListener('mouseout', mouseOutOfRegion);
-
-    // wire up the button
-    var selectBox = document.getElementById('census-variable');
-    google.maps.event.addDomListener(selectBox, 'change', function () {
-        clearCensusData();
-        loadCensusData(selectBox.options[selectBox.selectedIndex].value);
-    });
-
-    // state polygons only need to be loaded once, do them now
-    loadMapShapes();
+    //    var selectBox = document.getElementById('census-variable');
+    //    var chosenVar = selectBox.value;
+    //    console.log(chosenVar);
+    //    google.maps.event.addDomListener(selectBox, 'change', function() {
+    //        window.alert("Varaible was changed to " + chosenVar);
+    //    });
 }
 
 function styleFeature(feature) {
@@ -26811,29 +26830,8 @@ function styleFeature(feature) {
     };
 }
 
-function geoLocationInit() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, fail);
-    } else {
-        alert("Browser not supported");
-    }
-}
-
-function success(position) {
-    console.log(position);
-    var latval = position.coords.latitude;
-    var lngval = position.coords.longitude;
-
-    myLatlng = new google.maps.LatLng(latval, lngval);
-    //Original values: 52.6280446,-1.7221074
-    createMap(myLatlng);
-    //        nearbySearch(myLatlng,"school");
-    fetchAreas();
-}
-
-function fail() {
-    alert("Method failed");
-}
+//var chosenVar = "crime";
+//var selectBox;
 
 function createMap(myLatlng) {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -26849,22 +26847,33 @@ function createMap(myLatlng) {
 
     // wire up the button
     var selectBox = document.getElementById('census-variable');
+    selectBox.addEventListener("change", displayMessage);
+
     google.maps.event.addDomListener(selectBox, 'change', function () {
-        clearCensusData();
-        loadCensusData(selectBox.options[selectBox.selectedIndex].value);
+        var chosenVar = selectBox.value;
+        //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
+
+        window.alert("Varaible was changed to " + chosenVar);
+
+        //Now the application should reload all the circles with the chosenVar data
     });
 
     // state polygons only need to be loaded once, do them now
     //    loadMapShapes();
 }
 
+function displayMessage() {
+    window.alert("Selection has changed");
+}
+
 var infoWindow = new google.maps.InfoWindow();
 
-function createMarker(latlang, name, price, pop, greenspace, schools, restaurants, broadband, lowerC, middleC, upperC) {
+function createMarker(latlang, id, name, price, pop, greenspace, schools, restaurants, broadband, lowerC, middleC, upperC) {
 
     var infowincontent = document.createElement('div');
     var strong = document.createElement('h3');
     strong.textContent = name;
+    //    strong.textContent = '<a href="/areas/'+id+'">' + name + '</a>';
     infowincontent.appendChild(strong);
 
     var priceText = document.createElement('p');
@@ -26908,49 +26917,30 @@ function createMarker(latlang, name, price, pop, greenspace, schools, restaurant
     });
 }
 
-function nearbySearch(myLatlng, type) {
-    var request = {
-        location: myLatlng,
-        radius: '5000',
-        types: [type]
-    };
-
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-
-    function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                var latlng = place.geometry.location;
-                var icn = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'; //I can also define this icon as any other. Look at map-icons-master in FYP folder.
-                var name = place.name;
-                createMarker(latlng, name);
-            }
-        }
-    }
-}
-
 function fetchAreas() {
     $.post('http://localhost:8000/fetchAreas', {}, function (match) {
         //            console.log(match);
         // Get the min and max value
-        var valueMax = 239576;
-        var valueMin = 121807;
+
+        var valueMin = Math.min.apply(Math, match.map(function (o) {
+            return o.greenspace;
+        }));
+        var valueMax = Math.max.apply(Math, match.map(function (o) {
+            return o.greenspace;
+        }));
+
+        //        var valueMin = Math.min.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
+        //        var valueMax = Math.max.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
 
         $.each(match, function (i, val) {
-            console.log(val.name, val.lat, val.lng);
+            //            console.log(val.name,val.lat,val.lng);
 
             var glatval = val.lat;
-            console.log(glatval);
             var glngval = val.lng;
-            console.log(glngval);
             var gLatLng = new google.maps.LatLng(glatval, glngval);
-            console.log(gLatLng);
 
             var gname = val.name;
-            console.log(gname);
-
+            var gid = val.id;
             var price = val.mean_house_price_2015;
             var pop = this.pop2014;
             var greenspace = this.greenspace;
@@ -26958,12 +26948,25 @@ function fetchAreas() {
             var restaurants = this.restaurants;
             var broadband = this.superfast_broadband;
 
+            var properties = {
+                "mean_house_price_2015": val.mean_house_price_2015,
+                "crime": val.crime,
+                "greenspace": val.greenspace,
+                "five_good_gcses": val.five_good_gcses,
+                "restaurants": val.restaurants,
+                "superfast_broadband": val.superfast_broadband
+            };
+
+            console.log(greenspace);
+
+            //            properties[chosenVar];
+
             ///////// Here is where I want to define the colour
             var low = [5, 69, 54]; // color of smallest datum
             var high = [151, 83, 34]; // color of largest datum
 
             // delta represents where the value sits between the min and max
-            var delta = (val.mean_house_price_2015 - valueMin) / (valueMax - valueMin);
+            var delta = (greenspace - valueMin) / (valueMax - valueMin);
 
             var color = [];
             for (var i = 0; i < 3; i++) {
@@ -26972,42 +26975,12 @@ function fetchAreas() {
             }
 
             ///////// Then I can pass it as a variable into createMarker()
-            createMarker(gLatLng, gname, price, pop, greenspace, schools, restaurants, broadband, color[0], color[1], color[2]);
+            createMarker(gLatLng, gid, gname, price, pop, greenspace, schools, restaurants, broadband, color[0], color[1], color[2]);
         });
     });
 }
 
 //End of Code for GoogleMap API
-
-//(function(angular) {
-//  'use strict';
-//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
-//    $scope.areas = jsVars.areas;
-//    $scope.testPhrase = 'Successfully fetched data from $scope';
-//  }]);
-//})(window.angular);
-
-var app = angular.module('myapp', []);
-
-app.controller('MainCtrl', ['$scope', '$window', function ($scope, $jsVars) {
-    $scope.areas = $jsVars.areas;
-    $scope.testPhrase = 'Successfully fetched data from $scope';
-}]);
-
-//angular.module('scopeExample', []).controller('MyController', ['$scope', function($scope) {
-//    $scope.areas = jsVars.areas;
-//    $scope.testPhrase = 'Successfully fetched data from $scope';
-//}]);
-
-////Code for AngularJS
-//var app = angular.module('app', ['ngMaterial']);
-//
-////These lines change the render tags of angular because by default Laravel and Angular both use {{dirivative here}}
-//app.config(function ($interpolateProvider) {
-//
-//    $interpolateProvider.startSymbol('!{');
-//    $interpolateProvider.endSymbol('}!');
-//});
 
 },{"./components/agepiechart.js":49,"./components/comparepoplinegraph.js":50,"./components/comparepricelinegraph.js":51,"./components/crimebarchart.js":52,"./components/linegraph.js":53,"./components/poplinegraph.js":54,"./components/solbarchart.js":55,"vue":48}]},{},[56]);
 

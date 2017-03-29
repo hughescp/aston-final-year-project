@@ -3,15 +3,14 @@
 @section('content')
 <div id="controls" class="nicebox">
   <div>
-  <select id="census-variable">
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE">Overall Score</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E">Mean House Price</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E">Crime Level</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E">Green Space</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Good Schools</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">N. of pubs & retaurants</option>
-    <option value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E">Superfast Broadband</option>
-  </select>
+    <select id="census-variable" ng-model="choice">
+      <option selected="selected" value="mean_house_price_2015">Mean House Price</option>
+      <option value="crime">Crime Level</option>
+      <option value="greenspace">Green Space</option>
+      <option value="five_good_gcses">Good Schools</option>
+      <option value="restaurants">N. of pubs & retaurants</option>
+      <option value="superfast_broadband">Superfast Broadband</option>
+    </select>
   </div>
   <div id="legend">
     <div id="census-min">min</div>
@@ -25,88 +24,129 @@
 </div>
 <div id='map'>
 </div>
-<div id ='title' class="container">
-    <h1>Areas</h1>
-</div>
+<strong>The chosen var is {{chosenVar}}</strong>
+<strong>The chosen var is {{choice}}</strong>
 <div id = "preferencesInput" class = "container">
-    
+    <h2>Find Your Area</h2>
     <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
         
     !{csrf_field()}!
-        
         <p>Please enter the upper and lower limits that you would like the average house price of the area to be in:</p>
         <div class="form-group row">
-        <label class="col-md-3 col-form-label">Lower Limit:</label>
-        <div class="col-md-3 input-group">
+        <label class="col-md-6 col-form-label">Lower Limit:</label>
+        <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
-            <input type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  140000}!>
+            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  140000}!>
+<!--
+            <select type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  "£140,000"}!>
+                <option value="100000">£100,000</option>
+                <option value="120000">£120,000</option>
+                <option value="140000">£140,000</option>
+                <option value="160000">£160,000</option>
+                <option value="180000">£180,000</option>
+                <option value="200000">£200,000</option>
+                <option value="220000">£220,000</option>
+                <option value="240000">£240,000</option>
+                <option value="260000">£260,000</option>
+                <option value="280000">£280,000</option>
+                <option value="300000">£300,000</option>
+                <option value="320000">£320,000</option>
+                <option value="340000">£340,000</option>
+                <option value="360000">£360,000</option>
+                <option value="380000">£380,000</option>
+                <option value="400000">£400,000</option>
+                <option value="420000">£420,000</option>
+                <option value="440000">£440,000</option>
+                <option value="460000">£460,000</option>
+                <option value="480000">£480,000</option>
+                <option value="500000">£500,000</option>
+                <option value="520000">£520,000</option>
+                <option value="540000">£540,000</option>
+                <option value="560000">£560,000</option>
+                <option value="580000">£580,000</option>
+                <option value="600000">£600,000</option>
+            </select>
+-->
         </div>
         </div>
         <div class="form-group row">
-        <label class="col-md-3 col-form-label">Upper Limit:</label>
-        <div class="col-md-3 input-group">
+        <label class="col-md-6 col-form-label">Upper Limit:</label>
+        <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
-            <input type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  180000}!>
+            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  180000}!>
+<!--
+            <select type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  "£180,000"}!>
+                <option value="100000">£100,000</option>
+                <option value="120000">£120,000</option>
+                <option value="140000">£140,000</option>
+                <option value="160000">£160,000</option>
+                <option value="180000">£180,000</option>
+                <option value="200000">£200,000</option>
+                <option value="220000">£220,000</option>
+                <option value="240000">£240,000</option>
+                <option value="260000">£260,000</option>
+                <option value="280000">£280,000</option>
+                <option value="300000">£300,000</option>
+                <option value="320000">£320,000</option>
+                <option value="340000">£340,000</option>
+                <option value="360000">£360,000</option>
+                <option value="380000">£380,000</option>
+                <option value="400000">£400,000</option>
+                <option value="420000">£420,000</option>
+                <option value="440000">£440,000</option>
+                <option value="460000">£460,000</option>
+                <option value="480000">£480,000</option>
+                <option value="500000">£500,000</option>
+                <option value="520000">£520,000</option>
+                <option value="540000">£540,000</option>
+                <option value="560000">£560,000</option>
+                <option value="580000">£580,000</option>
+                <option value="600000">£600,000</option>
+            </select>
+-->
+
         </div>
         </div>
-        <br/>
         <p>Rank the factors below according to their importance to you, the highest being the most important.</p>
         
         <p>Distribute points to indicate how important they are to you; you have 20 points in total:</p>
         
-        <div class="container">
+        <div id="pointsInput">
         <div class="form-group row">
-            <div class ="col-sm-2">
-                <input class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
+            <div class ="col-sm-3">
+                <input style="min-width:50px" class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
             </div>
-            <label class="col-sm-10 col-form-label">Low Crime Level</label>
-        </div>
-        <div class="form-group row">
-            <div class ="col-sm-2">
-                <input class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
-            </div>
-            <label class="col-sm-10 col-form-label">Green Space</label>
+            <label class="col-sm-9 col-form-label">Low Crime Level</label>
         </div>
         <div class="form-group row">
-            <div class ="col-sm-2">
-                <input class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
+            <div class ="col-sm-3">
+                <input style="min-width:50px" class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
             </div>
-            <label class="col-sm-10 col-form-label">Good schools</label>
+            <label class="col-sm-9 col-form-label">Green Space</label>
         </div>
         <div class="form-group row">
-            <div class ="col-sm-2">
-                <input class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
+            <div class ="col-sm-3">
+                <input style="min-width:50px" class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
             </div>
-            <label class="col-sm-10 col-form-label">Number of Pubs &amp Restaurants</label>
+            <label class="col-sm-9 col-form-label">Good schools</label>
         </div>
         <div class="form-group row">
-            <div class ="col-sm-2">
-                <input class="form-control" type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
+            <div class ="col-sm-3">
+                <input style="min-width:50px" class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
             </div>
-            <label class="col-sm-10 col-form-label">Superfast Broadband</label>
+            <label class="col-sm-9 col-form-label">Number of Pubs &amp Restaurants</label>
+        </div>
+        <div class="form-group row">
+            <div class ="col-sm-3">
+                <input style="min-width:50px" class="form-control" type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
+            </div>
+            <label class="col-sm-9 col-form-label">Superfast Broadband</label>
         </div>
         </div>
-<!--
-        <ul id="sortable">
-          <li class="ui-state-default"><input type="number" name = "crimeLevel" min = "0" max = "20" value = !{$POST['crimeLevel'] or  4}!>Crime Level</li>
-          <li class="ui-state-default"><input type="number" name = "greenSpace" min = "0" max = "20" value = !{$POST['greenSpace'] or 4}!>Green Space</li>
-          <li class="ui-state-default"><input type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$POST['goodGCSEs'] or 4}!>5 Good GCSEs</li>
-          <li class="ui-state-default"><input type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$POST['pubsandRestaurants'] or 4}!>Number of Pubs &amp Restaurants</li>
-          <li class="ui-state-default"><input type="number" name = "broadband" min = "0" max = "20" value = !{$POST['broadband'] or 4}!>Superfast Broadband</li>
-        </ul>
--->
-<!--
-        <ul id="sortable">
-          <li class="ui-state-default"><input ng-model="crime" type="number" name = "crimeLevel" min = "0" max = "20" value = "4">Crime Level</li>
-          <li class="ui-state-default"><input  ng-model="greenspace" type="number" name = "greenSpace" min = "0" max = "20" value = "4">Green Space</li>
-          <li class="ui-state-default"><input ng-model="gcses" type="number" name = "goodGCSEs" min = "0" max = "20" value = "4">5 Good GCSEs</li>
-          <li class="ui-state-default"><input ng-model="restaurants" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = "4">Number of Pubs &amp Restaurants</li>
-          <li class="ui-state-default"><input ng-model="broadband" type="number" name = "broadband" min = "0" max = "20" value = "4">Superfast Broadband</li>
-        </ul>
--->
         <input type="submit" class="btn btn-primary" value="Search"/>
-        <div id="prefFormError"></div>
     </form>
+        <a href="/areas"><button class="btn btn-primary" style="background-color:#fff !important;color:#1b6634">Reset values</button></a>
+        <div id="prefFormError"></div>
 
     <script type="text/javascript">
 
@@ -144,8 +184,6 @@
     </script>
 </div>
 <div id = 'area_grid'>
-    <div class = "container">
-        <a href="/areas"><button class="btn btn-primary">Reset values</button></a>
         <form method = "POST" action="/areas/comparison" id="compForm" class="form-group" onsubmit="return validateCompForm()">
         !{csrf_field()}!
             <table id='areas_table' class="table table-striped">
@@ -172,6 +210,18 @@
                         <th class="tooltip">Number of Pubs &amp; Restaraunts<span class="tooltiptext"># of eateries per km squared</span></th>
                         <th class="tooltip">Superfast Broadband<span class="tooltiptext">% of households with more than 24Mbps download speed</span></th>
 -->
+                    </tr>
+                    <tr class="second">
+                        <th scope="row"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -253,6 +303,5 @@
         <div id="dialog" title="Comparea">
             <p>Please select two areas to compare</p>
         </div>
-    </div>
 </div>
 @stop

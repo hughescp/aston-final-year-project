@@ -32,7 +32,6 @@
     <h4>!{ $area->crime }! crimes per 100,000 of the population</h4>
     <strong>Above/Below National Average</strong>
     <p class="card-text">The number of crimes committed in this area relative to population.</p>
-    <strong>Mean House Price Over Time:</strong>
     <crimebarchart :labels="[
         'Robbery',
         'Burglary',
