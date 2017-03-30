@@ -24,6 +24,12 @@ new Vue({
     }
 });
 
+$("#nav_to_map").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#map").offset().top
+    }, 2000);
+});
+
 var map;
 var myLatlng;
 $(document).ready( function () {

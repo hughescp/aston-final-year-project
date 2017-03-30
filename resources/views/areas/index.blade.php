@@ -1,6 +1,32 @@
 @extends('layout')
 
 @section('content')
+<section id="landing_page_section">
+    <div class="inner">
+        <h1>Let's Find Your Home</h1>
+    </div>
+    <div class=tablediv>
+    <h4 class="left">Get detailed information on cities across the UK        <img id = "uk_outline" src="/img/uk-map.png">
+        <!--http://www.hlmarchitects.com/img/location/uk-map.png-->
+    </h4>
+    </div>
+    <div class="tablediv">
+        <h4 class="right">Receive personalised recommendations
+        <i id="reccommendation_icon" class = "fa fa-thumbs-o-up fa-5x" aria-hidden="true" style="float:left"></i>
+        </h4>
+    </div>
+    <div class="tablediv">
+        <h4 class="left">Compare areas side-by-side
+           <img id = "uk_outline" src="/img/city_icon.png">
+           <img id = "uk_outline" src="/img/village_icon.png">
+        </h4>
+    </div>
+    <div class="inner">
+        <a href="#map"><i id="nav_to_map" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
+    </div>
+</section>
+<!--<img id="landing_page" src="/img/Plain_Landing_Page.png">-->
+<!--<img id="landing_page" src="/img/Comparea_Landing_Page.png">-->
 <div id="controls" class="nicebox">
   <div>
     <select id="census-variable" ng-model="choice">
@@ -26,6 +52,7 @@
 </div>
 <strong>The chosen var is {{chosenVar}}</strong>
 <strong>The chosen var is {{choice}}</strong>
+<div>
 <div id = "preferencesInput" class = "container">
     <h2>Find Your Area</h2>
     <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
@@ -303,5 +330,6 @@
         <div id="dialog" title="Comparea">
             <p>Please select two areas to compare</p>
         </div>
+</div>
 </div>
 @stop

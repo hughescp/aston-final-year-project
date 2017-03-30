@@ -33,7 +33,7 @@
   border: rgb(229, 229, 229) 1px solid;
 }
 #controls {
-  top: 68px;
+  top: 668px;
   right: 4px;
   width: auto;
   height: auto;
@@ -73,11 +73,27 @@
 ///////
 *{
     font: 100%/130% arial,helvetica,sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+i{
+    color:white;
 }
 
 #area_grid{
     width: 80%;
     margin: 10px auto;
+    float: right;
+    clear:both;
+    overflow: hidden;
+}
+
+#areas_table_wrapper{
+    max-width: 70em !important;
+}
+
+#areas_table{
+    width:70em !important;
 }
 
 body{
@@ -107,6 +123,8 @@ body{
     padding: 1em;
     float: left;
     margin: 20px;
+    clear:both;
+    overflow: hidden;
 }
 
 #overall_score{
@@ -162,6 +180,70 @@ td .comp_row{
     width: 100%;
 }
 
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+#landing_page{
+    height: 653px;
+    width: auto;
+    margin: 0 auto;
+}
+
+#landing_page_section{
+    background-image: url(/img/Plain_Landing_Page.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    color: white;
+}
+
+.left{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    clear:both;
+    vertical-align: middle;
+    display: table-cell;
+    line-height: 7em;
+    width: 100%;
+}
+
+.right{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: right;
+    clear:both;
+    vertical-align: middle;
+    display: table-cell;
+    line-height: 5em;
+    width: 100%;
+}
+
+.inner{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    clear:both;
+    border:30px;
+}
+
+.inner>h1{
+    font-size: 60px;
+    font-weight: 500;
+}
+
 #map{
     height:500px;
     width: 100%;
@@ -193,6 +275,11 @@ td .comp_row{
     padding: 5px; 
     font-size: 1.2em; 
     height: 1.5em; 
+}
+
+.tablediv{
+    display:table;
+    margin: 0 auto;
 }
 
 .tooltip {
@@ -227,6 +314,25 @@ html>body #sortable li {
 .ui-state-highlight { 
     height: 1.5em; 
     line-height: 1.2em; 
+}
+
+#uk_outline{
+    height:170px;
+    float: right;
+    overflow: hidden;
+    vertical-align: top;
+    display: table-cell;
+    display: inline;
+    margin-left:30px;
+}
+
+#reccommendation_icon{
+    float: left;
+    overflow: hidden;
+    vertical-align: top;
+    display: table-cell;
+    display: inline;
+    margin-right:75px;
 }
 
 #price_over_time{
