@@ -75,13 +75,24 @@ function mapInit(){
     //Load the Map
     createMap(myLatlng);
     //Get the areas from the database
-    fetchAreas();
+    // wire up the button
+    var selectBox = document.getElementById('census-variable');
+//    selectBox.addEventListener("change", displayMessage);
+
+    google.maps.event.addDomListener(selectBox, 'change', function() {
+    var chosenVar = selectBox.value;
+    //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
+
+        window.alert("Varaible was changed to " + chosenVar);
+
+    //Now the application should reload all the circles with the chosenVar data
+    fetchAreas(chosenVar);
 //    var selectBox = document.getElementById('census-variable');
 //    var chosenVar = selectBox.value;
 //    console.log(chosenVar);
 //    google.maps.event.addDomListener(selectBox, 'change', function() {
 //        window.alert("Varaible was changed to " + chosenVar);
-//    });
+    });
 }
 
 function styleFeature(feature) {
@@ -120,7 +131,7 @@ function styleFeature(feature) {
     };
 }
 
-//var chosenVar = "crime";
+//var chosenVar;
 //var selectBox;
 
 function createMap(myLatlng){
@@ -136,26 +147,26 @@ function createMap(myLatlng){
 //        map.data.addListener('mouseover', mouseInToRegion);
 //        map.data.addListener('mouseout', mouseOutOfRegion);
 
-    // wire up the button
-    var selectBox = document.getElementById('census-variable');
-    selectBox.addEventListener("change", displayMessage);
-
-    google.maps.event.addDomListener(selectBox, 'change', function() {
-    var chosenVar = selectBox.value;
-    //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
-
-        window.alert("Varaible was changed to " + chosenVar);
-
-    //Now the application should reload all the circles with the chosenVar data
-    });
+//    // wire up the button
+//    var selectBox = document.getElementById('census-variable');
+////    selectBox.addEventListener("change", displayMessage);
+//
+//    google.maps.event.addDomListener(selectBox, 'change', function() {
+//    chosenVar = selectBox.value;
+//    //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
+//
+//        window.alert("Varaible was changed to " + chosenVar);
+//
+//    //Now the application should reload all the circles with the chosenVar data
+    };
 
     // state polygons only need to be loaded once, do them now
 //    loadMapShapes();
-}
+//}
 
-function displayMessage(){
-    window.alert("Selection has changed");
-}
+//function displayMessage(){
+//    window.alert("Selection has changed");
+//}
 
 var infoWindow = new google.maps.InfoWindow;
 
@@ -209,13 +220,24 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
 }
 
 
-function fetchAreas(){
+function fetchAreas(selectedVar){
     $.post('http://localhost:8000/fetchAreas',{},function(match){
 //            console.log(match);
         // Get the min and max value
 
-        var valueMin = Math.min.apply(Math,match.map(function(o){return o.greenspace;}))
-        var valueMax = Math.max.apply(Math,match.map(function(o){return o.greenspace;}))
+        var properties = {
+            "mean_house_price_2015": "mean_house_price_2015",
+            "crime": "crime",
+            "greenspace": "greenspace",
+            "five_good_gcses": "five_good_gcses",
+            "restaurants": "restaurants",
+            "superfast_broadband": "superfast_broadband"
+        };
+
+        var valueMin = Math.min.apply(Math,match.map(function(o){
+            console.log(o);
+            return o[selectedVar];}))
+        var valueMax = Math.max.apply(Math,match.map(function(o){return o[selectedVar];}))
 
 //        var valueMin = Math.min.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
 //        var valueMax = Math.max.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
@@ -235,17 +257,11 @@ function fetchAreas(){
             var schools = this.five_good_gcses;
             var restaurants = this.restaurants;
             var broadband = this.superfast_broadband;
+            console.log(val);
 
-            var properties = {
-                "mean_house_price_2015": val.mean_house_price_2015,
-                "crime": val.crime,
-                "greenspace": val.greenspace,
-                "five_good_gcses": val.five_good_gcses,
-                "restaurants": val.restaurants,
-                "superfast_broadband": val.superfast_broadband
-            };
 
-            console.log(greenspace);
+
+
 
 //            properties[chosenVar];
 
@@ -254,7 +270,7 @@ function fetchAreas(){
             var high = [151, 83, 34];   // color of largest datum
 
             // delta represents where the value sits between the min and max
-            var delta = (greenspace - valueMin) /
+            var delta = (val[selectedVar] - valueMin) /
             (valueMax - valueMin);
 
             var color = [];
