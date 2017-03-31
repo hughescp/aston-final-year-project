@@ -32,6 +32,8 @@ $("#nav_to_map").click(function() {
 
 var map;
 var myLatlng;
+var markers = []; //Array to hold the markers
+
 $(document).ready( function () {
     var table = $('#areas_table').DataTable({
         aaSorting: [[2, 'desc']],
@@ -77,22 +79,16 @@ function mapInit(){
     //Get the areas from the database
     // wire up the button
     var selectBox = document.getElementById('census-variable');
-//    selectBox.addEventListener("change", displayMessage);
 
     google.maps.event.addDomListener(selectBox, 'change', function() {
     var chosenVar = selectBox.value;
-    //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
 
-        window.alert("Varaible was changed to " + chosenVar);
-
+        deleteMarkers();
     //Now the application should reload all the circles with the chosenVar data
     fetchAreas(chosenVar);
-//    var selectBox = document.getElementById('census-variable');
-//    var chosenVar = selectBox.value;
-//    console.log(chosenVar);
-//    google.maps.event.addDomListener(selectBox, 'change', function() {
-//        window.alert("Varaible was changed to " + chosenVar);
     });
+
+    setMapOnAll(map);
 }
 
 function styleFeature(feature) {
@@ -131,9 +127,6 @@ function styleFeature(feature) {
     };
 }
 
-//var chosenVar;
-//var selectBox;
-
 function createMap(myLatlng){
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLatlng,
@@ -147,26 +140,7 @@ function createMap(myLatlng){
 //        map.data.addListener('mouseover', mouseInToRegion);
 //        map.data.addListener('mouseout', mouseOutOfRegion);
 
-//    // wire up the button
-//    var selectBox = document.getElementById('census-variable');
-////    selectBox.addEventListener("change", displayMessage);
-//
-//    google.maps.event.addDomListener(selectBox, 'change', function() {
-//    chosenVar = selectBox.value;
-//    //HERE CAN I JUST SET A ANGULAR VARIABLE TO EQUAL chosenVar? RATHER THAN USING NG-MODEL???
-//
-//        window.alert("Varaible was changed to " + chosenVar);
-//
-//    //Now the application should reload all the circles with the chosenVar data
-    };
-
-    // state polygons only need to be loaded once, do them now
-//    loadMapShapes();
-//}
-
-//function displayMessage(){
-//    window.alert("Selection has changed");
-//}
+};
 
 var infoWindow = new google.maps.InfoWindow;
 
@@ -203,26 +177,38 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
         icon:{
             path: google.maps.SymbolPath.CIRCLE,
             scale: 30,
-//            fillColor: "#33B1FF",
             fillColor: 'hsl(' + lowerC + ',' + middleC + '%,' + upperC + '%)',
             fillOpacity: 0.5,
             strokeColor:  'hsl(' + lowerC + ',' + middleC + '%,' + upperC + '%)',
-//            strokeColor: "#33B1FF",
             strokeOpacity: 1.0,
             strokeWeight: 1
         },
         title: name
     });
+
+    //Add the marker to the markers array.
+    markers.push(marker);
+
     marker.addListener('click', function() {
         infoWindow.setContent(infowincontent);
         infoWindow.open(map, marker);
     });
 }
 
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function deleteMarkers() {
+  setMapOnAll(null);
+  markers = [];
+}
 
 function fetchAreas(selectedVar){
     $.post('http://localhost:8000/fetchAreas',{},function(match){
-//            console.log(match);
         // Get the min and max value
 
         var properties = {
@@ -239,11 +225,7 @@ function fetchAreas(selectedVar){
             return o[selectedVar];}))
         var valueMax = Math.max.apply(Math,match.map(function(o){return o[selectedVar];}))
 
-//        var valueMin = Math.min.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
-//        var valueMax = Math.max.apply(Math,match.map(function(o){return o.{{chosenVar}};}))
-
         $.each(match,function(i,val){
-//            console.log(val.name,val.lat,val.lng);
 
             var glatval=val.lat;
             var glngval=val.lng;
@@ -259,11 +241,6 @@ function fetchAreas(selectedVar){
             var broadband = this.superfast_broadband;
             console.log(val);
 
-
-
-
-
-//            properties[chosenVar];
 
             ///////// Here is where I want to define the colour
             var low = [5, 69, 54];  // color of smallest datum
