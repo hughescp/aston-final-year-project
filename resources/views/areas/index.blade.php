@@ -29,7 +29,7 @@
 <!--<img id="landing_page" src="/img/Comparea_Landing_Page.png">-->
 <div id="controls" class="nicebox">
   <div>
-    <select id="census-variable" ng-model="choice">
+    <select id="census-variable">
       <option selected="selected" value="mean_house_price_2015">Mean House Price</option>
       <option value="crime">Crime Level</option>
       <option value="greenspace">Green Space</option>
@@ -50,9 +50,7 @@
 </div>
 <div id='map'>
 </div>
-<strong>The chosen var is {{chosenVar}}</strong>
-<strong>The chosen var is {{choice}}</strong>
-<div>
+<div id="main_content">
 <div id = "preferencesInput" class = "container">
     <h2>Find Your Area</h2>
     <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
@@ -330,6 +328,27 @@
         <div id="dialog" title="Comparea">
             <p>Please select two areas to compare</p>
         </div>
+</div>
+<div id="emailSignUp">
+    <div class="container">
+        <h2 id="emailPara" class="col-md-6">Want us to send you a free breakdown of the areas that best match your needs?</h2>
+        <form method="post" action="/email-signup" id="emailInput" class="col-md-6" onsubmit="return emailCollected()">
+            !{csrf_field()}!
+            <div class="row" id="emailFormComps">
+                <input id="emailFormCompsEmail" name="email" type="email" placeholder="Enter Your Email">
+                <input id="emailFormCompsButton" type="submit" class="btn btn-primary" value="Subscribe">
+            </div>
+            <div>
+                <input type="checkbox" name="optOutBox" value=1>
+                <sub>I don't want my details passing to any 3rd parties.</sub>
+            </div>
+        </form>
+        <script>
+        function emailCollected(){
+            alert("Thank you for entering your email. Check your inbox to learn more about the areas that suit you!");
+        }
+        </script>
+    </div>
 </div>
 </div>
 @stop

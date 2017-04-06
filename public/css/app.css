@@ -5801,10 +5801,7 @@ i {
   color: white; }
 
 #area_grid {
-  width: 80%;
   margin: 10px auto;
-  float: right;
-  clear: both;
   overflow: hidden; }
 
 #areas_table_wrapper {
@@ -5821,9 +5818,57 @@ body {
   background-color: #1b6634 !important;
   border-color: #1b6634 !important; }
 
+#emailFormComps {
+  padding: 0;
+  border: 0;
+  margin: 50px 0px auto;
+  font-size: 100%;
+  font-weight: 400;
+  vertical-align: baseline;
+  background: 0 0;
+  box-sizing: inherit; }
+
+#emailFormCompsEmail {
+  height: 73px;
+  padding-left: 15px;
+  padding: 0 15px;
+  margin-right: -1px;
+  float: left;
+  overflow: hidden; }
+
+#emailFormCompsButton {
+  overflow: hidden;
+  margin: 0px;
+  height: 73px;
+  padding: 7px 1em;
+  font-size: 15px;
+  line-height: 24px;
+  position: relative; }
+
+#emailInput {
+  vertical-align: middle; }
+
+#emailPara {
+  padding: 1em;
+  line-height: 1.2em;
+  letter-spacing: -.025em; }
+
+#emailSignUp {
+  background: #e2e4e7;
+  width: 100%;
+  clear: both;
+  overflow: hidden; }
+
+#global_nav {
+  float: right;
+  vertical-align: middle; }
+
 #logo {
   width: auto;
   height: auto; }
+
+#logoText {
+  float: left; }
 
 #preferencesInput {
   background-color: white;
@@ -5850,7 +5895,8 @@ footer {
   background-color: #278b49;
   color: white;
   bottom: 0;
-  position: relative; }
+  position: relative;
+  height: auto; }
 
 #overview_cards {
   padding: 10px; }
@@ -5913,6 +5959,9 @@ td .comp_row {
   line-height: 7em;
   width: 100%; }
 
+#main_content {
+  margin: auto; }
+
 .right {
   padding-left: 20px;
   padding-right: 20px;
@@ -5935,7 +5984,7 @@ td .comp_row {
   font-weight: 500; }
 
 #map {
-  height: 500px;
+  height: 650px;
   width: 100%;
   margin: 0 auto; }
 

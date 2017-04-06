@@ -221,9 +221,16 @@ function fetchAreas(selectedVar){
         };
 
         var valueMin = Math.min.apply(Math,match.map(function(o){
-            console.log(o);
             return o[selectedVar];}))
         var valueMax = Math.max.apply(Math,match.map(function(o){return o[selectedVar];}))
+
+        document.getElementById('census-min').textContent = valueMin.toLocaleString();
+
+        document.getElementById('census-max').textContent = valueMax.toLocaleString();
+
+//        document.getElementById('data-caret').style.display = 'block';
+//        document.getElementById('data-caret').style.paddingLeft = percent + '%';
+
 
         $.each(match,function(i,val){
 
@@ -239,7 +246,6 @@ function fetchAreas(selectedVar){
             var schools = this.five_good_gcses;
             var restaurants = this.restaurants;
             var broadband = this.superfast_broadband;
-            console.log(val);
 
 
             ///////// Here is where I want to define the colour
@@ -256,10 +262,33 @@ function fetchAreas(selectedVar){
               color[i] = (high[i] - low[i]) * delta + low[i];
             }
 
+//            if (selectedVar = 'crime' || 'mean_house_price_2015'){
+//                // Make it so that the scale is inversed
+//            }else{
+//                // Do as is currently done.
+//            }
+
             ///////// Then I can pass it as a variable into createMarker()
             createMarker(gLatLng,gid,gname,price,pop,greenspace,schools,restaurants, broadband, color[0], color[1], color[2]);
         });
     });
 }
+
+function mouseInToRegion(e) {
+        // set the hover state so the setStyle function can change the border
+        e.feature.setProperty('state', 'hover');
+
+        var percent = (e.feature.getProperty('census_variable') - censusMin) /
+            (censusMax - censusMin) * 100;
+
+        // update the label
+        document.getElementById('data-label').textContent =
+            e.feature.getProperty('NAME');
+        document.getElementById('data-value').textContent =
+            e.feature.getProperty('census_variable').toLocaleString();
+        document.getElementById('data-box').style.display = 'block';
+        document.getElementById('data-caret').style.display = 'block';
+        document.getElementById('data-caret').style.paddingLeft = percent + '%';
+      }
 
 //End of Code for GoogleMap API
