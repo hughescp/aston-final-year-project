@@ -59,16 +59,11 @@ $(document).ready( function () {
     table.row(indexes).remove().draw(false);
 } );//End of document.ready function
 
-(function(angular) {
-    'use strict';
-    angular.module('myapp', []).controller('MainCtrl', [
-        '$scope', function($scope) {
-            $scope.data = {
-                singleSelect: null,
-                option1: 'option-1'
-            };
-    }]);
-})(window.angular);
+var myApp = angular.module('myApp', []);
+
+
+myApp.controller('myCtrl', function($scope) {
+});
 
 //Code for GoogleMap API
 
@@ -161,7 +156,7 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
     infowincontent.appendChild(greenspaceText);
 
     var schoolsText = document.createElement('p');
-    schoolsText.textContent = "Children with good GCSEs: " + schools*100 + "%";
+    schoolsText.textContent = "Children with good GCSEs: " + schools*1000/10 + "%";
     infowincontent.appendChild(schoolsText);
 
     var restText = document.createElement('p');

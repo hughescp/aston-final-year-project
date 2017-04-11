@@ -5743,7 +5743,7 @@ button.close {
   border: #e5e5e5 1px solid; }
 
 #controls {
-  top: 668px;
+  top: 682px;
   right: 4px;
   width: auto;
   height: auto; }
@@ -5798,6 +5798,12 @@ button.close {
   -webkit-font-smoothing: antialiased; }
 
 i {
+  color: white; }
+
+#about_us {
+  float: right;
+  overflow: hidden;
+  margin: 10px 20px;
   color: white; }
 
 #area_grid {
@@ -5889,7 +5895,11 @@ body {
   text-align: center; }
 
 header {
-  background-color: #278b49; }
+  background-color: #278b49;
+  padding: 0px !important;
+  margin: 0px;
+  margin-bottom: 0px !important;
+  border-radius: 0px !important; }
 
 footer {
   background-color: #278b49;
@@ -6033,6 +6043,9 @@ td .comp_row {
 
 .tooltip:hover .tooltiptext {
   visibility: visible; }
+
+#top-bar {
+  padding: 0px; }
 
 html > body #sortable li {
   height: 1.5em;

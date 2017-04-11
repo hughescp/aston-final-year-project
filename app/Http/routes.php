@@ -20,8 +20,9 @@ Route::group(['middlewear' => ['web']],function(){
     Route::post('/areas/comparison', 'AreasController@show_comparison');
 
     Route::get('/about_us', 'AreasController@about_us');
+    Route::get('/pref_reset', 'AreasController@pref_reset');
     Route::get('/test', 'PagesController@test');
 
-    Route::post('/areas', 'AreasController@index');
+    Route::post('/pref_input', 'AreasController@pref_input');
     Route::post('/email-signup', 'PagesController@store');
 });

@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
 use Illuminate\Http\Request;
 //Changed to line below as was getting an error message for Request:all() saying the method should not be called statically. Apparently this way the call was not going through the Request facade.
 //use Request;
 
+use App\Area;
+
 use App\Http\Requests;
+
 use JavaScript;
-use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+
+use DB;
+
+use Session;
 
 class AreasController extends Controller
 {
@@ -22,6 +27,34 @@ class AreasController extends Controller
         ]);
 
         return view('areas.index', compact('areas'));
+    }
+
+    public function pref_input(Request $request)
+    {
+        Session::put([
+            'lowerlimit' => $request->lowerlimit,
+            'upperlimit' => $request->upperlimit,
+            'crimeLevel' => $request->crimeLevel,
+            'greenSpace' => $request->greenSpace,
+            'goodGCSEs' => $request->goodGCSEs,
+            'pubsandRestaurants' => $request->pubsandRestaurants,
+            'broadband' => $request->broadband
+        ]);
+
+        return back();
+    }
+
+    public function pref_reset()
+    {
+        Session::forget('lowerlimit');
+        Session::forget('upperlimit');
+        Session::forget('crimeLevel');
+        Session::forget('greenSpace');
+        Session::forget('goodGCSEs');
+        Session::forget('pubsandRestaurants');
+        Session::forget('broadband');
+
+        return redirect('/areas');
     }
 
     public function about_us(){

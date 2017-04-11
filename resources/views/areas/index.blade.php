@@ -53,7 +53,7 @@
 <div id="main_content">
 <div id = "preferencesInput" class = "container">
     <h2>Find Your Area</h2>
-    <form method = "POST" action="/areas" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
+    <form method = "post" action="/pref_input" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
         
     !{csrf_field()}!
         <p>Please enter the upper and lower limits that you would like the average house price of the area to be in:</p>
@@ -139,38 +139,39 @@
         <div id="pointsInput">
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
+                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
             </div>
             <label class="col-sm-9 col-form-label">Low Crime Level</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
+                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
             </div>
             <label class="col-sm-9 col-form-label">Green Space</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
+                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
             </div>
             <label class="col-sm-9 col-form-label">Good schools</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
+                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
             </div>
             <label class="col-sm-9 col-form-label">Number of Pubs &amp Restaurants</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
+                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
             </div>
             <label class="col-sm-9 col-form-label">Superfast Broadband</label>
         </div>
         </div>
+        <p>You have submitted {{crimelevel+greenSpace+goodGCSEs+pubsandRestaurants+broadband}} points</p>
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
-        <a href="/areas"><button class="btn btn-primary" style="background-color:#fff !important;color:#1b6634">Reset values</button></a>
+        <a href="/pref_reset"><button class="btn btn-primary" style="background-color:#fff !important;color:#1b6634">Reset values</button></a>
         <div id="prefFormError"></div>
 
     <script type="text/javascript">
@@ -208,6 +209,17 @@
         }
     </script>
 </div>
+@if (Session::has('greenSpace'))
+    <strong>Greenspace: !{Session::get('greenSpace')}!</strong><br>
+    <strong>Crime Level: !{Session::get('crimeLevel')}!</strong><br>
+    <strong>Good Schools: !{Session::get('goodGCSEs')}!</strong><br>
+    <strong>Pubs &amp; Restaurants: !{Session::get('pubsandRestaurants')}!</strong><br>
+    <strong>Broadband: !{Session::get('broadband')}!</strong><br>
+    <strong>Upper Limit: !{Session::get('upperlimit')}!</strong><br>
+    <strong>Lower Limit: !{Session::get('lowerlimit')}!</strong><br>
+@endif
+
+
 <div id = 'area_grid'>
         <form method = "POST" action="/areas/comparison" id="compForm" class="form-group" onsubmit="return validateCompForm()">
         !{csrf_field()}!
@@ -343,6 +355,9 @@
                 <sub>I don't want my details passing to any 3rd parties.</sub>
             </div>
         </form>
+        @if (Session::has('status'))
+            <strong>!{Session::get('status')}!</strong>
+        @endif
         <script>
         function emailCollected(){
             alert("Thank you for entering your email. Check your inbox to learn more about the areas that suit you!");

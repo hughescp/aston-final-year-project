@@ -12,6 +12,8 @@ use JavaScript;
 
 use DB;
 
+use Session;
+
 class PagesController extends Controller
 {
     public function home()
@@ -73,6 +75,7 @@ class PagesController extends Controller
             ]
         );
 
+        Session::flash('status','Thank you for requesting a report. We will send it to you shortly.'); //a temporary message
 
         return back();
     }

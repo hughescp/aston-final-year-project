@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="myapp" lang="en">
+<html lang="en">
 <head>
     @include('includes.head')
 </head>
-<body ng-controller="MainCtrl" >
-    <header>
+<body>
+    <header class="navbar">
         @include('includes.header')
     </header>
     @yield('content')
