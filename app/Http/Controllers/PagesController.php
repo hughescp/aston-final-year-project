@@ -14,6 +14,8 @@ use DB;
 
 use Session;
 
+use Mail;
+
 class PagesController extends Controller
 {
     public function home()
@@ -63,17 +65,29 @@ class PagesController extends Controller
 
         DB::table('emails')->insert(
             ['email_address' => $request->email,
-            'optout' => $optout
-//             ,
-//            'crime_weighting' => $crime_weight,
-//            'broadband_weighting' => $broadband_weighting,
-//            'greenspace_weighting' => $greenspace_weighting,
-//            'gcse_weighting' => $gcse_weighting,
-//            'restaurants_weighting' => $restaurants_weighting,
-//            'lowerlimit' => $lowerlimit,
-//            'upperlimit' => $upperlimit
+            'optout' => $optout,
+            'crime_weighting' => Session::get('crimeLevel'),
+            'broadband_weighting' => Session::get('broadband'),
+            'greenspace_weighting' => Session::get('greenSpace'),
+            'gcse_weighting' => Session::get('goodGCSEs'),
+            'restaurants_weighting' => Session::get('pubsandRestaurants'),
+            'lowerlimit' => Session::get('lowerlimit'),
+            'upperlimit' => Session::get('upperlimit')
             ]
         );
+
+        Mail::send('report_email', [
+            'crime_weighting' => Session::get('crimeLevel'),
+            'broadband_weighting' => Session::get('broadband'),
+            'greenspace_weighting' => Session::get('greenSpace'),
+            'gcse_weighting' => Session::get('goodGCSEs'),
+            'restaurants_weighting' => Session::get('pubsandRestaurants'),
+            'lowerlimit' => Session::get('lowerlimit'),
+            'upperlimit' => Session::get('upperlimit')
+            ], function($message)
+        {
+            $message->to('hughescp@aston.ac.uk', 'Some guy')->from('chris@comparea.com')->subject('Comparea Personal Report');
+        });
 
         Session::flash('status','Thank you for requesting a report. We will send it to you shortly.'); //a temporary message
 

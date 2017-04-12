@@ -22,10 +22,6 @@ class AreasController extends Controller
     {
         $areas = Area::all();
 
-        JavaScript::put([
-            'areas' => $areas,
-        ]);
-
         return view('areas.index', compact('areas'));
     }
 

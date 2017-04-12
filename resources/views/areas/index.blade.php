@@ -61,7 +61,11 @@
         <label class="col-md-6 col-form-label">Lower Limit:</label>
         <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
-            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  140000}!>
+            @if (Session::has('lowerlimit'))
+            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{Session::get('lowerlimit')}!>
+            @else
+            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = 180000>
+            @endif
 <!--
             <select type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  "£140,000"}!>
                 <option value="100000">£100,000</option>
@@ -98,7 +102,11 @@
         <label class="col-md-6 col-form-label">Upper Limit:</label>
         <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
-            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  180000}!>
+            @if (Session::has('upperlimit'))
+            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{Session::get('upperlimit')}!>
+            @else
+            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = 220000>
+            @endif
 <!--
             <select type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  "£180,000"}!>
                 <option value="100000">£100,000</option>
@@ -139,31 +147,51 @@
         <div id="pointsInput">
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{$_POST['crimeLevel'] or  4}!>
+                @if (Session::has('crimeLevel'))
+                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{Session::get('crimeLevel')}!>
+                @else
+                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = 4>
+                @endif
             </div>
             <label class="col-sm-9 col-form-label">Low Crime Level</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{$_POST['greenSpace'] or  4}!>
+                @if (Session::has('greenSpace'))
+                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{Session::get('greenSpace')}!>
+                @else
+                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = 4>
+                @endif
             </div>
             <label class="col-sm-9 col-form-label">Green Space</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{$_POST['goodGCSEs'] or  4}!>
+                @if (Session::has('goodGCSEs'))
+                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{Session::get('goodGCSEs')}!>
+                @else
+                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = 4>
+                @endif
             </div>
             <label class="col-sm-9 col-form-label">Good schools</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{$_POST['pubsandRestaurants'] or  4}!>
+                @if (Session::has('pubsandRestaurants'))
+                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{Session::get('pubsandRestaurants')}!>
+                @else
+                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = 4>
+                @endif
             </div>
             <label class="col-sm-9 col-form-label">Number of Pubs &amp Restaurants</label>
         </div>
         <div class="form-group row">
             <div class ="col-sm-3">
-                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = !{$_POST['broadband'] or  4}!>
+                @if (Session::has('broadband'))
+                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = !{Session::get('broadband')}!>
+                @else
+                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = 4>
+                @endif
             </div>
             <label class="col-sm-9 col-form-label">Superfast Broadband</label>
         </div>
@@ -209,17 +237,6 @@
         }
     </script>
 </div>
-@if (Session::has('greenSpace'))
-    <strong>Greenspace: !{Session::get('greenSpace')}!</strong><br>
-    <strong>Crime Level: !{Session::get('crimeLevel')}!</strong><br>
-    <strong>Good Schools: !{Session::get('goodGCSEs')}!</strong><br>
-    <strong>Pubs &amp; Restaurants: !{Session::get('pubsandRestaurants')}!</strong><br>
-    <strong>Broadband: !{Session::get('broadband')}!</strong><br>
-    <strong>Upper Limit: !{Session::get('upperlimit')}!</strong><br>
-    <strong>Lower Limit: !{Session::get('lowerlimit')}!</strong><br>
-@endif
-
-
 <div id = 'area_grid'>
         <form method = "POST" action="/areas/comparison" id="compForm" class="form-group" onsubmit="return validateCompForm()">
         !{csrf_field()}!
@@ -344,7 +361,7 @@
 <div id="emailSignUp">
     <div class="container">
         <h2 id="emailPara" class="col-md-6">Want us to send you a free breakdown of the areas that best match your needs?</h2>
-        <form method="post" action="/email-signup" id="emailInput" class="col-md-6" onsubmit="return emailCollected()">
+        <form method="post" action="/email-signup" id="emailInput" class="col-md-6">
             !{csrf_field()}!
             <div class="row" id="emailFormComps">
                 <input id="emailFormCompsEmail" name="email" type="email" placeholder="Enter Your Email">
@@ -358,11 +375,6 @@
         @if (Session::has('status'))
             <strong>!{Session::get('status')}!</strong>
         @endif
-        <script>
-        function emailCollected(){
-            alert("Thank you for entering your email. Check your inbox to learn more about the areas that suit you!");
-        }
-        </script>
     </div>
 </div>
 </div>
