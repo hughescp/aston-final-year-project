@@ -27,29 +27,6 @@
 </section>
 <!--<img id="landing_page" src="/img/Plain_Landing_Page.png">-->
 <!--<img id="landing_page" src="/img/Comparea_Landing_Page.png">-->
-<div id="controls" class="nicebox">
-  <div>
-    <select id="census-variable">
-      <option selected="selected" value="mean_house_price_2015">Mean House Price</option>
-      <option value="crime">Crime Level</option>
-      <option value="greenspace">Green Space</option>
-      <option value="five_good_gcses">Good Schools</option>
-      <option value="restaurants">N. of pubs & retaurants</option>
-      <option value="superfast_broadband">Superfast Broadband</option>
-    </select>
-  </div>
-  <div id="legend">
-    <div id="census-min">min</div>
-    <div class="color-key"><span id="data-caret">◆</span></div>
-    <div id="census-max">max</div>
-  </div>
-</div>
-<div id="data-box" class="nicebox">
-  <label id="data-label" for="data-value"></label>
-  <span id="data-value"></span>
-</div>
-<div id='map'>
-</div>
 <div id="main_content">
 <div id = "preferencesInput" class = "container">
     <h2>Find Your Area</h2>
@@ -143,14 +120,25 @@
         <p>Rank the factors below according to their importance to you, the highest being the most important.</p>
         
         <p>Distribute points to indicate how important they are to you; you have 20 points in total:</p>
-        
+<!--
+        <div id="demo">
+            <p>{{num1}}</p>
+            <p>{{num2}}</p>
+            <p>The sum of the two numbers is {{num1 + num2 + num3 + num4 + num5}}</p>
+            <input type="number" v-model.number="num1" number><br>
+            <input type="number" v-model.number="num2" number><br>
+            <input type="number" v-model.number="num3" number><br>
+            <input type="number" v-model.number="num4" number><br>
+            <input type="number" v-model.number="num5" number>
+        </div>
+-->
         <div id="pointsInput">
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('crimeLevel'))
-                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{Session::get('crimeLevel')}!>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{Session::get('crimeLevel')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" ng-model="crimelevel" name = "crimeLevel" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="crimelevel" name = "crimeLevel" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Low Crime Level</label>
@@ -158,9 +146,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('greenSpace'))
-                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{Session::get('greenSpace')}!>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{Session::get('greenSpace')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" ng-model="greenSpace" name = "greenSpace" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="greenSpace" name = "greenSpace" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Green Space</label>
@@ -168,9 +156,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('goodGCSEs'))
-                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{Session::get('goodGCSEs')}!>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{Session::get('goodGCSEs')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" ng-model="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Good schools</label>
@@ -178,9 +166,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('pubsandRestaurants'))
-                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{Session::get('pubsandRestaurants')}!>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{Session::get('pubsandRestaurants')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" ng-model="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Number of Pubs &amp Restaurants</label>
@@ -188,9 +176,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('broadband'))
-                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = !{Session::get('broadband')}!>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="broadband" name = "broadband" min = "0" max = "20" value = !{Session::get('broadband')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" ng-model="broadband" name = "broadband" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" v-model.number="broadband" name = "broadband" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Superfast Broadband</label>
@@ -203,6 +191,19 @@
         <div id="prefFormError"></div>
 
     <script type="text/javascript">
+
+        var data = {
+            crimeLevel: !{Session::get('broadband')}! or 4,
+            greenSpace: !{Session::get('greenSpace')}! or 4,
+            goodGCSEs: !{Session::get('goodGCSEs')}! or 4,
+            pubsandRestaurants: !{Session::get('pubsandRestaurants')}! or 4,
+            broadband: !{Session::get('broadband')}! or 4
+        }
+
+        var pointsInput = new Vue({
+            el: '#pointsInput',
+            data: data
+        })
 
         var crimeLevel;
         var greenSpace;
@@ -292,11 +293,11 @@
                     <td>3.4/km<sup>2</sup></td>
                     <td>76%</td>
                 </tr>
-            @if (isset($_POST["lowerlimit"]) && isset($_POST["upperlimit"]))
+            @if ((Session::has('lowerlimit')) && (Session::has('upperlimit')))
                 @foreach ($areas as $area)
-                    @if ($area->mean_house_price_2015 >= $_POST["lowerlimit"] && $_POST["upperlimit"] >= $area->mean_house_price_2015)
+                    @if ($area->mean_house_price_2015 >= Session::get('lowerlimit') && Session::get('upperlimit') >= $area->mean_house_price_2015)
                        <tr>
-                            <td scrope="row"><input type="checkbox" name="area[]" value='!{$area->id}!'></td>
+                            <td scrope="row"><input type="checkbox" name="area[]" class="checkbox" value='!{$area->id}!'></td>
                             <th><a href="/areas/!{$area->id}!">!{$area->name}!</a></th>
                             <td>!{Helpers::calculateOverallScore($area)}!</td>
                             <td>!{$area->housing_affordability_ratio}!</td>
@@ -358,6 +359,29 @@
             <p>Please select two areas to compare</p>
         </div>
 </div>
+<div id="controls" class="nicebox">
+  <div>
+    <select id="census-variable">
+      <option selected="selected" value="mean_house_price_2015">Mean House Price</option>
+      <option value="crime">Crime Level</option>
+      <option value="greenspace">Green Space</option>
+      <option value="five_good_gcses">Good Schools</option>
+      <option value="restaurants">N. of pubs & restaurants</option>
+      <option value="superfast_broadband">Superfast Broadband</option>
+    </select>
+  </div>
+  <div id="legend">
+    <div id="census-min">min</div>
+    <div class="color-key"><span id="data-caret">◆</span></div>
+    <div id="census-max">max</div>
+  </div>
+</div>
+<div id="data-box" class="nicebox">
+  <label id="data-label" for="data-value"></label>
+  <span id="data-value"></span>
+</div>
+<div id='map'>
+</div>
 <div id="emailSignUp">
     <div class="container">
         <h2 id="emailPara" class="col-md-6">Want us to send you a free breakdown of the areas that best match your needs?</h2>
@@ -365,7 +389,7 @@
             !{csrf_field()}!
             <div class="row" id="emailFormComps">
                 <input id="emailFormCompsEmail" name="email" type="email" placeholder="Enter Your Email">
-                <input id="emailFormCompsButton" type="submit" class="btn btn-primary" value="Subscribe">
+                <input id="emailFormCompsButton" type="submit" class="btn btn-primary" value="Request">
             </div>
             <div>
                 <input type="checkbox" name="optOutBox" value=1>

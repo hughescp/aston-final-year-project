@@ -3,70 +3,6 @@ use App\Area;
 
 class Helpers{
 
-//    public static function getMaxValue($column_name){
-//        print_r("#starting getMaxValue() function<br />");
-//
-//        $maxDB_values = DB::select('SELECT MAX(housing_affordability_ratio) AS max_value FROM areas');
-//
-////        $maxDB_values = DB::select('SELECT MAX(?) AS max_value FROM areas', [$column_name]); //Not name binding
-//
-//        //        $maxDB_values = DB::select('SELECT MAX(:column_name) AS max_value FROM areas', ['column_name' => $column_name]); //Name binding doesn't seem to work.
-//
-////        $maxDB_values = DB::select('SELECT MAX(:column_name) AS max_value FROM areas', ['column_name' => $column_name]);
-//
-////        $maxDB_values = DB::select('SELECT * FROM areas where name=(:column_name)', ['column_name' => 'Birmingham']);
-//
-//        print("#fetched max value from database<br />");
-//
-//        /*According to the documentation: The select method will always return an array of results. Each result within the array will be a PHP StdClass object, allowing you to access the values of the results:*/
-//
-//        print_r ($maxDB_values);
-//        print_r("<br />#var dump follows:<br />");
-//        var_dump($maxDB_values);
-//        print_r("<br />#var dump of specific value follows:<br />");
-//        print_r ($maxDB_values[0]);
-//        print_r("<br />#Housing Affordability Ratio:<br />");
-//        print_r ($maxDB_values[0]->max_value);
-//        //$max_value = $maxDB_values[0][0]->$column_name;
-//
-//        return $maxDB_values;
-//    }
-
-//    SELECT * FROM areas WHERE name='Birmingham' returns the following
-/*    Array
-        ( [0] => stdClass Object
-         ( [id] => 1
-          [name] => Birmingham
-          [greenspace] => 0.48
-          [housing_affordability_ratio] => 4.3
-          [superfast_broadband] => 0.85
-          [crime] => 29.3
-          [five_good_gcses] => 0.88
-          [restaurants] => 6.9
-          [created_at] => 2016-12-13 11:35:37
-          [updated_at] => 2016-12-13 11:35:37 ) )
-    array(1) {
-        [0]=> object(stdClass)#152 (10)
-        { ["id"]=> int(1)
-            ["name"]=> string(10) "Birmingham"
-            ["greenspace"]=> float(0.48) ["housing_affordability_ratio"]=> float(4.3) ["superfast_broadband"]=> float(0.85)
-            ["crime"]=> float(29.3)
-            ["five_good_gcses"]=> float(0.88)
-            ["restaurants"]=> float(6.9)
-            ["created_at"]=> string(19) "2016-12-13 11:35:37" ["updated_at"]=> string(19) "2016-12-13 11:35:37"
-        }
-    }
-
-//    SELECT MAX(:column_name) FROM areas' returns the following:
-        Array
-            ( [0] => stdClass Object
-            ( [MAX(?)] => housing_affordability_ratio ) )
-        array(1) {
-            [0]=> object(stdClass)#152 (1)
-            { ["MAX(?)"]=> string(27) "housing_affordability_ratio" } }
-
-*/
-
     public static function calculateOverallScore($area){
         /*Weightings*/
         
@@ -76,24 +12,24 @@ class Helpers{
         $gcse_weighting = 0.180451;
         $restaurants_weighting = 0.097744;
 
-        if(isset($_POST["crimeLevel"])){
-            $crime_weighting = ($_POST["crimeLevel"]/20);
+        if(Session::has('crimeLevel')){
+            $crime_weighting = (Session::get('crimeLevel')/20);
         };
 
-        if(isset($_POST["broadband"])){
-            $broadband_weighting = ($_POST["broadband"]/20);
+        if(Session::has('broadband')){
+            $crime_weighting = (Session::get('broadband')/20);
         };
 
-        if(isset($_POST["greenSpace"])){
-            $greenspace_weighting = ($_POST["greenSpace"]/20);
+        if(Session::has('greenSpace')){
+            $crime_weighting = (Session::get('greenSpace')/20);
         };
         
-        if(isset($_POST["goodGCSEs"])){
-            $gcse_weighting = ($_POST["goodGCSEs"]/20);
+        if(Session::has('goodGCSEs')){
+            $crime_weighting = (Session::get('goodGCSEs')/20);
         };
         
-        if(isset($_POST["pubsandRestaurants"])){
-            $restaurants_weighting = ($_POST["pubsandRestaurants"]/20);
+        if(Session::has('pubsandRestaurants')){
+            $crime_weighting = (Session::get('pubsandRestaurants')/20);
         };
 
         /*Functions to fetch the maximum instance of each variable*/

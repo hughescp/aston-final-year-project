@@ -19,3 +19,5 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 <!--Font Awesome-->
 <script src="https://use.fontawesome.com/2211a9116b.js"></script>
+<!--Vue.js-->
+<script src="https://unpkg.com/vue"></script>

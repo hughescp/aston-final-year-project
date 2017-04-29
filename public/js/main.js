@@ -26757,23 +26757,22 @@ $(document).ready(function () {
         orderCellsTop: true });
 
     mapInit();
-
-    // Get the index of matching row.  Assumes only one match
-    var indexes = table.rows().eq(1).filter(function (rowIdx) {
-        //check column 0 of each row for tradeMsg.message.coin
-        return table.cell(rowIdx, 1).data() === 'National Average' ? true : false;
-    });
-
-    // grab the data from the row
-    var data = table.row(indexes).data();
-
-    // populate the .second header with the data
-    for (var i = 1; i < data.length; i++) {
-        $('.second').find('th').eq(i).html(data[i]);
-    }
-
-    // remove the row from the table
-    table.row(indexes).remove().draw(false);
+    //
+    //    // Get the index of matching row.  Assumes only one match
+    //    var indexes = table.rows().eq( 1 ).filter( function (rowIdx) {    //check column 0 of each row for tradeMsg.message.coin
+    //        return table.cell( rowIdx, 1 ).data() === 'National Average' ? true : false;
+    //    } );
+    //
+    //    // grab the data from the row
+    //    var data = table.row(indexes).data();
+    //
+    //    // populate the .second header with the data
+    //    for (var i = 1; i < data.length; i++) {
+    //        $('.second').find('th').eq(i).html( data[i] );
+    //    }
+    //
+    //    // remove the row from the table
+    //    table.row(indexes).remove().draw(false);
 }); //End of document.ready function
 
 var myApp = angular.module('myApp', []);
@@ -26860,23 +26859,28 @@ function createMarker(latlang, id, name, price, pop, greenspace, schools, restau
     infowincontent.appendChild(strong);
 
     var priceText = document.createElement('p');
-    priceText.textContent = "Mean House Price: £" + price;
+    priceText.textContent = "Mean House Price: £" + Math.round(price * 10) / 10;
     infowincontent.appendChild(priceText);
 
     var greenspaceText = document.createElement('p');
-    greenspaceText.textContent = "Greenspace: " + greenspace * 100 + "%";
+    greenspaceText.textContent = "Greenspace: " + Math.round(greenspace * 100 * 10) / 10 + "%";
     infowincontent.appendChild(greenspaceText);
 
     var schoolsText = document.createElement('p');
-    schoolsText.textContent = "Children with good GCSEs: " + schools * 1000 / 10 + "%";
+    schoolsText.textContent = "Children with good GCSEs: " + Math.round(schools * 100 * 10) / 10 + "%";
     infowincontent.appendChild(schoolsText);
 
     var restText = document.createElement('p');
-    restText.textContent = "N. of pubs & restaurants: " + restaurants + "/km2";
+    restText.textContent = "N. of pubs & restaurants: " + Math.round(restaurants * 10) / 10 + "/km2";
     infowincontent.appendChild(restText);
 
     var broadbandText = document.createElement('p');
-    broadbandText.textContent = "Superfast Broadband: " + broadband * 100 + "%";
+    broadbandText.textContent = "Superfast Broadband: " + Math.round(broadband * 100 * 10) / 10 + "%";
+    infowincontent.appendChild(broadbandText);
+
+    //    var crimeText = document.createElement('p');
+    //    crimeText.textContent = "Crimes (per 100,000 of the pop.): " + Math.round((broadband*100)*10)/10 + "%";
+    //    infowincontent.appendChild(crimeText);
 
     var marker = new google.maps.Marker({
         position: latlang,
@@ -26893,13 +26897,15 @@ function createMarker(latlang, id, name, price, pop, greenspace, schools, restau
         title: name
     });
 
-    //Add the marker to the markers array.
-    markers.push(marker);
+    infoWindow = new google.maps.InfoWindow();
 
     marker.addListener('click', function () {
         infoWindow.setContent(infowincontent);
         infoWindow.open(map, marker);
     });
+
+    //Add the marker to the markers array.
+    markers.push(marker);
 }
 
 // Sets the map on all markers in the array.
@@ -26958,8 +26964,16 @@ function fetchAreas(selectedVar) {
             var broadband = this.superfast_broadband;
 
             ///////// Here is where I want to define the colour
-            var low = [5, 69, 54]; // color of smallest datum
+            var low = [5, 69, 54];; // color of smallest datum
             var high = [151, 83, 34]; // color of largest datum
+
+            //            if (selectedVar = 'crime' || 'mean_house_price_2015'){
+            //                low = [151, 83, 34];  // color of smallest datum
+            //                high = [5, 69, 54];   // color of largest datum
+            //            }else if(selectedVar = 'greenspace' || 'five_good_gcses' || 'restaurants' || 'broadband'){
+            //                low = [5, 69, 54];  // color of smallest datum
+            //                high = [151, 83, 34];   // color of largest datum
+            //            }
 
             // delta represents where the value sits between the min and max
             var delta = (val[selectedVar] - valueMin) / (valueMax - valueMin);

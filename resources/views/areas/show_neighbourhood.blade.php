@@ -54,7 +54,6 @@
             !{$area->pop2009}!,
             !{$area->pop2014}!
             ]"></poplinegraph>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>
@@ -77,7 +76,6 @@
             !{$area->age45to64}!,
             !{$area->age65plus}!
             ]"></agepiechart>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>
@@ -88,7 +86,6 @@
             <h4>!{ $area->greenspace*100}!%</h4>
             <strong>Above/Below National Average</strong>
             <p class="card-text">The percentage of an area covered in greenspace i.e. parks, grassland, trees, natural habitation etc.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>
@@ -99,7 +96,6 @@
             <h4>!{ $area->restaurants }!/km<sup>2</sup></h4>
             <strong>Above/Below National Average</strong>
             <p class="card-text">The total number of pubs, restaurants, and other eateries in an area, divided by the size of the area.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>

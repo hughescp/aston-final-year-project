@@ -67,7 +67,27 @@ class AreasController extends Controller
     {
         $areas = Area::all();
 
-        return view('areas.show', compact('area','areas'));
+        $national_averages =array(
+            'house_price' => 216750,
+            'har' => 7.919466,
+            'broadband' => 0.7601,
+            'greenSpace' => 0.139,
+            'goodGCSEs' => 0.54663,
+            'pubsandRestaurants' => 3.849,
+            'crime' => 9.844
+        );
+
+        Session::put([
+            'house_price_natav' => 216750,
+            'har_natav' => 7.919466,
+            'broadband_natav' => 0.7601,
+            'greenSpace_natav' => 0.139,
+            'goodGCSEsnat_av' => 0.54663,
+            'pubsandRestaurants_natav' => 3.849,
+            'crime_natav' => 9.844
+        ]);
+
+        return view('areas.show', compact('area','areas','national_averages'));
         return $area;
     }
     

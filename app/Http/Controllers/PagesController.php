@@ -36,12 +36,6 @@ class PagesController extends Controller
     {
         $areas = Area::all();
 
-        JavaScript::put([
-            'people' => ['Taylor', 'Matt', 'Jeffrey'],
-            'areas' => $areas,
-            'age' => 24
-        ]);
-
         return view('test');
     }
 
@@ -54,14 +48,6 @@ class PagesController extends Controller
         }else{
             $optout = true;
         };
-
-//        $crime_weighting = ($_POST["crimeLevel"]/20);
-//        $broadband_weighting = ($_POST["broadband"]/20);
-//        $greenspace_weighting = ($_POST["greenSpace"]/20);
-//        $gcse_weighting = ($_POST["goodGCSEs"]/20);
-//        $restaurants_weighting = ($_POST["pubsandRestaurants"]/20);
-//        $lowerlimit = ($_POST["lowerlimit"]);
-//        $upperlimit = ($_POST["upperlimit"]);
 
         DB::table('emails')->insert(
             ['email_address' => $request->email,
@@ -76,6 +62,8 @@ class PagesController extends Controller
             ]
         );
 
+        $email_address = $request->email;
+
         Mail::send('report_email', [
             'crime_weighting' => Session::get('crimeLevel'),
             'broadband_weighting' => Session::get('broadband'),
@@ -84,9 +72,9 @@ class PagesController extends Controller
             'restaurants_weighting' => Session::get('pubsandRestaurants'),
             'lowerlimit' => Session::get('lowerlimit'),
             'upperlimit' => Session::get('upperlimit')
-            ], function($message)
+            ], function($message) use ($request)
         {
-            $message->to('hughescp@aston.ac.uk', 'Some guy')->from('chris@comparea.com')->subject('Comparea Personal Report');
+            $message->to($request->email, 'Some guy')->from('chris@comparea.com')->subject('Comparea Personal Report');
         });
 
         Session::flash('status','Thank you for requesting a report. We will send it to you shortly.'); //a temporary message
