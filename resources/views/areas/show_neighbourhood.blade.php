@@ -84,8 +84,12 @@
           <div class="card-block">
             <h3 class="card-title">Greenspace</h3>
             <h4>!{ $area->greenspace*100}!%</h4>
-            <strong>Above/Below National Average</strong>
-            <p class="card-text">The percentage of an area covered in greenspace i.e. parks, grassland, trees, natural habitation etc.</p>
+            @if($area->greenspace > Session::get('greenSpace_natav'))
+            <p style="color:darkgreen">Above National Average</p>
+            @else
+            <p style="color:#cc0000">Below National Average</p>
+            @endif
+            <p class="card-text">Greenspace includes: natural habitats, paths, waterways, parks and gardens, outdoor sports facilities, playing fields and children's play areas.</p>
           </div>
         </div>
       </div>
@@ -94,8 +98,12 @@
           <div class="card-block">
             <h3 class="card-title">Pubs & Restaurants</h3>
             <h4>!{ $area->restaurants }!/km<sup>2</sup></h4>
-            <strong>Above/Below National Average</strong>
-            <p class="card-text">The total number of pubs, restaurants, and other eateries in an area, divided by the size of the area.</p>
+            @if($area->restaurants > Session::get('pubsandRestaurants_natav'))
+            <p style="color:darkgreen">Above National Average</p>
+            @else
+            <p style="color:#cc0000">Below National Average</p>
+            @endif
+            <p class="card-text">The number of pubs, restaurants, or other eatieries per square km of an city.</p>
           </div>
         </div>
       </div>

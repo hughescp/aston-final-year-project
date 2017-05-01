@@ -26,7 +26,7 @@ new Vue({
 
 $("#nav_to_map").click(function() {
     $('html, body').animate({
-        scrollTop: $("#map").offset().top
+        scrollTop: $("#main_content").offset().top
     }, 2000);
 });
 
@@ -132,14 +132,14 @@ function createMap(myLatlng){
 
     // set up the style rules and events for google.maps.Data
     map.data.setStyle(styleFeature);
-//        map.data.addListener('mouseover', mouseInToRegion);
+        map.data.addListener('mouseover', mouseInToRegion);
 //        map.data.addListener('mouseout', mouseOutOfRegion);
 
 };
 
 var infoWindow = new google.maps.InfoWindow;
 
-function createMarker(latlang, id, name, price, pop,greenspace,schools,restaurants, broadband, lowerC, middleC, upperC){
+function createMarker(latlang, id, name, price, pop,greenspace,schools,restaurants, broadband, lowerC, middleC, upperC, selectedVar, valOfSelectedVar){
 
     var infowincontent = document.createElement('div');
     var strong = document.createElement('h3');
@@ -191,6 +191,37 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
     marker.addListener('click', function() {
         infoWindow.setContent(infowincontent);
         infoWindow.open(map, marker);
+    });
+
+    marker.addListener('mouseover', function(){
+       marker.icon.strokeColor = 'hsl(0,0%,100%)';
+        marker.icon.scale=40;
+        marker.icon.fillOpacity = 1;
+        if (selectedVar == 'crime'){
+            marker.setLabel(String(valOfSelectedVar));
+        }else if(selectedVar == 'mean_house_price_2015'){
+            marker.setLabel("£"+String(valOfSelectedVar));
+        }else if(selectedVar == 'greenspace'){
+            marker.setLabel(String(valOfSelectedVar*100)+"%");
+        }else if(selectedVar == 'five_good_gcses'){
+            marker.setLabel(String(valOfSelectedVar*100)+"%");
+        }else if(selectedVar == 'restaurants'){
+            marker.setLabel(String(valOfSelectedVar)+"km^2");
+        }else if(selectedVar == 'broadband'){
+            marker.setLabel(String(valOfSelectedVar*100)+"%");
+        }
+        marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+        console.log(valOfSelectedVar);
+        console.log("mouse went over");
+    });
+
+    marker.addListener('mouseout', function(){
+       marker.icon.strokeColor = 'hsl(' + lowerC + ',' + middleC + '%,' + upperC + '%)';
+        marker.icon.scale=30;
+        marker.icon.fillOpacity = 0.5;
+        marker.setLabel("");
+        console.log("mouse moved out");
+
     });
 
     //Add the marker to the markers array.
@@ -254,32 +285,65 @@ function fetchAreas(selectedVar){
             var low = [5, 69, 54];;  // color of smallest datum
             var high = [151, 83, 34];   // color of largest datum
 
-//            if (selectedVar = 'crime' || 'mean_house_price_2015'){
+//            var high;
+//            var low;
+//
+//            if (selectedVar = 'crime'){
 //                low = [151, 83, 34];  // color of smallest datum
 //                high = [5, 69, 54];   // color of largest datum
-//            }else if(selectedVar = 'greenspace' || 'five_good_gcses' || 'restaurants' || 'broadband'){
+//            }else if(selectedVar = 'mean_house_price_2015'){
+//                low = [151, 83, 34];   // color of largest datum
+//                high = [5, 69, 54];  // color of smallest datum
+//            }else if(selectedVar = 'greenspace'){
+//                low = [5, 69, 54];  // color of smallest datum
+//                high = [151, 83, 34];   // color of largest datum
+//            }else if(selectedVar = 'five_good_gcses'){
+//                low = [5, 69, 54];  // color of smallest datum
+//                high = [151, 83, 34];   // color of largest datum
+//            }else if(selectedVar = 'restaurants'){
+//                low = [5, 69, 54];  // color of smallest datum
+//                high = [151, 83, 34];   // color of largest datum
+//            }else if(selectedVar = 'broadband'){
 //                low = [5, 69, 54];  // color of smallest datum
 //                high = [151, 83, 34];   // color of largest datum
 //            }
 
             // delta represents where the value sits between the min and max
-            var delta = (val[selectedVar] - valueMin) /
-            (valueMax - valueMin);
+            var valOfSelectedVar = val[selectedVar];
+            var delta = (val[selectedVar] - valueMin) / (valueMax - valueMin);
+
+//            var delta;
+//            if (selectedVar = 'crime'){
+//                delta = 1-((val[selectedVar] - valueMin) / (valueMax - valueMin));
+//            }else{
+//                delta = (val[selectedVar] - valueMin) / (valueMax - valueMin);
+//            };
 
             var color = [];
             for (var i = 0; i < 3; i++) {
               // calculate an integer color based on the delta
               color[i] = (high[i] - low[i]) * delta + low[i];
             }
-
+//            console.log(selectedVar + gname + color);
+            //SWITCH THE HIGHS AND LOWS FOR CRIME AND HOUSE PRICES
 //            if (selectedVar = 'crime' || 'mean_house_price_2015'){
+//                var high = [5, 69, 54];;  // color of smallest datum
+//                var low = [151, 83, 34];   // color of largest datum
+//
 //                // Make it so that the scale is inversed
+//                for (var i = 0; i < 3; i++) {
+//                  // calculate an integer color based on the delta
+//                  color[i] = (low[i] - high[i]) * delta + low[i];
+//                }
 //            }else{
-//                // Do as is currently done.
+//                for (var i = 0; i < 3; i++) {
+//                  // calculate an integer color based on the delta
+//                  color[i] = (high[i] - low[i]) * delta + low[i];
+//                }
 //            }
 
             ///////// Then I can pass it as a variable into createMarker()
-            createMarker(gLatLng,gid,gname,price,pop,greenspace,schools,restaurants, broadband, color[0], color[1], color[2]);
+            createMarker(gLatLng,gid,gname,price,pop,greenspace,schools,restaurants, broadband, color[0], color[1], color[2], selectedVar, valOfSelectedVar);
         });
     });
 }
@@ -287,18 +351,6 @@ function fetchAreas(selectedVar){
 function mouseInToRegion(e) {
         // set the hover state so the setStyle function can change the border
         e.feature.setProperty('state', 'hover');
-
-        var percent = (e.feature.getProperty('census_variable') - censusMin) /
-            (censusMax - censusMin) * 100;
-
-        // update the label
-        document.getElementById('data-label').textContent =
-            e.feature.getProperty('NAME');
-        document.getElementById('data-value').textContent =
-            e.feature.getProperty('census_variable').toLocaleString();
-        document.getElementById('data-box').style.display = 'block';
-        document.getElementById('data-caret').style.display = 'block';
-        document.getElementById('data-caret').style.paddingLeft = percent + '%';
       }
 
 //End of Code for GoogleMap API

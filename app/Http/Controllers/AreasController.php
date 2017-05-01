@@ -105,6 +105,16 @@ class AreasController extends Controller
 
     public function show_neighbourhood(Area $area)
     {
+        Session::put([
+            'house_price_natav' => 216750,
+            'har_natav' => 7.919466,
+            'broadband_natav' => 0.7601,
+            'greenSpace_natav' => 0.139,
+            'goodGCSEsnat_av' => 0.54663,
+            'pubsandRestaurants_natav' => 3.849,
+            'crime_natav' => 9.844
+        ]);
+
         return view('areas.show_neighbourhood', compact('area'));
         return $area;
     }

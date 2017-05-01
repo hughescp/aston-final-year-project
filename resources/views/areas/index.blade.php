@@ -22,7 +22,7 @@
         </h4>
     </div>
     <div class="inner">
-        <a href="#map"><i id="nav_to_map" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
+        <a href="#main_content"><i id="nav_to_map" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
     </div>
 </section>
 <!--<img id="landing_page" src="/img/Plain_Landing_Page.png">-->
