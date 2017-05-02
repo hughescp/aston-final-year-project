@@ -112,7 +112,7 @@ class AreasController extends Controller
             'greenSpace_natav' => 0.139,
             'goodGCSEsnat_av' => 0.54663,
             'pubsandRestaurants_natav' => 3.849,
-            'crime_natav' => 9.844
+            'crime_natav' => 10.751
         ]);
 
         return view('areas.show_neighbourhood', compact('area'));

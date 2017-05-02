@@ -23,15 +23,19 @@
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/pubtransport">Public Transport</a>
-        </li>
     </ul>
         <h2>Asking Prices</h2>
         <h3 class="card-title">Mean House Price 2015</h3>
         <h4>£!{ $area->mean_house_price_2015 }!</h4>
-        <strong>Above/Below National Average</strong>
+        @if($area->mean_house_price_2015 > Session::get('house_price_natav'))
+        <p style="color:#cc0000">Above National Average</p>
+        @else
+        <p style="color:darkgreen">Below National Average</p>
+        @endif
         <p class="card-text">The average asking price for a property in this area.</p>
+
+
+
         <strong>Mean House Price Over Time:</strong>
         <linegraph id="price_over_time" :labels="[
             '2012',

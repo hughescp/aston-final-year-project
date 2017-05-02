@@ -17,19 +17,19 @@ class Helpers{
         };
 
         if(Session::has('broadband')){
-            $crime_weighting = (Session::get('broadband')/20);
+            $broadband_weighting = (Session::get('broadband')/20);
         };
 
         if(Session::has('greenSpace')){
-            $crime_weighting = (Session::get('greenSpace')/20);
+            $greenspace_weighting = (Session::get('greenSpace')/20);
         };
         
         if(Session::has('goodGCSEs')){
-            $crime_weighting = (Session::get('goodGCSEs')/20);
+            $gcse_weighting = (Session::get('goodGCSEs')/20);
         };
         
         if(Session::has('pubsandRestaurants')){
-            $crime_weighting = (Session::get('pubsandRestaurants')/20);
+            $restaurants_weighting = (Session::get('pubsandRestaurants')/20);
         };
 
         /*Functions to fetch the maximum instance of each variable*/

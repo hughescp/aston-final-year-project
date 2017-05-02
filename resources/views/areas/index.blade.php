@@ -22,7 +22,7 @@
         </h4>
     </div>
     <div class="inner">
-        <a href="#main_content"><i id="nav_to_map" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
+        <a href="#main_content"><i id="nav_to_table" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
     </div>
 </section>
 <!--<img id="landing_page" src="/img/Plain_Landing_Page.png">-->
@@ -31,7 +31,7 @@
 <div id = "preferencesInput" class = "container">
     <h2>Find Your Area</h2>
     <form method = "post" action="/pref_input" id="preferencesForm" class="form-group" onsubmit="return validateInputForm()">
-        
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     !{csrf_field()}!
         <p>Please enter the upper and lower limits that you would like the average house price of the area to be in:</p>
         <div class="form-group row">
@@ -39,17 +39,43 @@
         <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
             @if (Session::has('lowerlimit'))
-            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{Session::get('lowerlimit')}!>
+            <select type = "number" class="form-control" name="lowerlimit">
+                <option value="100000" @if(Session::get('lowerlimit')=="100000") !{"selected=selected"}! @endif>£100,000</option>
+                <option value="120000" @if(Session::get('lowerlimit')=="120000") !{"selected=selected"}! @endif>£120,000</option>
+                <option value="140000"@if(Session::get('lowerlimit')=="140000") !{"selected=selected"}! @endif>£140,000</option>
+                <option value="160000"@if(Session::get('lowerlimit')=="160000") !{"selected=selected"}! @endif>£160,000</option>
+                <option value="180000"@if(Session::get('lowerlimit')=="180000") !{"selected=selected"}! @endif>£180,000</option>
+                <option value="200000"@if(Session::get('lowerlimit')=="200000") !{"selected=selected"}! @endif>£200,000</option>
+                <option value="220000"@if(Session::get('lowerlimit')=="220000") !{"selected=selected"}! @endif>£220,000</option>
+                <option value="240000"@if(Session::get('lowerlimit')=="240000") !{"selected=selected"}! @endif>£240,000</option>
+                <option value="260000"@if(Session::get('lowerlimit')=="260000") !{"selected=selected"}! @endif>£260,000</option>
+                <option value="280000"@if(Session::get('lowerlimit')=="280000") !{"selected=selected"}! @endif>£280,000</option>
+                <option value="300000"@if(Session::get('lowerlimit')=="300000") !{"selected=selected"}! @endif>£300,000</option>
+                <option value="320000"@if(Session::get('lowerlimit')=="320000") !{"selected=selected"}! @endif>£320,000</option>
+                <option value="340000"@if(Session::get('lowerlimit')=="340000") !{"selected=selected"}! @endif>£340,000</option>
+                <option value="360000"@if(Session::get('lowerlimit')=="360000") !{"selected=selected"}! @endif>£360,000</option>
+                <option value="380000"@if(Session::get('lowerlimit')=="380000") !{"selected=selected"}! @endif>£380,000</option>
+                <option value="400000"@if(Session::get('lowerlimit')=="400000") !{"selected=selected"}! @endif>£400,000</option>
+                <option value="420000"@if(Session::get('lowerlimit')=="420000") !{"selected=selected"}! @endif>£420,000</option>
+                <option value="440000"@if(Session::get('lowerlimit')=="440000") !{"selected=selected"}! @endif>£440,000</option>
+                <option value="460000"@if(Session::get('lowerlimit')=="460000") !{"selected=selected"}! @endif>£460,000</option>
+                <option value="480000"@if(Session::get('lowerlimit')=="480000") !{"selected=selected"}! @endif>£480,000</option>
+                <option value="500000"@if(Session::get('lowerlimit')=="500000") !{"selected=selected"}! @endif>£500,000</option>
+                <option value="520000"@if(Session::get('lowerlimit')=="520000") !{"selected=selected"}! @endif>£520,000</option>
+                <option value="540000"@if(Session::get('lowerlimit')=="540000") !{"selected=selected"}! @endif>£540,000</option>
+                <option value="560000"@if(Session::get('lowerlimit')=="560000") !{"selected=selected"}! @endif>£560,000</option>
+                <option value="580000"@if(Session::get('lowerlimit')=="580000") !{"selected=selected"}! @endif>£580,000</option>
+                <option value="600000"@if(Session::get('lowerlimit')=="600000") !{"selected=selected"}! @endif>£600,000</option>
+            </select>
+<!--            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{Session::get('lowerlimit')}!>-->
             @else
-            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = 180000>
-            @endif
-<!--
-            <select type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = !{$_POST['lowerlimit'] or  "£140,000"}!>
+<!--            <input style="min-width:100px" type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = 180000>-->
+            <select type = "number" class="form-control" name="lowerlimit" min="1" max="999999999999" value = 140000>
                 <option value="100000">£100,000</option>
                 <option value="120000">£120,000</option>
                 <option value="140000">£140,000</option>
                 <option value="160000">£160,000</option>
-                <option value="180000">£180,000</option>
+                <option value="180000" selected="selected">£180,000</option>
                 <option value="200000">£200,000</option>
                 <option value="220000">£220,000</option>
                 <option value="240000">£240,000</option>
@@ -72,7 +98,7 @@
                 <option value="580000">£580,000</option>
                 <option value="600000">£600,000</option>
             </select>
--->
+            @endif
         </div>
         </div>
         <div class="form-group row">
@@ -80,19 +106,44 @@
         <div class="col-md-5 input-group">
             <span class="input-group-addon"> £</span>
             @if (Session::has('upperlimit'))
-            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{Session::get('upperlimit')}!>
+            <select type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{Session::get('upperlimit')}!>
+                <option value="100000" @if(Session::get('upperlimit')=="100000") !{"selected=selected"}! @endif>£100,000</option>
+                <option value="120000" @if(Session::get('upperlimit')=="120000") !{"selected=selected"}! @endif>£120,000</option>
+                <option value="140000"@if(Session::get('upperlimit')=="140000") !{"selected=selected"}! @endif>£140,000</option>
+                <option value="160000"@if(Session::get('upperlimit')=="160000") !{"selected=selected"}! @endif>£160,000</option>
+                <option value="180000"@if(Session::get('upperlimit')=="180000") !{"selected=selected"}! @endif>£180,000</option>
+                <option value="200000"@if(Session::get('upperlimit')=="200000") !{"selected=selected"}! @endif>£200,000</option>
+                <option value="220000"@if(Session::get('upperlimit')=="220000") !{"selected=selected"}! @endif>£220,000</option>
+                <option value="240000"@if(Session::get('upperlimit')=="240000") !{"selected=selected"}! @endif>£240,000</option>
+                <option value="260000"@if(Session::get('upperlimit')=="260000") !{"selected=selected"}! @endif>£260,000</option>
+                <option value="280000"@if(Session::get('upperlimit')=="280000") !{"selected=selected"}! @endif>£280,000</option>
+                <option value="300000"@if(Session::get('upperlimit')=="300000") !{"selected=selected"}! @endif>£300,000</option>
+                <option value="320000"@if(Session::get('upperlimit')=="320000") !{"selected=selected"}! @endif>£320,000</option>
+                <option value="340000"@if(Session::get('upperlimit')=="340000") !{"selected=selected"}! @endif>£340,000</option>
+                <option value="360000"@if(Session::get('upperlimit')=="360000") !{"selected=selected"}! @endif>£360,000</option>
+                <option value="380000"@if(Session::get('upperlimit')=="380000") !{"selected=selected"}! @endif>£380,000</option>
+                <option value="400000"@if(Session::get('upperlimit')=="400000") !{"selected=selected"}! @endif>£400,000</option>
+                <option value="420000"@if(Session::get('upperlimit')=="420000") !{"selected=selected"}! @endif>£420,000</option>
+                <option value="440000"@if(Session::get('upperlimit')=="440000") !{"selected=selected"}! @endif>£440,000</option>
+                <option value="460000"@if(Session::get('upperlimit')=="460000") !{"selected=selected"}! @endif>£460,000</option>
+                <option value="480000"@if(Session::get('upperlimit')=="480000") !{"selected=selected"}! @endif>£480,000</option>
+                <option value="500000"@if(Session::get('upperlimit')=="500000") !{"selected=selected"}! @endif>£500,000</option>
+                <option value="520000"@if(Session::get('upperlimit')=="520000") !{"selected=selected"}! @endif>£520,000</option>
+                <option value="540000"@if(Session::get('upperlimit')=="540000") !{"selected=selected"}! @endif>£540,000</option>
+                <option value="560000"@if(Session::get('upperlimit')=="560000") !{"selected=selected"}! @endif>£560,000</option>
+                <option value="580000"@if(Session::get('upperlimit')=="580000") !{"selected=selected"}! @endif>£580,000</option>
+                <option value="600000"@if(Session::get('upperlimit')=="600000") !{"selected=selected"}! @endif>£600,000</option>
+            </select>
+<!--            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{Session::get('upperlimit')}!>-->
             @else
-            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = 220000>
-            @endif
-<!--
-            <select type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = !{$_POST['upperlimit'] or  "£180,000"}!>
+            <select type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = 180000>
                 <option value="100000">£100,000</option>
                 <option value="120000">£120,000</option>
                 <option value="140000">£140,000</option>
                 <option value="160000">£160,000</option>
                 <option value="180000">£180,000</option>
                 <option value="200000">£200,000</option>
-                <option value="220000">£220,000</option>
+                <option value="220000" selected="selected">£220,000</option>
                 <option value="240000">£240,000</option>
                 <option value="260000">£260,000</option>
                 <option value="280000">£280,000</option>
@@ -113,7 +164,8 @@
                 <option value="580000">£580,000</option>
                 <option value="600000">£600,000</option>
             </select>
--->
+            <!--            <input style="min-width:100px" type = "number" class="form-control" name="upperlimit" min="1" max="999999999999" value = 220000>-->
+            @endif
 
         </div>
         </div>
@@ -134,11 +186,12 @@
 -->
         <div id="pointsInput">
         <div class="form-group row">
+        <script src="https://unpkg.com/vue"></script>
             <div class ="col-sm-3">
                 @if (Session::has('crimeLevel'))
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="crimelevel" name = "crimeLevel" min = "0" max = "20" value = !{Session::get('crimeLevel')}!>
+                <input style="min-width:50px" class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = !{Session::get('crimeLevel')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="crimelevel" name = "crimeLevel" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" name = "crimeLevel" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Low Crime Level</label>
@@ -146,9 +199,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('greenSpace'))
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="greenSpace" name = "greenSpace" min = "0" max = "20" value = !{Session::get('greenSpace')}!>
+                <input style="min-width:50px" class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = !{Session::get('greenSpace')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="greenSpace" name = "greenSpace" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" name = "greenSpace" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Green Space</label>
@@ -156,9 +209,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('goodGCSEs'))
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = !{Session::get('goodGCSEs')}!>
+                <input style="min-width:50px" class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = !{Session::get('goodGCSEs')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="goodGCSEs" name = "goodGCSEs" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" name = "goodGCSEs" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Good schools</label>
@@ -166,9 +219,9 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('pubsandRestaurants'))
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = !{Session::get('pubsandRestaurants')}!>
+                <input style="min-width:50px" class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = !{Session::get('pubsandRestaurants')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="pubsandRestaurants" name = "pubsandRestaurants" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" name = "pubsandRestaurants" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Number of Pubs &amp Restaurants</label>
@@ -176,41 +229,51 @@
         <div class="form-group row">
             <div class ="col-sm-3">
                 @if (Session::has('broadband'))
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="broadband" name = "broadband" min = "0" max = "20" value = !{Session::get('broadband')}!>
+                <input style="min-width:50px" class="form-control" type="number" name = "broadband" min = "0" max = "20" value = !{Session::get('broadband')}!>
                 @else
-                <input style="min-width:50px" class="form-control" type="number" v-model.number="broadband" name = "broadband" min = "0" max = "20" value = 4>
+                <input style="min-width:50px" class="form-control" type="number" name = "broadband" min = "0" max = "20" value = 4>
                 @endif
             </div>
             <label class="col-sm-9 col-form-label">Superfast Broadband</label>
         </div>
         </div>
-        <p>You have submitted {{crimelevel+greenSpace+goodGCSEs+pubsandRestaurants+broadband}} points</p>
+<!--        <p>You have submitted {{crimelevel+greenSpace+goodGCSEs+pubsandRestaurants+broadband}} points</p>-->
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
         <a href="/pref_reset"><button class="btn btn-primary" style="background-color:#fff !important;color:#1b6634">Reset values</button></a>
         <div id="prefFormError"></div>
-
-    <script type="text/javascript">
-
+<!--
+        <script src="https://unpkg.com/vue"></script>
+        <div id="demo">
+            <input style="min-width:50px" class="form-control" type="number" v-model.number="num1" name = "crimelevel" min = "0" max = "20" >
+            <label class="col-sm-9 col-form-label">Low Crime</label>
+            <input style="min-width:50px" class="form-control" type="number" v-model.number="num2" name = "greenSpace" min = "0" max = "20" >
+            <label class="col-sm-9 col-form-label">Green space</label>
+            <input style="min-width:50px" class="form-control" type="number" v-model.number="num3" name = "goodGCSEs" min = "0" max = "20" >
+            <label class="col-sm-9 col-form-label">Good schools</label>
+            <input style="min-width:50px" class="form-control" type="number" v-model.number="num4" name = "pubsandRestaurants" min = "0" max = "20" >
+            <label class="col-sm-9 col-form-label">N. of Pubs &amp Restaurants</label>
+            <input style="min-width:50px" class="form-control" type="number" v-model.number="num5" name = "broadband" min = "0" max = "20" >
+            <label class="col-sm-9 col-form-label">Superfast Broadband</label><br>
+            <p>The sum of the numbers is {{num1 + num2 + num3 + num4 + num5}}</p>
+        </div>
+        <script type="text/javascript">
         var data = {
-            crimeLevel: !{Session::get('broadband')}! or 4,
-            greenSpace: !{Session::get('greenSpace')}! or 4,
-            goodGCSEs: !{Session::get('goodGCSEs')}! or 4,
-            pubsandRestaurants: !{Session::get('pubsandRestaurants')}! or 4,
-            broadband: !{Session::get('broadband')}! or 4
+            num1: 4,
+            num2: 4,
+            num3: 4,
+            num4: 4,
+            num5: 4
         }
 
-        var pointsInput = new Vue({
-            el: '#pointsInput',
+        var demo = new Vue({
+            el: '#demo',
             data: data
         })
+        </script>
+-->
 
-        var crimeLevel;
-        var greenSpace;
-        var goodGCSEs;
-        var pubsandRestaurants;
-        var broadband;
-
+    <script type="text/javascript">
         function validateInputForm(){
             //Set the error message.
             //Get the form and fetch the values inputted, converting thmem to numbers
@@ -244,39 +307,16 @@
             <table id='areas_table' class="table table-striped">
                 <thead class="thead-default">
                     <tr>
-                        <th>Select</th>
-                        <th>Area</th>
-                        <th>Overall Score</th>
-                        <th>Housing Affordability Ratio</th>
-                        <th>Mean House Price</th>
-                        <th>Crime Level</th>
-                        <th>Green Space</th>
-                        <th>Good GCSE's</th>
-                        <th>Number of Pubs &amp; Restaraunts:</th>
-                        <th>Superfast Broadband</th>
-<!--
-                        <th class="tooltip">Area<span class="tooltiptext">Name of the Area</span></th>
-                        <th class="tooltip">Overall Score<span class="tooltiptext">Score based on default or user preferences</span></th>
-                        <th class="tooltip">Housing Affordability Ratio<span class="tooltiptext">Ratio of avg house price to income</span></th>
-                        <th class="tooltip">Mean House Price<span class="tooltiptext">Average house price in the area</span></th>
-                        <th class="tooltip">Crime Level<span class="tooltiptext"># of crime's committed per 1,000 people</span></th>
-                        <th class="tooltip">Green Space<span class="tooltiptext">% of area covered in greenspace</span></th>
-                        <th class="tooltip">Good GCSE's<span class="tooltiptext">% of children achieving 5 A*-C GCSEs</span></th>
-                        <th class="tooltip">Number of Pubs &amp; Restaraunts<span class="tooltiptext"># of eateries per km squared</span></th>
-                        <th class="tooltip">Superfast Broadband<span class="tooltiptext">% of households with more than 24Mbps download speed</span></th>
--->
-                    </tr>
-                    <tr class="second">
-                        <th scope="row"></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th data-toggle="tooltip" title="Select areas to compare!">Select</th>
+                        <th data-toggle="tooltip" title="Name of area">Area</th>
+                        <th data-toggle="tooltip" title="Score calculated based on default weightings or user preferences">Overall Score</th>
+                        <th data-toggle="tooltip" title="Ratio of avg salary to avg house price">Housing Affordability Ratio</th>
+                        <th data-toggle="tooltip" title="of houses in the area">Mean House Price</th>
+                        <th data-toggle="tooltip" title="Offences per 1,000">Crime Level</th>
+                        <th data-toggle="tooltip" title="% of city coverd by green space">Green Space</th>
+                        <th data-toggle="tooltip" title="% of pupils achieving 5 A*-C GCSEs.">Good GCSE's</th>
+                        <th data-toggle="tooltip" title="per square km">Number of Pubs &amp; Restaraunts:</th>
+                        <th data-toggle="tooltip" title="% of households with superfast broadband">Superfast Broadband</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -355,19 +395,26 @@
                 }
             }
         </script>
+<!--
         <div id="dialog" title="Comparea">
             <p>Please select two areas to compare</p>
         </div>
+-->
+    <div class="inner">
+        <a href="#map"><i id="nav_to_map" class="fa fa-angle-double-down fa-4x" aria-hidden="true" ></i></a>
+    </div>
+
 </div>
+
 <div id="controls" class="nicebox">
   <div>
     <select id="census-variable">
       <option selected="selected" value="mean_house_price_2015">Mean House Price</option>
-      <option value="crime">Crime Level</option>
-      <option value="greenspace">Green Space</option>
-      <option value="five_good_gcses">Good Schools</option>
-      <option value="restaurants">N. of pubs & restaurants</option>
-      <option value="superfast_broadband">Superfast Broadband</option>
+      <option value="crime">Crime Level (offences per 1,000 of the population)</option>
+      <option value="greenspace">Green Space (% of city)</option>
+      <option value="five_good_gcses">Good Schools (% of children with 5 A*-C GCSEs)</option>
+        <option value="restaurants">N. of Pubs & Restaurants (per km<sup>2</sup>)</option>
+      <option value="superfast_broadband">Superfast Broadband (% of households in city)</option>
     </select>
   </div>
   <div id="legend">

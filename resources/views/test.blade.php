@@ -1,5 +1,4 @@
 <script src="https://unpkg.com/vue"></script>
-<div class="container" ng-app="">
 <div id="demo">
     <input type="number" v-model.number="num1"><br>
     <input type="number" v-model.number="num2" ><br>

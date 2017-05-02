@@ -23,9 +23,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/pubtransport">Public Transport</a>
-        </li>
     </ul>
     <h2>Neighbourhood</h2>
     <div id="overview_cards"class="row">

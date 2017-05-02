@@ -23,9 +23,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/pubtransport">Public Transport</a>
-        </li>
     </ul>
     <h2>Overview</h2>
     <div id="overview_cards"class="row">
@@ -104,7 +101,7 @@
                     @else
                     <p style="color:darkgreen">Below National Average</p>
                     @endif
-                    <p class="card-text">The number of crimes committed per 1000 of the population.</p>
+                    <p class="card-text">The number of crimes committed per 1,000 of the population.</p>
                 </div>
             </div>
         </div>

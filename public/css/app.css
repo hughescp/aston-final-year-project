@@ -5743,7 +5743,7 @@ button.close {
   border: #e5e5e5 1px solid; }
 
 #controls {
-  top: 1565px;
+  top: 1520px;
   right: 4px;
   width: auto;
   height: auto; }
@@ -5799,6 +5799,9 @@ button.close {
 
 i {
   color: white; }
+
+#nav_to_map {
+  color: #595959; }
 
 #about_us {
   float: right;

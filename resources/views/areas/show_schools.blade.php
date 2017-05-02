@@ -23,23 +23,21 @@
         <li class="nav-item active">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/pubtransport">Public Transport</a>
-        </li>
     </ul>
     <h2>School</h2>
-    <div id="overview_cards"class="row">
-     <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="card text-center">
-          <div class="card-block">
-            <h4 class="card-title">Pupils Achieving 5A*-C GCSEs inc. Maths & Eng</h4>
-            <h3>!{ $area->five_good_gcses*100}!%</h3>
-            <strong>Above/Below National Average</strong>
-            <p class="card-text">The average asking price for a property in this area.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div class="overviewcard col-sm-12 col-md-6 col-lg-3">
+            <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-title">Pupils Achieving 5 A*-C GCSEs</h4>
+                    <h3>!{ $area->five_good_gcses*100}!%</h3>
+                    @if($area->five_good_gcses > Session::get('goodGCSEs_natav'))
+                    <p style="color:darkgreen">Above National Average</p>
+                    @else
+                    <p style="color:#cc0000">Below National Average</p>
+                    @endif
+                    <p class="card-text">The number of pupils achieving 5 A*-C GCSEs.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 </div>
 @stop

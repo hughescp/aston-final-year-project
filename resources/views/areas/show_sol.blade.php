@@ -23,9 +23,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/areas/!{$area->id}!/schools">Schools</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/areas/!{$area->id}!/pubtransport">Public Transport</a>
-        </li>
     </ul>
     <h2>Standard of Living</h2>
         <p>The areas in the system are ranked based on their score, with 0 being the lowest rank, higher numbers equaling a higher rank.</p>

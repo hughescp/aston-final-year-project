@@ -40,7 +40,7 @@
             @endforeach
         </tr>
         <tr class="comp_row">
-            <td><h5>Greenspace:</h5><p>(Natural habitats, paths, waterways, parks, gardens, outdoor sports facilities, playing fields and children's play areas)</p></td>
+            <td><h5>Green space:</h5><p>(Natural habitats, paths, waterways, parks, gardens, outdoor sports facilities, playing fields and children's play areas)</p></td>
             @foreach ($areas as $area)
             <td class="comp_column">!{$area->greenspace*100}!%</td>
             @endforeach

@@ -24,9 +24,15 @@ new Vue({
     }
 });
 
-$("#nav_to_map").click(function() {
+$("#nav_to_table").click(function() {
     $('html, body').animate({
         scrollTop: $("#main_content").offset().top
+    }, 2000);
+});
+
+$("#nav_to_map").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#map").offset().top
     }, 2000);
 });
 
@@ -39,6 +45,7 @@ $(document).ready( function () {
         aaSorting: [[2, 'desc']],
         orderCellsTop: true,   //move sorting to top header
     });
+$('[data-toggle="tooltip"]').tooltip();
 
     mapInit();
 //
@@ -59,7 +66,7 @@ $(document).ready( function () {
 //    table.row(indexes).remove().draw(false);
 } );//End of document.ready function
 
-var myApp = angular.module('myApp', []);
+//var myApp = angular.module('myApp', []);
 
 
 myApp.controller('myCtrl', function($scope) {
@@ -196,23 +203,22 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
     marker.addListener('mouseover', function(){
        marker.icon.strokeColor = 'hsl(0,0%,100%)';
         marker.icon.scale=40;
+        marker.icon.strokeWeight=2;
         marker.icon.fillOpacity = 1;
         if (selectedVar == 'crime'){
-            marker.setLabel(String(valOfSelectedVar));
+            marker.setLabel(String(Math.round(valOfSelectedVar)));
         }else if(selectedVar == 'mean_house_price_2015'){
-            marker.setLabel("£"+String(valOfSelectedVar));
+            marker.setLabel("£"+String(Math.round(valOfSelectedVar))); //Math.round(valOfSelectedVar*10)/10)
         }else if(selectedVar == 'greenspace'){
-            marker.setLabel(String(valOfSelectedVar*100)+"%");
+            marker.setLabel(String(Math.round(valOfSelectedVar*100))+"%");
         }else if(selectedVar == 'five_good_gcses'){
-            marker.setLabel(String(valOfSelectedVar*100)+"%");
+            marker.setLabel(String(Math.round(valOfSelectedVar*100)+"%"));
         }else if(selectedVar == 'restaurants'){
             marker.setLabel(String(valOfSelectedVar)+"km^2");
-        }else if(selectedVar == 'broadband'){
-            marker.setLabel(String(valOfSelectedVar*100)+"%");
+        }else if(selectedVar == 'superfast_broadband'){
+            marker.setLabel(String(Math.round(valOfSelectedVar*100))+"%");
         }
         marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
-        console.log(valOfSelectedVar);
-        console.log("mouse went over");
     });
 
     marker.addListener('mouseout', function(){
@@ -220,8 +226,6 @@ function createMarker(latlang, id, name, price, pop,greenspace,schools,restauran
         marker.icon.scale=30;
         marker.icon.fillOpacity = 0.5;
         marker.setLabel("");
-        console.log("mouse moved out");
-
     });
 
     //Add the marker to the markers array.
